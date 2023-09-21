@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
             Debug.Log("HELLO");
+            Debug.Log("HELLO");
+            Debug.Log("HELLO");
+            Debug.Log("HELLO");
+            Debug.Log("HELLO");
         }
     }
 }
