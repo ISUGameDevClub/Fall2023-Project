@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SecondaryAttack : MonoBehaviour
@@ -20,6 +18,8 @@ public class SecondaryAttack : MonoBehaviour
     //Set to false when unable to use secondary attack (out of energy/currency)
     public bool canUseSecondaryAttack = true;
     public int weaponState = 0;
+    //Alter this variable to change amount of time hitbox is active on attack two
+    public float attackTwoDestroyTime = .2f;
     
     void Update()
     {
@@ -42,7 +42,11 @@ public class SecondaryAttack : MonoBehaviour
         }
         else if(weaponState == 2)
         {
-            //insert second secondary weapon state functionality
+            if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
+            {
+                StartCoroutine(SecondaryTwo());
+                Debug.Log("Secondary Attack 2 Pressed");
+            }
         }
         else if(weaponState == 3)
         {
@@ -60,6 +64,16 @@ public class SecondaryAttack : MonoBehaviour
         clone = Instantiate(secondaryAttackOne, transform.position + new Vector3(1,0,0), transform.rotation); //will set transform to players weapon when model is implemented
         clone.GetComponent<Rigidbody2D>().velocity = new Vector3(objectOneTravelSpeed,0,0);
         yield return new WaitForSeconds(.1f);
+    }
+
+    //Instantiate a temporary collider (Can make a permanent object that can be enabled/disabled when button is clicked instead(will allow hitbox to follow player))
+    //collider is not visible in game view
+    private IEnumerator SecondaryTwo()
+    {
+        GameObject melee1;
+        melee1 = Instantiate(secondaryAttackTwo, transform.position + new Vector3(1.6f,.8f,0), transform.rotation);
+        yield return new WaitForSeconds(attackTwoDestroyTime);
+        Destroy(melee1);
     }
 
 }
