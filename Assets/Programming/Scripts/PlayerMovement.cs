@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerTransform = transform;
         LeftRightMove();
+        if(input=)
     }
     void LeftRightMove()
     {
@@ -20,4 +21,6 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
         }
     }
+
+    
 }
