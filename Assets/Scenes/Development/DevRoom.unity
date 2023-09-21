@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 788916}
   - component: {fileID: 788915}
   - component: {fileID: 788917}
+  - component: {fileID: 788918}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -295,6 +296,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+--- !u!114 &788918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31e8feeaf9e3f343932e5c320711cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondaryAttackOne: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
+  secondaryAttackTwo: {fileID: 0}
+  secondaryAttackThree: {fileID: 0}
+  objectOneTravelSpeed: 10
+  objectTwoTravelSpeed: 0
+  objectThreeTravelSpeed: 0
+  canUseSecondaryAttack: 1
+  weaponState: 1
 --- !u!1 &163217644
 GameObject:
   m_ObjectHideFlags: 0
