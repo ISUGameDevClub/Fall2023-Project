@@ -21,6 +21,10 @@ public class SecondaryAttack : MonoBehaviour
     //Alter this variable to change amount of time hitbox is active on attack two
     public float attackTwoDestroyTime = .2f;
     
+    void Start()
+    {
+        secondaryAttackTwo.SetActive(false);
+    }
     void Update()
     {
         CheckForClick();
@@ -70,10 +74,9 @@ public class SecondaryAttack : MonoBehaviour
     //collider is not visible in game view
     private IEnumerator SecondaryTwo()
     {
-        GameObject melee1;
-        melee1 = Instantiate(secondaryAttackTwo, transform.position + new Vector3(1.6f,.8f,0), transform.rotation);
+        secondaryAttackTwo.SetActive(true);
         yield return new WaitForSeconds(attackTwoDestroyTime);
-        Destroy(melee1);
+        secondaryAttackTwo.SetActive(false);
     }
 
 }

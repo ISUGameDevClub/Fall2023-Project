@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + Input.GetAxis("Vertical") * JumpHeight);
+            Debug.Log("Jump Key presed");
         }
     }
     //jump.
