@@ -22,12 +22,14 @@ public class Enemy1 : MonoBehaviour{
     }
 
     //called to subtract enemy health and blink out for a frame to signify being hit
-    public void damage(int damageTaken){
+    public void Damage(int damageTaken){
         health = health - damageTaken;
         enemyRenderer = GetComponent<SpriteRenderer>();
         //Change the GameObject's Material Color to white
         enemyRenderer.enabled = false;
-        yield return new WaitForSeconds(1);
+        //--CODY COMMENTED OUT BELOW--//
+        //You need to make this method an IEnumerator if you want to use yield return
+        //yield return new WaitForSeconds(1);
         enemyRenderer.enabled = true;
     }
 
