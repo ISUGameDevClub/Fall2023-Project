@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
         playerTransform = transform;
         LeftRightMove();
         Jump();
+        FlipSprite();
     }
     void LeftRightMove()
     {
@@ -34,5 +36,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+    void FlipSprite()
+    {
+        if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
