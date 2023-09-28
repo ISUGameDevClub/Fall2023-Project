@@ -1,28 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed;
-    Transform playerTransform;
+    private bool canMove;
+    private Rigidbody2D rb;
+    public float moveSpeed;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        playerTransform = transform;
         LeftRightMove();
     }
+    
     void LeftRightMove()
     {
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
-            Debug.Log("HELLO");
-            Debug.Log("HELLO");
-            Debug.Log("HELLO");
-            Debug.Log("HELLO");
-            Debug.Log("HELLO");
-        }
+        Vector2 horizontalInput = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0f);
+        rb.MovePosition(rb.position + horizontalInput * Time.fixedDeltaTime);
     }
 }
