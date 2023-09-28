@@ -37,5 +37,11 @@ public class CheckpointSystem : MonoBehaviour
                 currentSave = save;
             }
         }
+        GameObject GetCurrentSave(){
+            return currentSave;
+        }
+        GameObject GetPreviousSave(){
+            return previousSave;
+        }
     }
 }
