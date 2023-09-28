@@ -6,13 +6,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float JumpHeight;
+    [SerializeField] SpriteRenderer spriteRenderer;
     Transform playerTransform;
-    // Update is called once per frame
+    
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
         playerTransform = transform;
         LeftRightMove();
         Jump();
+        FlipSprite();
     }
     void LeftRightMove()
     {
@@ -31,5 +38,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     //jump.
+
+    void FlipSprite()
+    {
+        if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
 
 }
