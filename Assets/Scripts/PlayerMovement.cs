@@ -1,28 +1,52 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool canMove;
-    private Rigidbody2D rb;
-    public float moveSpeed;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    public float moveSpeed = 1;
+    Transform playerTransform;
+    Rigidbody2D rb;
+    bool isGrounded;
+    SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        LeftRightMove();
+    void Start(){
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+    void Update()
+    {
+        playerTransform = transform;
+        LeftRightMove();
+        Jump();
+        FlipSprite();
+    }
     void LeftRightMove()
     {
-        Vector2 horizontalInput = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0f);
-        rb.MovePosition(rb.position + horizontalInput * Time.fixedDeltaTime);
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            transform.position = new Vector2(transform.position.x + (Input.GetAxis("Horizontal") * moveSpeed) / 2, transform.position.y);
+        }
+    }
+    void Jump()
+    {
+
+        if(isGrounded && Input.GetKeyDown("space")){
+            rb.velocity = new Vector2(0.0f,5.0f);
+        }
+
+
+    }
+    void FlipSprite()
+    {
+        if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
