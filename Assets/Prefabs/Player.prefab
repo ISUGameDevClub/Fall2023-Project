@@ -172,20 +172,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cec3b56959e448fa509967853e53733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStyle: 
   styles:
   - styleName: TestDefault
-    moveSpeed: 10
+    moveSpeed: 0.25
+    damageMultiplier: 1
     moveTech: {fileID: 0}
     superAttack: {fileID: 0}
     primaryWeapon: {fileID: 0}
   - styleName: TestFast
-    moveSpeed: 25
+    moveSpeed: 0.5
+    damageMultiplier: 1.1
     moveTech: {fileID: 0}
     superAttack: {fileID: 0}
     primaryWeapon: {fileID: 0}
   - styleName: TestSlow
-    moveSpeed: 4
+    moveSpeed: 0.125
+    damageMultiplier: 0.9
     moveTech: {fileID: 0}
     superAttack: {fileID: 0}
     primaryWeapon: {fileID: 0}

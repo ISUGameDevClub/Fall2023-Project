@@ -5,47 +5,42 @@ using UnityEngine;
 public class StyleSystem : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    public string currentStyle;
-    public Style[] styles;
+    [System.NonSerialized] public string currentStyle;
+    public Style[] styles; //An array of styles.
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        ChangeStyle("TestDefault"); //Default style.
+        ChangeStyle(0); //Default style.
     }
 
     private void Update()
     {
+        //Changes style by index.
+        //0 is first style, 1 is second style, etc...
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeStyle("TestDefault");
+            ChangeStyle(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeStyle("TestFast");
+            ChangeStyle(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeStyle("TestSlow");
+            ChangeStyle(2);
         }
     }
 
-    public void ChangeStyle(string styleName)
+    public void ChangeStyle(int index)
     {
-        //Searches by stylename.
-        foreach (Style style in styles)
-        {
-            if (style.styleName == styleName)
-            {
-                currentStyle = style.styleName;
-
-                playerMovement.moveSpeed = style.moveSpeed;
-                //Add UI element to represent changed styleName.
-                //playerMovement.moveTech = style.moveTech;
-                //playerCombat.currentPrimary = style.primaryWeapon;
-                //playerCombat.currentSuper = style.superAttack;
-            }
-        }
+        currentStyle = styles[index].styleName;
+        playerMovement.moveSpeed = styles[index].moveSpeed;
+        //Add UI element to represent changed styleName.
+        //playerHealth.damageMultiplier = styles[index].damageMultiplier;
+        //playerMovement.moveTech = styles[index].moveTech;
+        //playerCombat.currentPrimary = styles[index].primaryWeapon;
+        //playerCombat.currentSuper = styles[index].superAttack;
 
         Debug.Log("Current Style: " + currentStyle);
     }
@@ -56,6 +51,7 @@ public class StyleSystem : MonoBehaviour
     {
         public string styleName;
         public float moveSpeed;
+        public float damageMultiplier;
         public GameObject moveTech;
         public GameObject superAttack;
         public GameObject primaryWeapon;
