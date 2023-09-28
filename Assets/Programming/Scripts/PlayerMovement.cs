@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
-            transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
+            transform.position = new Vector2(transform.position.x + (Input.GetAxis("Horizontal") * speed) / 2, transform.position.y);
         }
     }
     void Jump()
