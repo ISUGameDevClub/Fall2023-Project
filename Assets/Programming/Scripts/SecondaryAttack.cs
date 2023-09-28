@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class SecondaryAttack : MonoBehaviour
 {
+    [Header("Other Scripts")]
+
+
+
     [Header("Player Info")]
     public SpriteRenderer spriteRenderer;
 
@@ -84,7 +88,7 @@ public class SecondaryAttack : MonoBehaviour
         
     }
 
-    //Note that secondary attacks do not need to be projectiles. All of this is placeholder until we have solid ideas
+    
     private IEnumerator SecondaryOne()
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed

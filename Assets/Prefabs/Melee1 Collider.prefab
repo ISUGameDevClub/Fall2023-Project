@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8944682120447333388}
   - component: {fileID: 6254377238029564569}
+  - component: {fileID: 1262877211687759854}
   m_Layer: 0
   m_Name: Melee1 Collider
   m_TagString: Untagged
@@ -82,3 +83,17 @@ PolygonCollider2D:
       - {x: 0.40164506, y: -1.0120791}
       - {x: 0.42647934, y: 0.28363436}
   m_UseDelaunayMesh: 0
+--- !u!114 &1262877211687759854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7695481709937907259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1161c3080a02de4498e8dbea2a83e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
+  damage: 1
