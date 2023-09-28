@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Transform playerTransform;
     Rigidbody2D rb;
     bool isGrounded;
+    SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Start(){
