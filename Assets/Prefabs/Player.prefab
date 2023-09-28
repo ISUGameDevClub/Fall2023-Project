@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 6828102586158567783}
   - component: {fileID: 1676726991700369912}
   - component: {fileID: 8740333629327798791}
+  - component: {fileID: 3644353525019425384}
   - component: {fileID: 1908892334070357536}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8819682843895672043}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -159,6 +160,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3644353525019425384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819682843895672043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cec3b56959e448fa509967853e53733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStyle: 
+  styles:
+  - styleName: TestDefault
+    moveSpeed: 10
+    moveTech: {fileID: 0}
+    superAttack: {fileID: 0}
+    primaryWeapon: {fileID: 0}
+  - styleName: TestFast
+    moveSpeed: 25
+    moveTech: {fileID: 0}
+    superAttack: {fileID: 0}
+    primaryWeapon: {fileID: 0}
+  - styleName: TestSlow
+    moveSpeed: 4
+    moveTech: {fileID: 0}
+    superAttack: {fileID: 0}
+    primaryWeapon: {fileID: 0}
 --- !u!114 &1908892334070357536
 MonoBehaviour:
   m_ObjectHideFlags: 0
