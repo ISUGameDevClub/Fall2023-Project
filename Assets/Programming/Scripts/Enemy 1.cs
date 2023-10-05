@@ -6,11 +6,10 @@ public class Enemy1 : MonoBehaviour{
 
     [SerializeField] private int health;
     
-    [SerializeField] private double moveSpeed;
+    [SerializeField] private int moveSpeed;
 
     //true is forward, false is backwards
     private bool direction;
-    SpriteRenderer enemyRenderer;
     // Start is called before the first frame update
     void Start(){
         
@@ -18,28 +17,25 @@ public class Enemy1 : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        
-    }
-
-    //called to subtract enemy health and blink out for a frame to signify being hit
-    public void damage(int damageTaken){
-        health = health - damageTaken;
-        enemyRenderer = GetComponent<SpriteRenderer>();
-        //Change the GameObject's Material Color to white
-        enemyRenderer.enabled = false;
-        yield return new WaitForSeconds(1);
-        enemyRenderer.enabled = true;
+        if (direction){
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        }
+        else {
+            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        }
     }
 
     //detects collison with anything but the player and reverses the movement
     private void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.tag != "Player" && direction){
             direction = false;
-            enemyRenderer.flipX = true;
         }
         else if (other.gameObject.tag != "Player" && !direction){
             direction = true;
-            enemyRenderer.flipX = false;
         }
+    }
+
+    public void TakeDamage(int damageTaken){
+        health = health - damageTaken;
     }
 }
