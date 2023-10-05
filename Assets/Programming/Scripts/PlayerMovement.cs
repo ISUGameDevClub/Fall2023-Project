@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void LeftRightMove()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
+            transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y);
         }
     }
 
