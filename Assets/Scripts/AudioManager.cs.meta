@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/BasicBulletDestroy.cs.meta
+guid: 6d3ff46ea5c64f941af5fd71d4598487
+========
+guid: e378ae668ea06eb4c9c19e1f294f4f53
+>>>>>>>> origin/kadavi5:Assets/Scripts/AudioManager.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
