@@ -13,7 +13,7 @@ public class MeleeColliderDetect : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            enemyScript.TakeDamage(damage);
+            other.GetComponent<TempEnemyScript>().TakeDamage(damage);
         }
         Debug.Log("Enemy Hit");
     }
