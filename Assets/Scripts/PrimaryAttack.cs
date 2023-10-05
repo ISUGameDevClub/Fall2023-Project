@@ -7,8 +7,8 @@ public class PrimaryAttack : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
 
-    public GameObject bullet;
-    public GameObject weapon;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject weapon;
 
 
     public float travelSpeed = 10f;
