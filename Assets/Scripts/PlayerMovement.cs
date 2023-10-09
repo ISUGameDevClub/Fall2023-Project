@@ -8,12 +8,11 @@ public class PlayerMovement : MonoBehaviour
     Transform playerTransform;
     Rigidbody2D rb;
     bool isGrounded;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Start(){
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
