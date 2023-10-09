@@ -18,6 +18,7 @@ public class DragonBossAttacks : MonoBehaviour
     void Start()
     {
         dragonAnimator = GetComponent<Animator>();
+        attackTimer = timeBetweenAttacks * 2; // Gives the player double the time on spawn to prepare for an attack.
     }
 
     // Update is called once per frame
@@ -31,7 +32,6 @@ public class DragonBossAttacks : MonoBehaviour
         // Will trigger an attack AND reset timer if not attacking.
         if(attackTimer <= 0 && !isAttacking)
         {
-            Debug.Log("ATTACKING!");
             Attack();
             attackTimer = timeBetweenAttacks;
         }
