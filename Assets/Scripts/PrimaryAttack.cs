@@ -15,7 +15,7 @@ public class PrimaryAttack : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     void Update() 

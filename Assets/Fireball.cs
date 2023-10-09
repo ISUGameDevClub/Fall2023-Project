@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Fireball : MonoBehaviour
+{
+    private GameObject player;
+    private Vector3 initialDirection;
+    private float destroyTime = 15f;
+    private Rigidbody2D rb;
+    public float speed = 5f;
+
+    private void Start()
+    {
+        player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
+        rb = GetComponent<Rigidbody2D>();
+        Vector2 initialDir = player.transform.position - this.transform.position;
+        rb.velocity = initialDir * speed;
+    }
+}
