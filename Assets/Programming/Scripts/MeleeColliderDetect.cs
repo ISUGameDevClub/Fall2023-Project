@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class MeleeColliderDetect : MonoBehaviour
 {
-    [Header("Other Scripts")]
-    public TempEnemyScript enemyScript;
-
-    public int damage;
+   public int damage;
 
     void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.tag == "Enemy")
         {
             other.GetComponent<TempEnemyScript>().TakeDamage(damage);
+            Debug.Log("melee collision detected");
         }
-        Debug.Log("Enemy Hit");
     }
 }
