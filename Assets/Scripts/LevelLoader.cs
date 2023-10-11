@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
+    [SerializeField] Animator transition;
 
-    public float transitionTime = 1f;
-    [SerializeField] int targetScene;
+    [SerializeField] float transitionTime = 1f;
+    [SerializeField] string targetScene;
 
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(targetScene));
     }
 
-    IEnumerator LoadLevel(int leveLIndex)
+    IEnumerator LoadLevel(string leveLIndex)
     {
         //Play transition animation
         transition.SetTrigger("Start");
