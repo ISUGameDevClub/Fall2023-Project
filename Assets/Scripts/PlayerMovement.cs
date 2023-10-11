@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpImpulse = 5f;
-    [SerializeField] float speed = 2f;
+    [SerializeField] float moveSpeed = 2f;
     Transform playerTransform;
     Rigidbody2D rb;
     RaycastHit2D hit;
@@ -36,14 +36,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("left") )
         {
-            rb.AddForce(new Vector2(-speed, 0));
+            rb.AddForce(new Vector2(-moveSpeed, 0));
         }
     }
     void RightMove()
     {
         if (Input.GetKey("right") )
         {
-            rb.AddForce(new Vector2(speed, 0));
+            rb.AddForce(new Vector2(moveSpeed, 0));
         }
     }
     void Jump()
