@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     RaycastHit2D hit;
     bool isGrounded;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Start(){
