@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class BasicBulletDestroy : MonoBehaviour
 {
-    float timeActive = 0;
-    public float desiredTimeActive;
+    [SerializeField] int damage;
 
-
-    void Update()
+    void OnTriggerEnter2D(Collider2D other) 
     {
-        DestroyAfterTime();
-    }
-
-    //Destroys object after desired amount of active time
-    void DestroyAfterTime()
-    {
-        timeActive += Time.deltaTime;
-        if(timeActive > desiredTimeActive)
+        if(other.gameObject.tag == "Enemy")
         {
+        //                insert title of enemy script
+            other.GetComponent<TempEnemyScript>().TakeDamage(damage);
             Destroy(gameObject);
         }
+        
     }
+
+
+  
 }

@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public int playerHealth;
     [SerializeField] private int playerMaxHealth = 100;
+    public delegate void PlayerDeathEventHandler();
+    public event PlayerDeathEventHandler OnPlayerDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         playerHealth -= damagePoint;
         if (playerHealth <= 0) {
             // Kill player Function Here
+            OnPlayerDeath();
         }
     }
 

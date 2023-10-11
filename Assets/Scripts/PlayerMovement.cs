@@ -4,49 +4,62 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1;
+    //[SerializeField]
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] float jumpImpulse = 5f;
+    /*[SerializeField]*/public float moveSpeed = 2f;
     Transform playerTransform;
     Rigidbody2D rb;
+    RaycastHit2D hit;
     bool isGrounded;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Start(){
+        isGrounded=true;
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
+        if(rb.velocity.x > 5f){
+            rb.velocity = new Vector2(5,rb.velocity.y);
+        }
+        if(rb.velocity.x < -5f){
+            rb.velocity = new Vector2(-5,rb.velocity.y);
+        }
         playerTransform = transform;
-        LeftRightMove();
+        LeftMove();
+        RightMove();
         Jump();
-        FlipSprite();
     }
-    void LeftRightMove()
+    void LeftMove()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (Input.GetKey("left") )
         {
-            transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, transform.position.y);
+            rb.AddForce(new Vector2(-moveSpeed, 0));
+        }
+    }
+    void RightMove()
+    {
+        if (Input.GetKey("right") )
+        {
+            rb.AddForce(new Vector2(moveSpeed, 0));
         }
     }
     void Jump()
     {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            RaycastHit2D hit = Physics2D.Raycast(this.rb.position, Vector2.down, 100.0f, groundLayer);
+            Debug.Log(hit.distance.ToString() + " " + hit.collider);
 
-        if(isGrounded && Input.GetKeyDown("space")){
-            rb.velocity = new Vector2(0.0f,5.0f);
-        }
-
-
-    }
-    void FlipSprite()
-    {
-        if(Input.GetAxisRaw("Horizontal") < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if(Input.GetAxisRaw("Horizontal") > 0)
-        {
-            spriteRenderer.flipX = false;
+            if(hit.distance < 0.7f){
+                isGrounded = true;
+            }else{
+                isGrounded = false;
+            }
+            if(isGrounded){
+            rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse );
+            }
         }
     }
 }
