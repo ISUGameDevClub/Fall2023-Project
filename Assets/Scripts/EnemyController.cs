@@ -8,13 +8,12 @@ public class EnemyController : MonoBehaviour{
     
     [SerializeField] private int moveSpeed;
 
-    private SpriteRenderer sprite;
+    [SerializeField] SpriteRenderer sprite;
 
     //true is forward, false is backwards
     private bool direction;
     // Start is called before the first frame update
     void Start(){
-        
     }
 
     // Update is called once per frame
