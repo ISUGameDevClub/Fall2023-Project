@@ -8,6 +8,7 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
 
     public float transitionTime = 1f;
+    [SerializeField] int targetScene;
 
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
+        StartCoroutine(LoadLevel(targetScene));
     }
 
     IEnumerator LoadLevel(int leveLIndex)
