@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpImpulse = 5f;
-    [SerializeField] float moveSpeed = 2f;
+    /*[SerializeField]*/public float moveSpeed = 2f;
     Transform playerTransform;
     Rigidbody2D rb;
     RaycastHit2D hit;
