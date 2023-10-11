@@ -23,7 +23,6 @@ public class PrimaryAttack : MonoBehaviour
         ShootWeapon();    
     }
 
-
     void ShootWeapon()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
