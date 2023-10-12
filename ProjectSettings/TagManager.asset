@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - Enemy
+  - Pit
   layers:
   - Default
   - TransparentFX
