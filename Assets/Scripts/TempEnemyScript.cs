@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class TempEnemyScript : MonoBehaviour
 {
-    public int maxHealth = 5;
-    public int currentHealth;
+    [SerializeField] int maxHealth = 5;
+    [SerializeField] int currentHealth;
     
     void Start()
     {
         currentHealth = maxHealth;
+    }
+
+    void Update()
+    {
+        EnemyDeath();
     }
 
     public void TakeDamage(int damage)
