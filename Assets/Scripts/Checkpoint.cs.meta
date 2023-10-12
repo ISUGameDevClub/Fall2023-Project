@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Checkpoint.cs.meta
+guid: 376d42e9ef978fc4eab53cd28ce9a7fc
+========
+guid: 823f06fbdc941fe47b277b0a2f4a2023
+>>>>>>>> origin/sagood2:Assets/LevelSelector.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
