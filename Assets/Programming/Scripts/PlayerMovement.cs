@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float JumpHeight;
     [SerializeField] SpriteRenderer spriteRenderer;
-    Transform playerTransform;
+    Transform playerTransform; 
+    public bool facingRight;
     
     void Start()
     {
@@ -19,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
         playerTransform = transform;
         LeftRightMove();
         Jump();
-        FlipSprite();
-    }
+    }    
     void LeftRightMove()
     {
         if (Input.GetAxisRaw("Horizontal") != 0)
@@ -39,16 +39,6 @@ public class PlayerMovement : MonoBehaviour
     }
     //jump.
 
-    void FlipSprite()
-    {
-        if(Input.GetAxisRaw("Horizontal") < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if(Input.GetAxisRaw("Horizontal") > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-    }
+   
 
 }

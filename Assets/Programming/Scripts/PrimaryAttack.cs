@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,7 @@ public class PrimaryAttack : MonoBehaviour
 
 
     public float travelSpeed = 10f;
+    [SerializeField] bool isRight = true;
 
     void Start()
     {
@@ -20,7 +22,8 @@ public class PrimaryAttack : MonoBehaviour
 
     void Update() 
     {
-        ShootWeapon();    
+        ShootWeapon();
+        CheckDirection();    
     }
 
     void ShootWeapon()
@@ -55,16 +58,27 @@ public class PrimaryAttack : MonoBehaviour
             {
                 clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * travelSpeed;
             }
-            else if(!spriteRenderer.flipX)
+            else if(isRight)
             {
                 clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * travelSpeed;
             }
-            else if(spriteRenderer.flipX)
+            else if(!isRight)
             {
                 clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * travelSpeed;
             }
         }
     }
 
-
+    void CheckDirection()
+    {
+        if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            isRight = true;
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0 )
+        {
+            isRight = false;
+        }
+    }
+    
 }
