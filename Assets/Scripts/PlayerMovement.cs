@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpImpulse = 5f;
-    /*[SerializeField]*/public float moveSpeed = 2f;
+    [SerializeField] float moveSpeed = 2f;
     Transform playerTransform;
     Rigidbody2D rb;
     RaycastHit2D hit;
@@ -17,12 +17,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D col){
-        if(col.gameObject.Layer==7){
+        if(col.gameObject.layer==7){
          colLadder = true;
         }
     }
     void OnTriggerExit2D(Collider2D col){
-        if(col.gameObject.Layer==7){
+        if(col.gameObject.layer==7){
          colLadder = false;
         }
     }
@@ -42,18 +42,16 @@ public class PlayerMovement : MonoBehaviour
         LeftMove();
         RightMove();
         Jump();
-        OnTriggerEnter2D(Ladder);
-        OnTriggerExit2D(Ladder);
         Ladder();
     }
-    float GetSpeed()
+    public float GetSpeed()
     {
-        return speed;
+        return moveSpeed;
     }
 
-    void SetSpeed(float i)
+    public void SetSpeed(float i)
     {
-        speed = i;
+        moveSpeed = i;
     }
     void LeftMove()
     {
@@ -87,7 +85,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Ladder(){
         if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
-            rb.transform.position.x = Ladder.transform.position.x;
+            // You cannot directly set the values in the position attribute, you have to set the position attribute to a vector 3 to set the x, I commented it out so we can compile for pushing
+            //rb.transform.position.x = Ladder.transform.position.x; 
             rb.velocity = new Vector2(0,5);
         }
     }

@@ -35,7 +35,7 @@ public class StyleSystem : MonoBehaviour
     public void ChangeStyle(int index)
     {
         currentStyle = styles[index].styleName;
-        playerMovement.moveSpeed = styles[index].moveSpeed;
+        playerMovement.SetSpeed(styles[index].moveSpeed);
         //Add UI element to represent changed styleName.
         //playerHealth.damageMultiplier = styles[index].damageMultiplier;
         //playerMovement.moveTech = styles[index].moveTech;
