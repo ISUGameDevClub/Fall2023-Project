@@ -20,10 +20,9 @@ public class PitTeleport : MonoBehaviour
     {
         
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")//change this to detect if the colision has the playermovement or playerhealth script instead. this will be more consistent and faster than checking the tag
         {
             //playerHealth.DamagePlayer(healthLoss);
             player.transform.position = respawnPoint.transform.position;

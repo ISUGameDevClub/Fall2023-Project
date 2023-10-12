@@ -39,10 +39,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(-5,rb.velocity.y);
         }
         playerTransform = transform;
-        LeftMove();
-        RightMove();
+        Move();
         Jump();
         Ladder();
+        
     }
     public float GetSpeed()
     {
@@ -53,19 +53,10 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = i;
     }
-    void LeftMove()
+    void Move()
     {
-        if (Input.GetKey("left") )
-        {
-            rb.AddForce(new Vector2(-moveSpeed, 0));
-        }
-    }
-    void RightMove()
-    {
-        if (Input.GetKey("right") )
-        {
-            rb.AddForce(new Vector2(moveSpeed, 0));
-        }
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        rb.AddForce(moveDirection * moveSpeed);
     }
     void Jump()
     {
