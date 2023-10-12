@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class EnemyController : MonoBehaviour{
 
@@ -10,6 +11,8 @@ public class EnemyController : MonoBehaviour{
 
     [SerializeField] SpriteRenderer sprite;
 
+    Animator animator;
+
     //true is forward, false is backwards
     private bool direction;
     // Start is called before the first frame update
@@ -18,7 +21,6 @@ public class EnemyController : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        flicker();
         if (direction){
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
@@ -42,11 +44,6 @@ public class EnemyController : MonoBehaviour{
 
     public void TakeDamage(int damageTaken){
         health = health - damageTaken;
-        
-    }
-
-    private void flicker(){
-        sprite.color = new Color(1f,1f,1f,0f);
-        sprite.color = new Color(1f,1f,1f,100f);
+        animator.SetBool("Attacked", true);
     }
 }
