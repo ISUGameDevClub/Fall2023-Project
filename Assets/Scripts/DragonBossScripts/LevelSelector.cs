@@ -12,8 +12,8 @@ public class LevelSelector : MonoBehaviour
     }
 
 
-   public void OpenScene()
+   public void OpenScene(string level)
    {
-        SceneManager.LoadScene("Dev Room");
+        SceneManager.LoadScene(level);
    }
 }
