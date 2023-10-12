@@ -13,8 +13,19 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit2D hit;
     bool isGrounded;
     [SerializeField] SpriteRenderer spriteRenderer;
+    bool colLadder;
 
     // Update is called once per frame
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.gameObject.Layer==7){
+         colLadder = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D col){
+        if(col.gameObject.Layer==7){
+         colLadder = false;
+        }
+    }
     void Start(){
         isGrounded=true;
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +42,18 @@ public class PlayerMovement : MonoBehaviour
         LeftMove();
         RightMove();
         Jump();
+        OnTriggerEnter2D(Ladder);
+        OnTriggerExit2D(Ladder);
+        Ladder();
+    }
+    float GetSpeed()
+    {
+        return speed;
+    }
+
+    void SetSpeed(float i)
+    {
+        speed = i;
     }
     void LeftMove()
     {
@@ -62,4 +85,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    void Ladder(){
+        if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
+            rb.transform.position.x = Ladder.transform.position.x;
+            rb.velocity = new Vector2(0,5);
+        }
+    }
+    
 }
