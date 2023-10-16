@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1640364290023444855}
   - component: {fileID: 7371163128193931321}
   - component: {fileID: 1605897756420091607}
+  - component: {fileID: 5235844403137933016}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -293,6 +294,34 @@ MonoBehaviour:
     moveTech: {fileID: 0}
     superAttack: {fileID: 0}
     primaryWeapon: {fileID: 0}
+--- !u!114 &5235844403137933016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612214214627169802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31e8feeaf9e3f343932e5c320711cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spriteRenderer: {fileID: 0}
+  secondaryAttackOne: {fileID: 0}
+  attackPoint: {fileID: 0}
+  secondaryAttackThree: {fileID: 0}
+  objectOneTravelSpeed: 0
+  objectTwoTravelSpeed: 0
+  objectThreeTravelSpeed: 0
+  canUseSecondaryAttack: 1
+  weaponState: 0
+  meleeDamage: 0
+  meleeAttackRange: 0.5
+  attackRate: 2
+  nextAttackTime: 0
 --- !u!1 &9149830522043891863
 GameObject:
   m_ObjectHideFlags: 0
