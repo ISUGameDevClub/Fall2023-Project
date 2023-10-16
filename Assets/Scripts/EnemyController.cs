@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
+
 
 public class EnemyController : MonoBehaviour{
-
+    //Goomba enemy should walk through the player and we should be able to use this script for all enemies. we can create a string that has a dropdown of values in inspector that changes what type of enemy it is. Can also be an int if we want to do that for testing. lmk if you have questions -c
     [SerializeField] private int health;
     
     [SerializeField] private int moveSpeed;

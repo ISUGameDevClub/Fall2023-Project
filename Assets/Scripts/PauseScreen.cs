@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour
 {
+    //make a prefab that this works on, currently since it is disabled it cannot access the script to enable itself, should be easily fixed-c
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenu;

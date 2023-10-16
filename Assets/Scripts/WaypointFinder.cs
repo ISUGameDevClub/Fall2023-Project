@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaypointFinder : MonoBehaviour
 {
+            //We should change this to use the Rigidbody2D.MovePosition() method for movement rather than transform.position setting to eliminate physics bugs since we are using physics to move everything else
+            //Make sure that it is easy to set waypoints by copying children waypoints from the prefab of the moving platform, and then set the parent transform of each waypoint to null so that it moves correctly
+        //P.S. change this to fixed update because all rigidbody updating should be done in FixedUpdate(); -c
+
     [SerializeField] private GameObject[] waypoints;
     private int currentWaypointIndex = 0;
 
@@ -21,7 +23,6 @@ public class WaypointFinder : MonoBehaviour
                 currentWaypointIndex = 0;  
             }
         }
-
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
 
     }

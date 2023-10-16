@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PrimaryAttack : MonoBehaviour
 {
+    //can we just make this the attack script and make the difference between primary and secondary just be different prefabs
+    //this may take a lot of refactored code but it will end up being better at the end for iteration on more attack types
+    //-c
     public SpriteRenderer spriteRenderer;
 
     [SerializeField] GameObject bullet;

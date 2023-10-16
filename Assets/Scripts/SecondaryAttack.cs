@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class SecondaryAttack : MonoBehaviour
 {
+    //ask an executive to come confirm this once you finish up-c
     [Header("Enemy")]
     [SerializeField] LayerMask enemyLayer;
 

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //ne
-
+//Grab an executive once you finish this script up - C
 public class currencyCount : MonoBehaviour
 {
     public int count;
@@ -87,5 +85,4 @@ public class currencyCount : MonoBehaviour
             return false;
         }
     }
-
 }

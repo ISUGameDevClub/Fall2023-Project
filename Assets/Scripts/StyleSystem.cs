@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StyleSystem : MonoBehaviour
 {
+    //gian sucks-c
     private PlayerMovement playerMovement;
     [System.NonSerialized] public string currentStyle;
     public Style[] styles; //An array of styles.

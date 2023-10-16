@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    //Add a return to main menu option and a credits option-c
     [SerializeField] Animator transition;
 
     [SerializeField] float transitionTime = 1f;
