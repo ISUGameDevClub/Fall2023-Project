@@ -4,18 +4,25 @@ public class SFXController : MonoBehaviour
 {
     //ask execs if you have any issues, otherwise once you finish grab one of us and be ready to test it-c
     private int soundCount;
-    private AudioClip[] soundArray;
-    public AudioSource audioSource;
-
+    [SerializeField] AudioClip[] soundArray;
+    [SerializeField] GameObject soundSource;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        //to-do: make soundCount dynamicly set
+        //NOTE: Put sounds into SFXManager object
         soundCount = 0;
-
         soundArray = new AudioClip[soundCount];
-        
-        //to_do: fill soundCount with sounds - doesn't seem like we have any sounds yet.
+    }
+
+    private void spawnSound(int soundIndex, float volumeScale)
+    {
+        //make the opject to play the sound
+        GameObject soundObject = Instantiate(soundSource);
+        //play a sound
+        soundObject.audioSource.PlayOneShot(soundIndex, volumeScale);
+        //destory the object
+        Object.Destroy(soundObject, soundArray[soundIndex].length + 1);
     }
 
     public int playSound(int soundIndex, float volumeScale)
@@ -29,16 +36,9 @@ public class SFXController : MonoBehaviour
         }
 
         //play the sound
-        audioSource.PlayOneShot(soundArray[soundIndex], volumeScale);
+        spawnSound( soundIndex, volumeScale);
 
         print("SFXController: playSound(): sound" + soundIndex +" has been played.\n");
         return 1;
-    }
-
-    //dunno if we need this
-    public void addSound(AudioClip newSound)
-    {
-        soundArray[soundCount] = newSound;
-        soundCount++;
     }
 }
