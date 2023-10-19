@@ -545,6 +545,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1104320648
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 552253202559468051, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_Name
+      value: Two-Way Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193825866667450727, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fffac19a15d835438c722bd8b0ead64, type: 3}
 --- !u!1 &1227282245
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,8 +764,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Welcome To Game Dev Club Fall 2023!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1042,3 +1099,4 @@ SceneRoots:
   - {fileID: 788914}
   - {fileID: 1479722408}
   - {fileID: 340919214}
+  - {fileID: 1104320648}

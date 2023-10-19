@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TempEnemyScript : MonoBehaviour
 {
+    //we can remove this and start using the actual enemy controller now
     [SerializeField] int maxHealth = 5;
     [SerializeField] int currentHealth;
     

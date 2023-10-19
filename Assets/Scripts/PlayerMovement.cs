@@ -1,20 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //move all of this to a fixed update so that physics works properly, this may fix the jumping issue, otherwise it allows all jumping to be evenly distributed over 60 frames rather than being different at 20fps and 120fps
     //[SerializeField]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpImpulse = 5f;
-    /*[SerializeField]*/public float moveSpeed = 2f;
+    [SerializeField] float moveSpeed = 2f;
     Transform playerTransform;
     Rigidbody2D rb;
     RaycastHit2D hit;
     bool isGrounded;
     [SerializeField] SpriteRenderer spriteRenderer;
+    bool colLadder;
 
     // Update is called once per frame
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.gameObject.layer==7){
+         colLadder = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D col){
+        if(col.gameObject.layer==7){
+         colLadder = false;
+        }
+    }
     void Start(){
         isGrounded=true;
         rb = GetComponent<Rigidbody2D>();
@@ -28,23 +38,24 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(-5,rb.velocity.y);
         }
         playerTransform = transform;
-        LeftMove();
-        RightMove();
+        Move();
         Jump();
+        Ladder();
+        
     }
-    void LeftMove()
+    public float GetSpeed()
     {
-        if (Input.GetKey("left") )
-        {
-            rb.AddForce(new Vector2(-moveSpeed, 0));
-        }
+        return moveSpeed;
     }
-    void RightMove()
+
+    public void SetSpeed(float i)
     {
-        if (Input.GetKey("right") )
-        {
-            rb.AddForce(new Vector2(moveSpeed, 0));
-        }
+        moveSpeed = i;
+    }
+    void Move()
+    {
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        rb.AddForce(moveDirection * moveSpeed);
     }
     void Jump()
     {
@@ -62,4 +73,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    void Ladder(){
+        if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
+            // You cannot directly set the values in the position attribute, you have to set the position attribute to a vector 3 to set the x, I commented it out so we can compile for pushing
+            //rb.transform.position.x = Ladder.transform.position.x; 
+            rb.velocity = new Vector2(0,5);
+        }
+    }
+    
 }

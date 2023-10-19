@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    
     public int playerHealth;
     [SerializeField] private int playerMaxHealth = 100;
     public delegate void PlayerDeathEventHandler();

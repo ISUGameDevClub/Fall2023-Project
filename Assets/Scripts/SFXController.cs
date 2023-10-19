@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SFXController : MonoBehaviour
 {
+    //ask execs if you have any issues, otherwise once you finish grab one of us and be ready to test it-c
     private int soundCount;
     private AudioClip[] soundArray;
     public AudioSource audioSource;

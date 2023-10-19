@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class currencyManagement : MonoBehaviour
 {
+    //is this related to currency count or is this extra? tell an exec - C
     int goldAmount = 0;
     // Start is called before the first frame update
     void Start()

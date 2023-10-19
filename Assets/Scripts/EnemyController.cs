@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour{
 
+public class EnemyController : MonoBehaviour{
+    //Goomba enemy should walk through the player and we should be able to use this script for all enemies. we can create a string that has a dropdown of values in inspector that changes what type of enemy it is. Can also be an int if we want to do that for testing. lmk if you have questions -c
     [SerializeField] private int health;
     
     [SerializeField] private int moveSpeed;
 
     [SerializeField] SpriteRenderer sprite;
+
+    Animator animator;
 
     //true is forward, false is backwards
     private bool direction;
@@ -18,7 +19,6 @@ public class EnemyController : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        flicker();
         if (direction){
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
@@ -42,11 +42,6 @@ public class EnemyController : MonoBehaviour{
 
     public void TakeDamage(int damageTaken){
         health = health - damageTaken;
-        
-    }
-
-    private void flicker(){
-        sprite.color = new Color(1f,1f,1f,0f);
-        sprite.color = new Color(1f,1f,1f,100f);
+        animator.SetBool("Attacked", true);
     }
 }

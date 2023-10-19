@@ -205,3 +205,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   moveSpeed: 1
+  sprite: {fileID: 3460795713612803417}

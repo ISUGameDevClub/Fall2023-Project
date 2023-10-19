@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class SecondaryAttack : MonoBehaviour
 {
-    [Header("Other Scripts")]
+    //ask an executive to come confirm this once you finish up-c
+    [Header("Enemy")]
+    [SerializeField] LayerMask enemyLayer;
 
 
 
@@ -14,9 +14,7 @@ public class SecondaryAttack : MonoBehaviour
 
     [Header("Attack Objects")]
     public GameObject secondaryAttackOne;
-    public GameObject secondaryAttackTwoR;
-    public GameObject secondaryAttackTwoL;
-    public GameObject secondaryAttackTwoU;
+    [SerializeField] Transform attackPoint;
 
     public GameObject secondaryAttackThree;
 
@@ -30,18 +28,17 @@ public class SecondaryAttack : MonoBehaviour
     public bool canUseSecondaryAttack = true;
     public int weaponState = 0;
     //Alter this variable to change amount of time hitbox is active on attack two
-    public float attackTwoDestroyTime = .2f;
-    public float attackTwoCooldown = 2f;
-    public bool debounce;
+    [Header("Attack Two Information")]
+    [SerializeField] int meleeDamage;
+    [SerializeField] float meleeAttackRange = 0.5f; 
+    [SerializeField] float attackRate = 2f;
+    [SerializeField] float nextAttackTime = 0f;
     
     
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        secondaryAttackTwoR.SetActive(false);
-        secondaryAttackTwoL.SetActive(false);
-        secondaryAttackTwoU.SetActive(false);
     }
     void Update()
     {
@@ -59,7 +56,7 @@ public class SecondaryAttack : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
             {
-                StartCoroutine(SecondaryOne());
+                //tbd
                 //insert method that subtracts from currency
                 Debug.Log("Secondary Attack 1 Pressed");
             }
@@ -68,15 +65,13 @@ public class SecondaryAttack : MonoBehaviour
         else if(weaponState == 2) 
         {
             if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
-            {
-                if(!debounce)
+            {   
+                if(Time.time >= nextAttackTime)
                 {
-                    debounce = true;
-                    StartCoroutine(SecondaryTwo());
-                    //insert method that subtracts from currency
-                    Debug.Log("Secondary Attack 2 Pressed");
-                }
-                
+                    SecondaryTwo();
+                    nextAttackTime = Time.time + 1f/attackRate; 
+                } 
+                   
             }
         }
         //to be determined
@@ -98,33 +93,30 @@ public class SecondaryAttack : MonoBehaviour
         yield return new WaitForSeconds(.1f);
     }
 
-    //Enables then disables collider
+    //Enables circular collider around player
     //collider is not visible in game view
-    private IEnumerator SecondaryTwo()
+    private void SecondaryTwo()
     {
-        if(Input.GetKey(KeyCode.W))
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, meleeAttackRange, enemyLayer);
+
+        foreach(Collider2D enemy in hitEnemies)
         {
-            secondaryAttackTwoU.SetActive(true);
-            yield return new WaitForSeconds(attackTwoDestroyTime);
-            secondaryAttackTwoU.SetActive(false);
+            Debug.Log("Hit " + enemy.name);
+            enemy.GetComponent<TempEnemyScript>().TakeDamage(meleeDamage);
         }
-        else if(spriteRenderer.flipX == false)
+            
+    }
+
+
+    //alter melee size via inspector
+    void OnDrawGizmosSelected() 
+    {
+        if(attackPoint == null)
         {
-            secondaryAttackTwoR.SetActive(true);
-            yield return new WaitForSeconds(attackTwoDestroyTime);
-            secondaryAttackTwoR.SetActive(false);
+            return;
         }
-        //Check direction player is facing(will only attack right because no code exists to flip player)
-        else if(spriteRenderer.flipX == true)
-        {
-            secondaryAttackTwoL.SetActive(true);
-            yield return new WaitForSeconds(attackTwoDestroyTime);
-            secondaryAttackTwoL.SetActive(false);
-        }
-        
-        yield return new WaitForSeconds(attackTwoCooldown);
-        debounce = false;
-        
+
+        Gizmos.DrawWireSphere(attackPoint.position, meleeAttackRange);
     }
 
 }
