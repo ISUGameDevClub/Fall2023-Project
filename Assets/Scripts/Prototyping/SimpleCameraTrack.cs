@@ -26,7 +26,7 @@ public class SimpleCameraTrack : MonoBehaviour
     {
         if (useStartingOffset)
         {
-            cameraOffset = target.position - this.transform.position;
+            cameraOffset = this.transform.position - target.position;
         }
     }
 
