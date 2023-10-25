@@ -8,14 +8,13 @@ public class SimpleCameraTrack : MonoBehaviour
     [SerializeField]
     private Transform target;
 
-    [SerializeField]
     private float yTarget;
 
     [SerializeField]
     float cameraYSpeed;
 
     // Used for the smoothdamp function
-    private float yDampVelocity = 0.0f;
+    private float yDampVelocity = 0f;
     private float smoothTime;
 
     // What margin between y and target y is acceptable when doing a comparison?
@@ -37,6 +36,7 @@ public class SimpleCameraTrack : MonoBehaviour
 
     private void Awake()
     {
+        yTarget = this.transform.position.y;
         if (useStartingOffset)
         {
             cameraOffset = this.transform.position - target.position;
@@ -57,6 +57,7 @@ public class SimpleCameraTrack : MonoBehaviour
     {
         this.yTarget = target;
         smoothTime = Mathf.Abs((this.transform.position.y - yTarget) / cameraYSpeed);
+        yDampVelocity = 0f;
     }
 
     // Function that tries to smoothly move the y position of the camera to yTarget.
@@ -64,11 +65,11 @@ public class SimpleCameraTrack : MonoBehaviour
     {
         if(Mathf.Abs(this.transform.position.y - yTarget) < ydistanceMargin)
         {
-            return Mathf.SmoothDamp(transform.position.y, yTarget, ref yDampVelocity, smoothTime);
+            return yTarget;       
         }
         else
         {
-            return yTarget;
+            return Mathf.SmoothDamp(this.transform.position.y, yTarget, ref yDampVelocity, smoothTime, Mathf.Infinity, Time.deltaTime);
         }
         
     }
