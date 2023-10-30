@@ -13,7 +13,7 @@ public class WaypointFinder : MonoBehaviour
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f)
         {
