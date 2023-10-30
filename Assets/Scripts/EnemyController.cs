@@ -72,10 +72,13 @@ public class EnemyController : MonoBehaviour{
 
     //method for taking damage
     public void TakeDamage(int damageTaken){
-        health = health - damageTaken;
+        health -= damageTaken;
         animator.SetBool("Attacked", true);
         if (health < 0){
-            Destroy(this);
+            Die();
         }
+    }
+    void Die(){
+        Destroy(gameObject);
     }
 }
