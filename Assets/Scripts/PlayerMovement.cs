@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     [SerializeField] SpriteRenderer spriteRenderer;
     bool colLadder;
+    bool isMoving;
+
+    //Animator Usage
+    Animator movementAnims;
 
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D col){
@@ -28,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     void Start(){
         isGrounded=true;
         rb = GetComponent<Rigidbody2D>();
+
+        movementAnims = GetComponent<Animator>();
     }
     void Update()
     {
@@ -41,7 +47,9 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         Ladder();
-        
+
+        //Animation Bool
+        movementAnims.SetBool("Walking", isMoving);
     }
     public float GetSpeed()
     {
@@ -55,6 +63,13 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        if(moveDirection.x != 0) {
+            isMoving = true;
+        }
+        else {
+            isMoving = false;
+        }
+
         rb.AddForce(moveDirection * moveSpeed);
     }
     void Jump()
