@@ -20,7 +20,7 @@ public class SFXController : MonoBehaviour
         //make the opject to play the sound
         GameObject soundObject = Instantiate(soundSource);
         //play a sound
-        soundObject.audioSource.PlayOneShot(soundIndex, volumeScale);
+        soundObject.GetComponent<AudioSource>().PlayOneShot(soundArray[soundIndex], volumeScale);
         //destory the object
         Object.Destroy(soundObject, soundArray[soundIndex].length + 1);
     }
