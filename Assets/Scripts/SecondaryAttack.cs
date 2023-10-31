@@ -58,6 +58,7 @@ public class SecondaryAttack : MonoBehaviour
             {
                 //tbd
                 //insert method that subtracts from currency
+                StartCoroutine(SecondaryOne());
                 Debug.Log("Secondary Attack 1 Pressed");
             }
         }
@@ -88,8 +89,31 @@ public class SecondaryAttack : MonoBehaviour
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
         GameObject clone;
-        clone = Instantiate(secondaryAttackOne, transform.position + new Vector3(1,0,0), transform.rotation); //will set transform to players weapon when model is implemented
-        clone.GetComponent<Rigidbody2D>().velocity = new Vector3(objectOneTravelSpeed,0,0);
+        clone = Instantiate(secondaryAttackOne, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
+        if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * objectOneTravelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * objectOneTravelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * objectOneTravelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * objectOneTravelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.W))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * objectOneTravelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * objectOneTravelSpeed;
+            }
         yield return new WaitForSeconds(.1f);
     }
 

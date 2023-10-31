@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 910687437372662316}
   - component: {fileID: -8284188795894505733}
   - component: {fileID: 3721099011305167877}
-  m_Layer: 0
-  m_Name: TempSubForSecAttack
+  m_Layer: 7
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

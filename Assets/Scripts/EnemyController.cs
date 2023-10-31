@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour{
 
     void Start(){
         direction = true;
+
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
