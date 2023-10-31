@@ -10,7 +10,10 @@ public class BasicBulletDestroy : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
         //                insert title of enemy script
-            other.GetComponent<TempEnemyScript>().TakeDamage(damage);
+            other.GetComponent<EnemyController>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else{
             Destroy(gameObject);
         }
         

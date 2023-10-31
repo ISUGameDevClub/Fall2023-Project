@@ -1,11 +1,12 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
     //Goomba enemy should walk through the player and we should be able to use this script for all enemies.
     [SerializeField] private int health;
-    
+    [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
 
     [SerializeField] SpriteRenderer sprite;
@@ -56,6 +57,10 @@ public class EnemyController : MonoBehaviour{
         }
         else if (other.gameObject.tag == "Wall" && !direction){
             direction = true;
+        }
+        if(other.gameObject.GetComponent<PlayerHealth>()){
+            GameObject player = other.gameObject;
+            player.GetComponent<PlayerHealth>().DamagePlayer(damage);
         }
     }
 
