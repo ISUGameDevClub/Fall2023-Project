@@ -227,13 +227,9 @@ PrefabInstance:
       propertyPath: damage
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3460795713612803417, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3460795713612803417, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -313491997
+    - target: {fileID: 4547552245527068900, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5945086132901311733, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -278,6 +274,10 @@ PrefabInstance:
     - target: {fileID: 7715982729609297985, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
       propertyPath: m_Name
       value: Goomba
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715982729609297985, guid: 0353ed91b15da31418ccdb2fdddd4bfc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1905,6 +1905,10 @@ PrefabInstance:
     - target: {fileID: 994930681548135147, guid: 32bf85b809c817243bc2dc5eb8dc62fd, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373505593964576881, guid: 32bf85b809c817243bc2dc5eb8dc62fd, type: 3}
+      propertyPath: objectOneTravelSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5372418727731711386, guid: 32bf85b809c817243bc2dc5eb8dc62fd, type: 3}
       propertyPath: m_LocalPosition.x
