@@ -328,12 +328,11 @@ GameObject:
   - component: {fileID: 5372418727731711386}
   - component: {fileID: 9075962708986529677}
   - component: {fileID: 6480173594423971193}
-  - component: {fileID: 1454860824292397379}
-  - component: {fileID: 4373505593964576881}
   - component: {fileID: -8483532070881732752}
   - component: {fileID: 5523715144813181474}
   - component: {fileID: 3726970591694270961}
   - component: {fileID: 8832273168174656209}
+  - component: {fileID: 319945059609046123}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -372,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   knockedTime: 0.3
-  knockbackForce: 3
+  knockbackForce: 20
   playerMaxHealth: 100
 --- !u!114 &6480173594423971193
 MonoBehaviour:
@@ -395,51 +394,6 @@ MonoBehaviour:
   fallingGScale: 2.5
   gScaleIncrement: 1
   spriteRenderer: {fileID: 6886495969096528970}
---- !u!114 &1454860824292397379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928414495911513693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3321d5cea4e49a4f82764e411fbdee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 6886495969096528970}
-  bullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
-  weapon: {fileID: 994930681548135147}
-  travelSpeed: 10
-  isRight: 0
---- !u!114 &4373505593964576881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928414495911513693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31e8feeaf9e3f343932e5c320711cd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  spriteRenderer: {fileID: 0}
-  secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
-  attackPoint: {fileID: 7516737453232708131}
-  secondaryAttackThree: {fileID: 0}
-  objectOneTravelSpeed: 1
-  objectTwoTravelSpeed: 0
-  objectThreeTravelSpeed: 0
-  canUseSecondaryAttack: 1
-  weaponState: 1
-  meleeDamage: 1
-  meleeAttackRange: 0.5
-  attackRate: 2
-  nextAttackTime: 1
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,3 +518,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &319945059609046123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928414495911513693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f743c214c5a82ad4e90e11a3ca015531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  spriteRenderer: {fileID: 0}
+  secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
+  attackPoint: {fileID: 7516737453232708131}
+  secondaryAttackThree: {fileID: 0}
+  objectOneTravelSpeed: 5
+  objectTwoTravelSpeed: 0
+  objectThreeTravelSpeed: 0
+  canUseSecondaryAttack: 1
+  weaponState: 1
+  meleeDamage: 1
+  meleeAttackRange: 0.5
+  attackRate: 2
+  nextAttackTime: 1
+  bullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
+  weapon: {fileID: 994930681548135147}
+  travelSpeed: 10
+  isRight: 1

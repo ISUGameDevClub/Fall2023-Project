@@ -1,9 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondaryAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    //ask an executive to come confirm this once you finish up-c
     [Header("Enemy")]
     [SerializeField] LayerMask enemyLayer;
 
@@ -33,46 +33,90 @@ public class SecondaryAttack : MonoBehaviour
     [SerializeField] float meleeAttackRange = 0.5f; 
     [SerializeField] float attackRate = 2f;
     [SerializeField] float nextAttackTime = 0f;
-    
-    
+
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject weapon;
+
+
+    public float travelSpeed = 10f;
+    [SerializeField] bool isRight = true;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-    }
-    void Update()
-    {
-        CheckForClick();
     }
 
-    void CheckForClick()
+    void Update() 
     {
-        if(weaponState == 0)
+        CheckDirection();    
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ShootPrimaryWeapon();
+        }
+        if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack){
+            ShootSecondaryWeapon();
+        }
+    }
+
+    void ShootPrimaryWeapon()
+    {
+
+            Debug.Log("bullet shot");
+            GameObject clone;
+            clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
+            if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * travelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * travelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * travelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * travelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.W))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * travelSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * travelSpeed;
+            }
+            else if(isRight)
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * travelSpeed;
+            }
+            else if(!isRight)
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * travelSpeed;
+            }
+        }
+    void ShootSecondaryWeapon(){
+                if(weaponState == 0)
         {
             return;
         }
         //projectile
         else if(weaponState == 1)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
-            {
-                //tbd
-                //insert method that subtracts from currency
-                StartCoroutine(SecondaryOne());
-                Debug.Log("Secondary Attack 1 Pressed");
-            }
+            //tbd
+            //insert method that subtracts from currency
+            StartCoroutine(SecondaryOne());
+            Debug.Log("Secondary Attack 1 Pressed");
         }
         //melee
         else if(weaponState == 2) 
         {
-            if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
-            {   
-                if(Time.time >= nextAttackTime)
-                {
-                    SecondaryTwo();
-                    nextAttackTime = Time.time + 1f/attackRate; 
-                } 
-                   
+            if(Time.time >= nextAttackTime)
+            {
+                SecondaryTwo();
+                nextAttackTime = Time.time + 1f/attackRate; 
             }
         }
         //to be determined
@@ -80,11 +124,7 @@ public class SecondaryAttack : MonoBehaviour
         {
             //insert third secondary weapon state functionality
         }
-        
-        
     }
-
-    
     private IEnumerator SecondaryOne()
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
@@ -114,6 +154,14 @@ public class SecondaryAttack : MonoBehaviour
             {
                 clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * objectOneTravelSpeed;
             }
+            else if(isRight)
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * objectOneTravelSpeed;
+            }
+            else if(!isRight)
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * objectOneTravelSpeed;
+            }
         yield return new WaitForSeconds(.1f);
     }
 
@@ -130,17 +178,15 @@ public class SecondaryAttack : MonoBehaviour
         }
             
     }
-
-
-    //alter melee size via inspector
-    void OnDrawGizmosSelected() 
+    void CheckDirection()
     {
-        if(attackPoint == null)
+        if(Input.GetAxisRaw("Horizontal") > 0)
         {
-            return;
+            isRight = true;
         }
-
-        Gizmos.DrawWireSphere(attackPoint.position, meleeAttackRange);
+        else if(Input.GetAxisRaw("Horizontal") < 0 )
+        {
+            isRight = false;
+        }
     }
-
 }
