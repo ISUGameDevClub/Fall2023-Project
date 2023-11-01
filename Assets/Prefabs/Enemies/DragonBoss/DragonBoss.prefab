@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2175447633483487540}
   - component: {fileID: 7008586009835926105}
+  - component: {fileID: 202748494858279843}
   m_Layer: 0
   m_Name: DragonBoss
   m_TagString: Untagged
@@ -50,6 +51,24 @@ MonoBehaviour:
   slowFireball: {fileID: 2303874618845372528, guid: 0a48335d8c3077f428072f827b62f47f, type: 3}
   timeBetweenAttacks: 2.5
   fireballSpawnDelays: 0.1
+--- !u!114 &202748494858279843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273617566786922441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce80b4bc13986f349991d407cb5fb717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  damage: 0
+  moveSpeed: 1
+  reward: 0
+  sprite: {fileID: 3084655278414034812, guid: baff36a4c5cbd094bb0fc1899aa78605, type: 3}
+  es: 0
 --- !u!1 &4380817096951402776
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +171,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -313491997
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1163662905, guid: a3157559e5782d943b085ad7098e4391, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -462,7 +481,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -313491997
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

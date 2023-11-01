@@ -14,11 +14,11 @@ public class UISFX : MonoBehaviour
 
     public void ButtonHover()
     {
-        sfxController.playSound(2);
+        sfxController.playSound(0);
     }
 
     public void ButtonSelectSFX()
     {
-        sfxController.playSound(3);
+        sfxController.playSound(1);
     }
 }
