@@ -373,6 +373,8 @@ MonoBehaviour:
   knockedTime: 0.3
   knockbackForce: 10
   playerMaxHealth: 5
+  invincibleTimer: 1.5
+  invincible: 0
 --- !u!114 &6480173594423971193
 MonoBehaviour:
   m_ObjectHideFlags: 0
