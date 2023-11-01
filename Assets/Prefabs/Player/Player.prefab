@@ -369,10 +369,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfb9198adebf6ae996d82ee8aa23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
+  playerHealth: 5
   knockedTime: 0.3
   knockbackForce: 10
-  playerMaxHealth: 100
+  playerMaxHealth: 5
 --- !u!114 &6480173594423971193
 MonoBehaviour:
   m_ObjectHideFlags: 0

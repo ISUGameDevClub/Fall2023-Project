@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     GameObject SFXController;
     [SerializeField] private int playerMaxHealth = 100;
     public delegate void PlayerDeathEventHandler();
-    public event PlayerDeathEventHandler OnPlayerDeath;
+    public static event PlayerDeathEventHandler OnPlayerDeath;
     // Start is called before the first frame update
     void Start()
     {
