@@ -28,13 +28,13 @@ public class PlayerHealth : MonoBehaviour
         if(damageDirection!=Vector3.zero&&!GetComponent<PlayerMovement>().GetKnocked()){
             GetComponent<PlayerMovement>().SetKnocked(true);
             Vector3 knockDirection = transform.position-damageDirection;
-            if(knockDirection.y<0){
+            /*if(knockDirection.y<0){
                 knockDirection = new Vector3(knockDirection.x,0,0);
-            }
+            }*/
             if(knockDirection.x>=0){
-                knockDirection+=new Vector3(1,1);
+                knockDirection=new Vector3(1,1);
             }else{
-                knockDirection+=new Vector3(-1,1);
+                knockDirection=new Vector3(-1,1);
             }
             rb.AddForce(knockDirection.normalized*knockbackForce,ForceMode2D.Impulse);
             StartCoroutine(ResetKnocked());

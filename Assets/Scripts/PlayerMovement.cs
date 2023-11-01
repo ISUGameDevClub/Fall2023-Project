@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        if(rb.velocity.x>0){
+            spriteRenderer.flipX=false;
+        }else if(rb.velocity.x<0){
+            spriteRenderer.flipX=true;
+        }
         if(rb.velocity.x > 5f){
             rb.velocity = new Vector2(5,rb.velocity.y);
         }
@@ -86,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        movementAnims.SetFloat("WalkingSpeed",Mathf.Abs(Input.GetAxis("Horizontal")));
         if(moveDirection.x != 0) {
             isMoving = true;
         }

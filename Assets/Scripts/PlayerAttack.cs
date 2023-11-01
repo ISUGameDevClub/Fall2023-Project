@@ -43,7 +43,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update() 
@@ -183,10 +182,12 @@ public class PlayerAttack : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal") > 0)
         {
             isRight = true;
+            spriteRenderer.flipX=false;
         }
         else if(Input.GetAxisRaw("Horizontal") < 0 )
         {
             isRight = false;
+            spriteRenderer.flipX=true;
         }
     }
 }
