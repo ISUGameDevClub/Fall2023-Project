@@ -98,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     void ShootSecondaryWeapon(){
-                if(weaponState == 0)
+        if(weaponState == 0)
         {
             return;
         }
