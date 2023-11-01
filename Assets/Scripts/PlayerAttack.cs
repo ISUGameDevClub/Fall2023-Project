@@ -7,8 +7,6 @@ public class PlayerAttack : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] LayerMask enemyLayer;
 
-
-
     [Header("Player Info")]
     public SpriteRenderer spriteRenderer;
 
@@ -43,6 +41,15 @@ public class PlayerAttack : MonoBehaviour
     public float travelSpeed = 10f;
     [SerializeField] bool isRight = true;
 
+    //Shoot Timers
+    private bool canPrimary = true;
+    private float currPrimaryTimer;
+    public float primaryTimer = .25f;
+
+    private bool canSecondary = true;
+    private float currSecondaryTimer;
+    public float secondaryTimer = .5f;
+
     void Start()
     {
         sfxController = FindObjectOfType<SFXController>();
@@ -50,19 +57,54 @@ public class PlayerAttack : MonoBehaviour
 
     void Update() 
     {
-        CheckDirection();    
+        if(!canPrimary)
+        {
+            if(currPrimaryTimer <= 0)
+            {
+                currPrimaryTimer = primaryTimer;
+                canPrimary = true;
+            }
+            else
+            {
+                currPrimaryTimer -= Time.deltaTime;
+            }
+        }
+        if(!canSecondary)
+        {
+            if (currSecondaryTimer <= 0)
+            {
+                currSecondaryTimer = secondaryTimer;
+                canSecondary = true;
+            }
+            else
+            {
+                currSecondaryTimer -= Time.deltaTime;
+            }
+        }
+
+
+        CheckDirection();
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ShootPrimaryWeapon();
+            if(canPrimary)
+            {
+                canPrimary = false;
+                ShootPrimaryWeapon();
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack){
-            ShootSecondaryWeapon();
+        if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
+        {
+            if(canSecondary)
+            {
+                canSecondary = false;
+                ShootSecondaryWeapon();
+            }
+
         }
     }
 
     void ShootPrimaryWeapon()
     {
-            Debug.Log("bullet shot");
             sfxController.playSound(3);
             GameObject clone;
             clone = Instantiate(bullet, weapon.transform.position, transform.rotation);

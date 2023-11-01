@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bdc29f7c2ebdc478733ff82ab324a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 100
   damage: 1
   reward: 50
   sprite: {fileID: 0}
