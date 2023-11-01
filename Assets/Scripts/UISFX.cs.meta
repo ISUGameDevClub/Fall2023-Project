@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Checkpoint.cs.meta
-guid: 4e9ac4ce0eaf3404f8fe1587fd4a1be2
-========
-guid: 823f06fbdc941fe47b277b0a2f4a2023
->>>>>>>> origin/sagood2:Assets/LevelSelector.cs.meta
+guid: 967b94c48c0c0464b815eaf715f1e6c5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

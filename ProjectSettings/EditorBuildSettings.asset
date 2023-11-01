@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Demo Scenes (11-1)/1DemoLevelSelect.unity
     guid: f3bcf97db94447f47a50ea83547e3044
   - enabled: 1
-    path: Assets/Scenes/Levels/Demo Scenes (11-1)/4DemoBoss.unity
+    path: Assets/Scenes/Levels/Demo Scenes (11-1)/4DemoWrathBoss.unity
     guid: 37cdd7b184f970a469004c26a10b8e53
   - enabled: 1
     path: Assets/Scenes/Development/EMenk1.unity

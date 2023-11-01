@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(ResetKnocked());
         }
 
-        SFXController.GetComponent<SFXController>().playSound(0,1);
+        SFXController.GetComponent<SFXController>().playSound(0);
         healthUI.GetComponent<UIHealth>().ReduceHealth();
         playerHealth -= damagePoint;
         if (playerHealth <= 0) {
