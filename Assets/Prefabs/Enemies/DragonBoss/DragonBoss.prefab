@@ -134,7 +134,7 @@ MonoBehaviour:
   fastFireball: {fileID: 2259939283985119274, guid: 608c913dda990144dabaee5f97195a0d, type: 3}
   slowFireball: {fileID: 2303874618845372528, guid: 0a48335d8c3077f428072f827b62f47f, type: 3}
   timeBetweenAttacks: 1.25
-  fireballSpawnDelays: 0.1
+  fireballSpawnDelays: 0.5
 --- !u!114 &9077671830802457796
 MonoBehaviour:
   m_ObjectHideFlags: 0
