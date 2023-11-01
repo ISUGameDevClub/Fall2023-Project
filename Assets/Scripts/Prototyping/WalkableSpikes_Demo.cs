@@ -15,4 +15,15 @@ public class WalkableSpikes_Demo : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
     }
+
+    /* This should work with i-frames to stop damage.
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            PlayerHealth_Demo playerHealth = collision.gameObject.GetComponent<PlayerHealth_Demo>();
+            if (playerHealth)
+            {
+                playerHealth.TakeDamage(damage);
+            }
+        }
+    */
 }
