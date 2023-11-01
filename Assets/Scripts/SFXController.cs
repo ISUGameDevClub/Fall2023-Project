@@ -12,17 +12,17 @@ public class SFXController : MonoBehaviour
         
     }
 
-    private void spawnSound(int soundIndex, float volumeScale)
+    private void spawnSound(int soundIndex)
     {
         //make the opject to play the sound
         GameObject soundObject = Instantiate(soundSource);
         //play a sound
-        soundObject.GetComponent<AudioSource>().PlayOneShot(soundArray[soundIndex], volumeScale);
+        soundObject.GetComponent<AudioSource>().PlayOneShot(soundArray[soundIndex]);
         //destory the object
         Destroy(soundObject, soundArray[soundIndex].length + 1);
     }
 
-    public int playSound(int soundIndex, float volumeScale)
+    public int playSound(int soundIndex)
     {
         //Do we have a sound?
         if(soundIndex < 0 || soundIndex >= soundArray.Length)
@@ -33,7 +33,7 @@ public class SFXController : MonoBehaviour
         }
 
         //play the sound
-        spawnSound( soundIndex, volumeScale);
+        spawnSound(soundIndex);
 
         print("SFXController: playSound(): sound" + soundIndex +" has been played.\n");
         return 1;

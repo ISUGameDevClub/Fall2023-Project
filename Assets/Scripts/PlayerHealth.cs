@@ -24,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void DamagePlayer(int damagePoint, Vector3 damageDirection) {
-        
         if(damageDirection!=Vector3.zero&&!GetComponent<PlayerMovement>().GetKnocked()){
             GetComponent<PlayerMovement>().SetKnocked(true);
             Vector3 knockDirection = transform.position-damageDirection;
@@ -40,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(ResetKnocked());
         }
 
-        SFXController.GetComponent<SFXController>().playSound(0,1);
+        SFXController.GetComponent<SFXController>().playSound(2);
         healthUI.GetComponent<UIHealth>().ReduceHealth();
         playerHealth -= damagePoint;
         if (playerHealth <= 0) {

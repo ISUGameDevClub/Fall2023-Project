@@ -37,12 +37,15 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject weapon;
 
+    [Header("SFX")]
+    private SFXController sfxController;
 
     public float travelSpeed = 10f;
     [SerializeField] bool isRight = true;
 
     void Start()
     {
+        sfxController = FindObjectOfType<SFXController>();
     }
 
     void Update() 
@@ -59,8 +62,8 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootPrimaryWeapon()
     {
-
             Debug.Log("bullet shot");
+            sfxController.playSound(3);
             GameObject clone;
             clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
             if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
@@ -127,6 +130,7 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator SecondaryOne()
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
+        sfxController.playSound(4);
         GameObject clone;
         clone = Instantiate(secondaryAttackOne, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))

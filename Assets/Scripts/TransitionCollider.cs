@@ -2,19 +2,14 @@ using UnityEngine;
 
 public class TransitionCollider : MonoBehaviour
 {
-    //seems cool beans, once you are finished get an exec to approve this if its not me-c
-    [SerializeField] GameObject levelLoader;
+    public LevelLoader levelLoader;
+    public string levelToLoad;
+
     private void OnTriggerEnter2D(Collider2D trigger)
     {
-        if(trigger.gameObject.tag == "Player")
+        if(trigger.gameObject.tag.Equals("Player"))
         {
-        levelLoader.GetComponent<LevelLoader>().LoadNextLevel();
+            levelLoader.StartTransition(levelToLoad);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Pit
   - Wall
   - FakeWall
+  - WrathBoss
   layers:
   - Default
   - TransparentFX

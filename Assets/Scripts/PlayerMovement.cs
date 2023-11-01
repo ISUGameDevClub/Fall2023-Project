@@ -112,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Space)){
             RaycastHit2D hit = Physics2D.Raycast(this.rb.position, Vector2.down, 100.0f, groundLayer);
-            Debug.Log(hit.distance.ToString() + " " + hit.collider);
             if(hit.distance < 0.2f){
                 isGrounded = true;
             }else{
