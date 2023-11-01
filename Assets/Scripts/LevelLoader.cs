@@ -4,37 +4,31 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    //Add a return to main menu option and a credits option-c
-    [SerializeField] Animator transition;
+    private Animator loadAnimator;
+    public string targetScene;
 
-    [SerializeField] float transitionTime = 1f;
-    [SerializeField] string targetScene;
-
-
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Slash))
+        loadAnimator = GetComponent<Animator>();
+    }
+
+    public void StartTransition(string levelToLoad)
+    {
+        if(targetScene.Equals(""))
         {
-            LoadNextLevel();
+            targetScene = levelToLoad;
         }
+        loadAnimator.SetTrigger("Start");
     }
 
-    public void LoadNextLevel()
+    public void ChangeSceneEvent()
     {
-        StartCoroutine(LoadLevel(targetScene));
+        SceneManager.LoadScene(targetScene);
     }
 
-    IEnumerator LoadLevel(string leveLIndex)
+    public void ExitGame()
     {
-        //Play transition animation
-        transition.SetTrigger("Start");
-
-        //Wait for animation
-        yield return new WaitForSeconds(transitionTime);
-
-        //Load the scene
-        SceneManager.LoadScene(leveLIndex);
-
+        Debug.Log("Exited game");
+        Application.Quit();
     }
 }
