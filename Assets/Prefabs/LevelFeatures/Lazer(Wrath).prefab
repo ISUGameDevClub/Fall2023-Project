@@ -363,6 +363,6 @@ MonoBehaviour:
   beamStart: {fileID: 929612195099551514}
   beamExpanding: {fileID: 493372327500730965}
   emissionTransform: {fileID: 5520502096718593664}
-  beamDamage: 0
+  beamDamage: 1
   beamStartUnitRatio: 0.6875
   beamExpandingUnitRatio: 1
