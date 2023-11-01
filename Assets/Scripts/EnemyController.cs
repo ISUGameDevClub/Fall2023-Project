@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
-    //Goomba enemy should walk through the player and we should be able to use this script for all enemies.
     [SerializeField] private int health;
     [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
@@ -14,8 +13,8 @@ public class EnemyController : MonoBehaviour{
     Rigidbody2D rb;
 
     [SerializeField] enemySelection es;
-    private Boolean direction;
-    public Boolean getDirection(){
+    private bool direction;
+    public bool getDirection(){
         return direction;
     }
 
@@ -26,7 +25,6 @@ public class EnemyController : MonoBehaviour{
     };
 
     Animator animator;
-    Physics2D physics;
 
     void Start(){
         direction = true;
@@ -54,11 +52,8 @@ public class EnemyController : MonoBehaviour{
 
     //detects collison with anything but the player and reverses the movement
     private void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag == "Wall" && direction) {
-            direction = false;
-        }
-        else if (other.gameObject.tag == "Wall" && !direction){
-            direction = true;
+        if (other.gameObject.layer==10) {
+            direction=!direction;
         }
         if(other.gameObject.GetComponent<PlayerHealth>()){
             GameObject player = other.gameObject;
@@ -68,12 +63,12 @@ public class EnemyController : MonoBehaviour{
 
     private void updateEnemy1(){
         if (direction){
-            rb.AddForce(Vector2.right * moveSpeed);
-            this.sprite.flipY = false;
+            rb.MovePosition(rb.position+(Vector2.right * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = true;
         }
-        else{
-            rb.AddForce(Vector2.left * moveSpeed);
-            this.sprite.flipY = true;
+        else if (!direction){
+            rb.MovePosition(rb.position+(Vector2.left * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = false;
         }
     }
 
