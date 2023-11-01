@@ -9,7 +9,7 @@ public class LevelLoader : MonoBehaviour
 
     public void Start()
     {
-        loadAnimator = GetComponent<Animator>();
+        loadAnimator = GetComponentInChildren<Animator>();
     }
 
     public void StartTransition(string levelToLoad)

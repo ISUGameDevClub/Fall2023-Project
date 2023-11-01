@@ -24,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void DamagePlayer(int damagePoint, Vector3 damageDirection) {
-        
         if(damageDirection!=Vector3.zero&&!GetComponent<PlayerMovement>().GetKnocked()){
             GetComponent<PlayerMovement>().SetKnocked(true);
             Vector3 knockDirection = transform.position-damageDirection;

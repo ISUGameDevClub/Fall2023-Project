@@ -320,8 +320,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0001373291, y: -0.000032424927}
+  m_SizeDelta: {x: 89.273, y: 31.876}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551756429
 MonoBehaviour:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: PLAY AGAIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Untitled Gobbo-Tron Game!
+  m_text: Thank you for playing!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 1e65997fa7e5b9448a72e0067b5c8c8f, type: 2}
@@ -1247,8 +1247,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 30}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 319.5444, y: 44.3018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1800641863
 MonoBehaviour:

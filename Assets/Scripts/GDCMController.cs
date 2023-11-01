@@ -45,6 +45,10 @@ public class GDCMController : MonoBehaviour
         {
             ChangeSong(2);
         }
+        if (SceneManager.GetActiveScene().name.Equals("4DemoEnd"))
+        {
+            ChangeSong(0);
+        }
     }
 
     public void ChangeSong(int soundtrackIndex)
