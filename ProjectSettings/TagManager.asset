@@ -44,11 +44,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 3598318083
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Envrionment
     uniqueID: 3913474743
