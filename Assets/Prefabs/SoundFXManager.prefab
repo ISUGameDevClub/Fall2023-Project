@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundArray:
-  - {fileID: 8300000, guid: d6c37650d8904464ba36fed08c957c89, type: 3}
-  - {fileID: 8300000, guid: d6c37650d8904464ba36fed08c957c89, type: 3}
   - {fileID: 8300000, guid: 2ceb290983329a5488a21f436e46c002, type: 3}
   - {fileID: 8300000, guid: cece3a9ea9f4f7d478260e269a65cb9e, type: 3}
+  - {fileID: 8300000, guid: d6c37650d8904464ba36fed08c957c89, type: 3}
   soundSource: {fileID: 7836423463437155779, guid: 1c3cb397d369c794dbce3a3b56853e49, type: 3}

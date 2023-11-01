@@ -290,10 +290,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9075962708986529677, guid: 32bf85b809c817243bc2dc5eb8dc62fd, type: 3}
-      propertyPath: knockbackForce
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -900,6 +896,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1203489873294351135, guid: 31de4cbced89841498f788423d22643e, type: 3}
+      propertyPath: soundArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203489873294351135, guid: 31de4cbced89841498f788423d22643e, type: 3}
+      propertyPath: soundArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ceb290983329a5488a21f436e46c002, type: 3}
+    - target: {fileID: 1203489873294351135, guid: 31de4cbced89841498f788423d22643e, type: 3}
+      propertyPath: soundArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: cece3a9ea9f4f7d478260e269a65cb9e, type: 3}
+    - target: {fileID: 1203489873294351135, guid: 31de4cbced89841498f788423d22643e, type: 3}
+      propertyPath: soundArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d6c37650d8904464ba36fed08c957c89, type: 3}
     - target: {fileID: 4952330372222043332, guid: 31de4cbced89841498f788423d22643e, type: 3}
       propertyPath: m_Name
       value: SoundFXManager
