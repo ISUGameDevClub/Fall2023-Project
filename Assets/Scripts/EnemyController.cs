@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] private int health;
     [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
+    [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
 
