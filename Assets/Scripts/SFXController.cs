@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SFXController : MonoBehaviour
 {
-    //ask execs if you have any issues, otherwise once you finish grab one of us and be ready to test it-c
     private int soundCount;
     [SerializeField] AudioClip[] soundArray;
     [SerializeField] GameObject soundSource;
@@ -10,9 +9,7 @@ public class SFXController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //NOTE: Put sounds into SFXManager object
-        soundCount = 0;
-        soundArray = new AudioClip[soundCount];
+        
     }
 
     private void spawnSound(int soundIndex, float volumeScale)
@@ -22,13 +19,13 @@ public class SFXController : MonoBehaviour
         //play a sound
         soundObject.GetComponent<AudioSource>().PlayOneShot(soundArray[soundIndex], volumeScale);
         //destory the object
-        Object.Destroy(soundObject, soundArray[soundIndex].length + 1);
+        Destroy(soundObject, soundArray[soundIndex].length + 1);
     }
 
     public int playSound(int soundIndex, float volumeScale)
     {
         //Do we have a sound?
-        if(soundIndex < 0 || soundIndex >= soundCount)
+        if(soundIndex < 0 || soundIndex >= soundArray.Length)
         {
             //No, we don't!
             print("ERROR: SFXController: playSound(): soundIndex is out of range. No sound played.\n");

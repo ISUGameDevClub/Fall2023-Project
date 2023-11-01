@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour{
         }
         if(other.gameObject.GetComponent<PlayerHealth>()){
             GameObject player = other.gameObject;
-            player.GetComponent<PlayerHealth>().DamagePlayer(damage);
+            player.GetComponent<PlayerHealth>().DamagePlayer(damage,transform.position);
         }
     }
 
