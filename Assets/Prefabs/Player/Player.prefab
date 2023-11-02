@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 4883865993146834077}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,7 +374,6 @@ MonoBehaviour:
   knockbackForce: 10
   playerMaxHealth: 5
   invincibleTimer: 1.5
-  invincible: 0
 --- !u!114 &6480173594423971193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,8 +389,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4096
-  jumpImpulse: 10
-  moveSpeed: 5
+  jumpImpulse: 11
+  moveSpeed: 5.25
   jumpGScale: 1
   fallingGScale: 2.75
   gScaleIncrement: 2
