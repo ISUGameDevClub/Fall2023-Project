@@ -7786,6 +7786,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3182257430299949726, guid: c40a30d708762194ba0ce508962c2535, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3273617566786922441, guid: c40a30d708762194ba0ce508962c2535, type: 3}
       propertyPath: m_Name
       value: DragonBoss
