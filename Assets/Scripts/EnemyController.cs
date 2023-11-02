@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour{
 
     //detects collison with anything but the player and reverses the movement
     private void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.layer==10) {
+        if (other.gameObject.layer==10 || other.gameObject.layer == 8) {
             direction=!direction;
         }
         if(other.gameObject.GetComponent<PlayerHealth>()){
