@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class TransitionCollider : MonoBehaviour
 {
-    public LevelLoader levelLoader;
-    public string levelToLoad;
+    public string nextScene;
 
-    private void OnTriggerEnter2D(Collider2D trigger)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(trigger.gameObject.tag.Equals("Player"))
+        if(collision.gameObject.tag.Equals("Player"))
         {
-            levelLoader.StartTransition(levelToLoad);
+            FindObjectOfType<LevelLoader>().StartTransition(nextScene);
         }
     }
 }
