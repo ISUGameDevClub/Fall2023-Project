@@ -7,7 +7,9 @@ TagManager:
   - Checkpoint
   - Enemy
   - Pit
+  - Wall
   - FakeWall
+  - WrathBoss
   layers:
   - Default
   - TransparentFX
@@ -15,13 +17,13 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
+  - Effects
+  - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Hazards
+  - Environment
+  - Background
+  - Ground
   - 
   - 
   - 
@@ -42,12 +44,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3598318083
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemy
-    uniqueID: 3981475299
+  - name: Envrionment
+    uniqueID: 3913474743
     locked: 0
   - name: Ground
-    uniqueID: 3653363445
+    uniqueID: 503829257
+    locked: 0
+  - name: Hazards
+    uniqueID: 3843535041
+    locked: 0
+  - name: Enemy
+    uniqueID: 2224495825
+    locked: 0
+  - name: Player
+    uniqueID: 1759428353
+    locked: 0
+  - name: Effects
+    uniqueID: 234000069
     locked: 0

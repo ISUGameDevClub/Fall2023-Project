@@ -7,6 +7,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float jumpImpulse = 5f;
     [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float jumpGScale = 1f;
+    [SerializeField] float fallingGScale = 2.5f;
+    [SerializeField] float gScaleIncrement = .01f;
+    float tempGscale;
+    bool knocked;
+    
+    Vector3 lastGroundPosition;
     Transform playerTransform;
     Rigidbody2D rb;
     RaycastHit2D hit;
@@ -14,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     bool colLadder;
     bool isMoving;
+
+    bool jumping;
 
     //Animator Usage
     Animator movementAnims;
@@ -30,13 +39,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     void Start(){
+        tempGscale = jumpGScale;
+        jumping=false;
         isGrounded=true;
         rb = GetComponent<Rigidbody2D>();
-
         movementAnims = GetComponent<Animator>();
     }
     void Update()
     {
+        if(rb.velocity.x>0){
+            spriteRenderer.flipX=false;
+        }else if(rb.velocity.x<0){
+            spriteRenderer.flipX=true;
+        }
         if(rb.velocity.x > 5f){
             rb.velocity = new Vector2(5,rb.velocity.y);
         }
@@ -44,12 +59,25 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(-5,rb.velocity.y);
         }
         playerTransform = transform;
-        Move();
-        Jump();
-        Ladder();
-
+        if(!knocked){
+            Move();
+            Jump();
+            Ladder();
+        }
+        //gets last ground position
+        if(rb.velocity.y<=0f&&!jumping)isGrounded=false;
+        if(isGrounded)lastGroundPosition = transform.position;
         //Animation Bool
         movementAnims.SetBool("Walking", isMoving);
+    }
+    public void SetKnocked(bool knocked){
+        this.knocked=knocked;
+    }
+    public bool GetKnocked(){
+        return knocked;
+    }
+    public Vector3 GetLastGroundedPosition(){
+        return lastGroundPosition;
     }
     public float GetSpeed()
     {
@@ -63,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        movementAnims.SetFloat("WalkingSpeed",Mathf.Abs(Input.GetAxis("Horizontal")));
         if(moveDirection.x != 0) {
             isMoving = true;
         }
@@ -74,16 +103,22 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+        if(Input.GetKey(KeyCode.Space)){
+            jumpGScale = Mathf.Lerp(jumpGScale,fallingGScale,gScaleIncrement*Time.deltaTime);
+            rb.gravityScale=jumpGScale;
+        }else{
+            jumpGScale = tempGscale;
+            rb.gravityScale=fallingGScale;
+        }
         if(Input.GetKeyDown(KeyCode.Space)){
             RaycastHit2D hit = Physics2D.Raycast(this.rb.position, Vector2.down, 100.0f, groundLayer);
-            Debug.Log(hit.distance.ToString() + " " + hit.collider);
-
-            if(hit.distance < 0.7f){
+            if(hit.distance < 0.2f){
                 isGrounded = true;
             }else{
                 isGrounded = false;
             }
             if(isGrounded){
+            jumping=true;
             rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse );
             }
         }

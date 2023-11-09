@@ -38,7 +38,7 @@ public class ScrollAnim : MonoBehaviour
             }
             else
             {
-                LoadScript.LoadNextLevel();
+                LoadScript.StartTransition("");
             }
         }
     }
