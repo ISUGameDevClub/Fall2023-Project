@@ -1,47 +1,88 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
-    //Goomba enemy should walk through the player and we should be able to use this script for all enemies. we can create a string that has a dropdown of values in inspector that changes what type of enemy it is. Can also be an int if we want to do that for testing. lmk if you have questions -c
     [SerializeField] private int health;
-    
+    [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
+    [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
+    GameObject currencyManager;
+    Rigidbody2D rb;
+
+    [SerializeField] enemySelection es;
+    private bool direction;
+    public bool getDirection(){
+        return direction;
+    }
+
+    private enum enemySelection {
+        enemy1,
+        enemy2,
+        enemy3
+    };
 
     Animator animator;
 
-    //true is forward, false is backwards
-    private bool direction;
-    // Start is called before the first frame update
     void Start(){
+        direction = true;
+        currencyManager = GameObject.Find("CurrencyManager");
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update(){
-        if (direction){
-            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-        }
-        else {
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-        }
-        if (health < 0){
-            Destroy(this);
+        switch (es) {
+            case enemySelection.enemy1:{
+                updateEnemy1();
+                break;
+            }
+            case enemySelection.enemy2:{
+
+                break;
+            }
+            case enemySelection.enemy3:{
+
+                break;
+            }
         }
     }
 
     //detects collison with anything but the player and reverses the movement
     private void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag != "Player" && direction){
-            direction = false;
+        if (other.gameObject.layer==10 || other.gameObject.layer == 8) {
+            direction=!direction;
         }
-        else if (other.gameObject.tag != "Player" && !direction){
-            direction = true;
+        if(other.gameObject.GetComponent<PlayerHealth>()){
+            GameObject player = other.gameObject;
+            player.GetComponent<PlayerHealth>().DamagePlayer(damage,transform.position);
         }
     }
 
+    private void updateEnemy1(){
+        if (direction){
+            rb.MovePosition(rb.position+(Vector2.right * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = true;
+        }
+        else if (!direction){
+            rb.MovePosition(rb.position+(Vector2.left * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = false;
+        }
+    }
+
+    //method for taking damage
     public void TakeDamage(int damageTaken){
-        health = health - damageTaken;
+        health -= damageTaken;
         animator.SetBool("Attacked", true);
+        if (health < 0){
+            Die();
+        }
+    }
+    void Die(){
+        currencyManager.GetComponent<currencyCount>().addAmount(reward);
+        Destroy(gameObject);
     }
 }
