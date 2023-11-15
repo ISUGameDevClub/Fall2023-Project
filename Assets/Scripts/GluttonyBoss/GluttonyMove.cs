@@ -24,7 +24,6 @@ public class GluttonyMove : MonoBehaviour
     {
         if (chargeAnimation){
             Vector2 bossPos = transform.position;
-            Debug.Log(Math.Abs(bossPos.x - chargeStart.x));
             if (Math.Abs(bossPos.x - chargeStart.x) > ChargeRange) {
                 Debug.Log("Range Done");
                 chargeAnimation = false;
