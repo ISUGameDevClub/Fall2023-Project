@@ -120,7 +120,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -157,9 +157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  cameraYSpeed: 1
+  cameraYSpeed: 18
   useStartingOffset: 0
-  cameraOffset: {x: 0, y: 0, z: 0}
+  cameraOffset: {x: 0, y: 3.84, z: 0}
   trackBehaviour: 0
 --- !u!114 &8245328623252139178
 MonoBehaviour:
