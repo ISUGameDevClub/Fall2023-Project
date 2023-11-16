@@ -1,3 +1,5 @@
+using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WaypointFinder : MonoBehaviour
@@ -11,9 +13,13 @@ public class WaypointFinder : MonoBehaviour
 
     [SerializeField] private float speed = 2f;
 
+    private void Start(){
+        foreach(GameObject point in waypoints){
+            point.transform.parent=null;
+        }
+    }
 
-
-    private void Update()
+    private void FixedUpdate()
     {
         if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f)
         {

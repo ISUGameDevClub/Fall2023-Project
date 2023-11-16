@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class LaunchPad : MonoBehaviour
 {
-   
-    public float bounce = 20f;
+    //Make sure that everything is possible to be edited by the level design team in inspector-c
+    private float bounce = 1.2f;
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
