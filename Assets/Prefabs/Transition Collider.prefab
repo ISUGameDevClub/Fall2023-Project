@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2731bcc29ca02a04a85082bcfc98030f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLoader: {fileID: 1867195650624765377, guid: 37593d62aafd8e249a8749bede7bc0e4, type: 3}
+  nextScene: 
