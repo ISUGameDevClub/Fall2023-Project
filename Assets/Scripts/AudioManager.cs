@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    //grab an executive once this is finished to confirm that it is good-c
+   
     public Sound[] sounds;
     public static AudioManager instance;
     // Start is called before the first frame update
