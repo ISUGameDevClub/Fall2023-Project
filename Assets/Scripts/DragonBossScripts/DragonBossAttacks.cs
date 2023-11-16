@@ -16,7 +16,7 @@ public class DragonBossAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dragonAnimator = GetComponent<Animator>();
+        dragonAnimator = GetComponentInChildren<Animator>();
         attackTimer = timeBetweenAttacks * 2; // Gives the player double the time on spawn to prepare for an attack.
     }
 

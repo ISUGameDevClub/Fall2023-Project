@@ -5,10 +5,13 @@ using UnityEngine;
 public class currencyCount : MonoBehaviour
 {
     public int count;
+    GameObject uiCurrency;
 
     // Start is called before the first frame update
     void Start()
     {
+        uiCurrency = GameObject.Find("Currency");
+        uiCurrency.GetComponent<UICurrency>().SetCurrency(count);
         /*
         //grabs amount from playerPrefs
         count = PlayerPrefs.GetInt("amount");
@@ -49,6 +52,7 @@ public class currencyCount : MonoBehaviour
     public void setAmount(int newCount){
         //sets newCount to PlayerPrefs amount
         PlayerPrefs.SetInt("amount", newCount);
+        uiCurrency.GetComponent<UICurrency>().SetCurrency(count);
     }
 
     //add
