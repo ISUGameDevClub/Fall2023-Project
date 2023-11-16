@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
     [SerializeField] int reward;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject weapon;
 
     [SerializeField] SpriteRenderer sprite;
     GameObject currencyManager;
@@ -41,7 +43,7 @@ public class EnemyController : MonoBehaviour{
                 break;
             }
             case enemySelection.enemy2:{
-
+                updateEnemy2();
                 break;
             }
             case enemySelection.enemy3:{
@@ -58,7 +60,29 @@ public class EnemyController : MonoBehaviour{
         }
         if(other.gameObject.GetComponent<PlayerHealth>()){
             GameObject player = other.gameObject;
-            player.GetComponent<PlayerHealth>().DamagePlayer(damage,transform.position);
+            switch (es)
+            {
+                
+                case enemySelection.enemy1:
+                    {
+                        player.GetComponent<PlayerHealth>().DamagePlayer(damage, transform.position);
+                        break;
+                    }
+                case enemySelection.enemy2:
+                    {
+                        GameObject clone;
+                        clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
+                        Destroy(gameObject);
+                        break;
+                    }
+                case enemySelection.enemy3:
+                    {
+                        player.GetComponent<PlayerHealth>().DamagePlayer(damage, transform.position);
+                        break;
+                    }
+                    
+            }
+            
         }
     }
 
@@ -73,13 +97,43 @@ public class EnemyController : MonoBehaviour{
         }
     }
 
+    private void updateEnemy2()
+    {
+        if (direction)
+        {
+            rb.MovePosition(rb.position + (Vector2.right * moveSpeed * Time.fixedDeltaTime));
+            this.sprite.flipX = true;
+        }
+        else if (!direction)
+        {
+            rb.MovePosition(rb.position + (Vector2.left * moveSpeed * Time.fixedDeltaTime));
+            this.sprite.flipX = false;
+        }
+    }
+
     //method for taking damage
     public void TakeDamage(int damageTaken){
-        health -= damageTaken;
-        animator.SetBool("Attacked", true);
-        if (health < 0){
-            Die();
+        switch (es)
+        {
+            case enemySelection.enemy2:
+                {
+                    GameObject clone;
+                    clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
+                    Destroy(gameObject);
+                    break;
+                }
+            default:
+                {
+                    health -= damageTaken;
+                    animator.SetBool("Attacked", true);
+                    if (health < 0)
+                    {
+                        Die();
+                    }
+                    break;
+                }
         }
+
     }
     void Die(){
         currencyManager.GetComponent<currencyCount>().addAmount(reward);
