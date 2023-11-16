@@ -492,7 +492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4479f3a2e0957c64790798164ed87dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounce: 20
 --- !u!61 &381911792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -692,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702967d45f592464095664685ac7d9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallexEffectMultiplier: 0.5
 --- !u!1 &1025103954
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702967d45f592464095664685ac7d9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallexEffectMultiplier: 0.5
 --- !u!1 &1513501737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702967d45f592464095664685ac7d9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallexEffectMultiplier: 0.5
 --- !u!4 &2077965354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5372418727731711386, guid: d3c5bbe1ffba91d4c811f59713c1b237, type: 3}
@@ -1234,11 +1236,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 301546195481165771, guid: ced4173497b5c1347b4374e6219b8481, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.87
+      value: -8.57
       objectReference: {fileID: 0}
     - target: {fileID: 301546195481165771, guid: ced4173497b5c1347b4374e6219b8481, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.95
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 301546195481165771, guid: ced4173497b5c1347b4374e6219b8481, type: 3}
       propertyPath: m_LocalPosition.z
