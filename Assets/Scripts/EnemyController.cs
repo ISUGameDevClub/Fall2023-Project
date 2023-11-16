@@ -1,20 +1,21 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
-    //Goomba enemy should walk through the player and we should be able to use this script for all enemies.
     [SerializeField] private int health;
-    
+    [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
+    [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
-
+    GameObject currencyManager;
     Rigidbody2D rb;
 
     [SerializeField] enemySelection es;
-    private Boolean direction;
-    public Boolean getDirection(){
+    private bool direction;
+    public bool getDirection(){
         return direction;
     }
 
@@ -25,10 +26,11 @@ public class EnemyController : MonoBehaviour{
     };
 
     Animator animator;
-    Physics2D physics;
 
     void Start(){
         direction = true;
+        currencyManager = GameObject.Find("CurrencyManager");
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -51,31 +53,36 @@ public class EnemyController : MonoBehaviour{
 
     //detects collison with anything but the player and reverses the movement
     private void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag == "Wall" && direction) {
-            direction = false;
+        if (other.gameObject.layer==10) {
+            direction=!direction;
         }
-        else if (other.gameObject.tag == "Wall" && !direction){
-            direction = true;
+        if(other.gameObject.GetComponent<PlayerHealth>()){
+            GameObject player = other.gameObject;
+            player.GetComponent<PlayerHealth>().DamagePlayer(damage,transform.position);
         }
     }
 
     private void updateEnemy1(){
         if (direction){
-            rb.AddForce(Vector2.right * moveSpeed);
-            this.sprite.flipY = false;
+            rb.MovePosition(rb.position+(Vector2.right * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = true;
         }
-        else{
-            rb.AddForce(Vector2.left * moveSpeed);
-            this.sprite.flipY = true;
+        else if (!direction){
+            rb.MovePosition(rb.position+(Vector2.left * moveSpeed*Time.fixedDeltaTime));
+            this.sprite.flipX = false;
         }
     }
 
     //method for taking damage
     public void TakeDamage(int damageTaken){
-        health = health - damageTaken;
+        health -= damageTaken;
         animator.SetBool("Attacked", true);
         if (health < 0){
-            Destroy(this);
+            Die();
         }
+    }
+    void Die(){
+        currencyManager.GetComponent<currencyCount>().addAmount(reward);
+        Destroy(gameObject);
     }
 }
