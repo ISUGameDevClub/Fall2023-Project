@@ -105,6 +105,7 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootPrimaryWeapon()
     {
+            GetComponent<Animator>().SetTrigger("AttackStyle1");
             sfxController.playSound(3);
             GameObject clone;
             clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
@@ -173,6 +174,7 @@ public class PlayerAttack : MonoBehaviour
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
         sfxController.playSound(4);
+        GetComponent<Animator>().SetTrigger("AttackStyle1");
         GameObject clone;
         clone = Instantiate(secondaryAttackOne, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))

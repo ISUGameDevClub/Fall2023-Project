@@ -27,6 +27,12 @@ public class GDCMController : MonoBehaviour
 
     private void Update()
     {
+        //DELETE THIS WHEN DONE GIAN
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }    
+
         CrossfadeMusic();
         //DEMO MUSIC, CHANGE TO ACTUAL SCENES WHEN READY
         if (SceneManager.GetActiveScene().name.Equals("0DemoMenu"))

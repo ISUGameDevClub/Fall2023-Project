@@ -13,6 +13,7 @@ public class GluttonyAttacks : MonoBehaviour
     [SerializeField]
     private float fireballYLevel;
     private GluttonyMove GlutMove;
+    [SerializeField] GameObject paraEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +57,11 @@ public class GluttonyAttacks : MonoBehaviour
 
     public void ChargePlayer(){
         GlutMove.ChargePlayer();
+    }
+
+    public void ThrowPara() {
+        GameObject newPrefabInstance = Instantiate(paraEnemy, gameObject.transform.position, Quaternion.identity);
+        Debug.Log("Spawn Para");
     }
 
     public void FireAttackBall() {
