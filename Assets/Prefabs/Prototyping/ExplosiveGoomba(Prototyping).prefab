@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 497857225391773512}
   - component: {fileID: 8940844406640611365}
   m_Layer: 0
-  m_Name: ExplosiveGoomba
+  m_Name: ExplosiveGoomba(Prototyping)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
