@@ -493,7 +493,7 @@ MonoBehaviour:
   secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
   attackPoint: {fileID: 7516737453232708131}
   secondaryAttackThree: {fileID: 0}
-  objectOneTravelSpeed: 5
+  objectOneTravelSpeed: 25
   objectTwoTravelSpeed: 0
   objectThreeTravelSpeed: 0
   canUseSecondaryAttack: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
   nextAttackTime: 1
   bullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
   weapon: {fileID: 994930681548135147}
-  travelSpeed: 10
+  travelSpeed: 30
   isRight: 1
   primaryTimer: 0.2
   secondaryTimer: 0.5
