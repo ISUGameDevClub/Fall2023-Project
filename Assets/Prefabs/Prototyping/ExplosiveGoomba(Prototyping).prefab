@@ -79,8 +79,11 @@ MonoBehaviour:
   damage: 1
   moveSpeed: 2
   reward: 0
+  bullet: {fileID: 3370066717576082678, guid: 3a693587684cca24f920d33c6941f080, type: 3}
+  weapon: {fileID: 0}
   sprite: {fileID: 3084655278414034812}
-  es: 0
+  es: 1
+  direction: 0
 --- !u!95 &8940844406640611365
 Animator:
   serializedVersion: 5

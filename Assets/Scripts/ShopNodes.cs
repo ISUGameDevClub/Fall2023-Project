@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopNodes : MonoBehaviour
 {
-    [SerializeField] boolean revealed;
+    [SerializeField] bool revealed;
     [SerializeField] ArrayList items = new ArrayList();
 
     // Start is called before the first frame update
@@ -20,8 +20,9 @@ public class ShopNodes : MonoBehaviour
         
     }
 
-    private boolean isRevealed()
+    private bool isRevealed()
     {
+        return true;
         //if player is close, it is revealed. If the player is not, then it is not revealed
     }
 }
