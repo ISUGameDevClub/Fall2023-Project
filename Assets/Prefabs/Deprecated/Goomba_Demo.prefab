@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -313491997
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 847546599, guid: e9f3c45e4fe50ba41891f01e71ca7bf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 7482506651862970125}
   - component: {fileID: 7389477979825815334}
   - component: {fileID: 1278684671721876370}
-  - component: {fileID: 2787473172247247976}
   - component: {fileID: 4252535649229619949}
+  - component: {fileID: -38453120813231121}
   m_Layer: 0
   m_Name: Goomba_Demo
   m_TagString: Enemy
@@ -192,22 +192,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &2787473172247247976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5848590297271436118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93719124e66787549ad2f73dd906450f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  moveSpeed: 5
-  damage: 10
-  sprite: {fileID: 5020073002357110729}
 --- !u!95 &4252535649229619949
 Animator:
   serializedVersion: 5
@@ -229,3 +213,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-38453120813231121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848590297271436118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce80b4bc13986f349991d407cb5fb717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  damage: 10
+  moveSpeed: 5
+  reward: 0
+  sprite: {fileID: 0}
+  es: 0

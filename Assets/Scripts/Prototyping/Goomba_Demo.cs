@@ -63,7 +63,7 @@ public class Goomba_Demo : MonoBehaviour, IDamageable_Demo
             //pitDetector.transform.position = new Vector2(-pitDetector.transform.position.x, pitDetector.transform.position.y);
             sprite.flipX = !sprite.flipX;
         }
-        else
+        else if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerHealth_Demo>().TakeDamage(damage);
         }

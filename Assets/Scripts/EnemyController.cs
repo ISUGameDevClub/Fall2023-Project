@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour{
     Rigidbody2D rb;
 
     [SerializeField] enemySelection es;
-    private bool direction;
+    [SerializeField] private bool direction;
     public bool getDirection(){
         return direction;
     }
@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update(){
+    void FixedUpdate(){
         switch (es) {
             case enemySelection.enemy1:{
                 updateEnemy1();
@@ -109,6 +109,13 @@ public class EnemyController : MonoBehaviour{
             rb.MovePosition(rb.position + (Vector2.left * moveSpeed * Time.fixedDeltaTime));
             this.sprite.flipX = false;
         }
+    }
+    private bool raycast() {
+        bool floor = true;
+        RaycastHit2D detectFloor = Physics2D.Raycast(transform.position, -Vector2.up);
+        
+
+        return floor;
     }
 
     //method for taking damage
