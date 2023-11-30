@@ -178,9 +178,19 @@ AnimationClip:
     - time: 1.4
       value: {fileID: -1004897462, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - time: 1.5
-      value: {fileID: 106352511, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
+      value: {fileID: 804167220, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
     - time: 1.6
-      value: {fileID: -1335001201, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
+      value: {fileID: 804167220, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - time: 1.65
+      value: {fileID: 126139308, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - time: 1.8333334
+      value: {fileID: -1102460261, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - time: 1.9333333
+      value: {fileID: -1102460261, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - time: 2.0333333
+      value: {fileID: -487523073, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - time: 2.1333334
+      value: {fileID: 180255447, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
     - time: 2.4
       value: {fileID: -1004897462, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - time: 2.5
@@ -250,8 +260,13 @@ AnimationClip:
     - {fileID: 106352511, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - {fileID: -1004897462, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - {fileID: -1004897462, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
-    - {fileID: 106352511, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
-    - {fileID: -1335001201, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
+    - {fileID: 804167220, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: 804167220, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: 126139308, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: -1102460261, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: -1102460261, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: -487523073, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
+    - {fileID: 180255447, guid: ecb2a9ac018c68f4199dd20978ec32ab, type: 3}
     - {fileID: -1004897462, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - {fileID: 106352511, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}
     - {fileID: -1335001201, guid: 3976145582e775047b7ffeba40ae50fd, type: 3}

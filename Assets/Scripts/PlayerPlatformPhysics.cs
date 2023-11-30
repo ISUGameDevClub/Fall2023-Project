@@ -22,7 +22,10 @@ public class PlayerPlatformPhysics : MonoBehaviour
             _onPlatform = true;
         }
     }
-
+    public bool IsOnPlatform()
+    {
+        return _onPlatform;
+    }
 
 
     private void OnCollisionExit2D(Collision2D collision)
