@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool colLadder;
     bool isMoving;
-
     bool jumping;
+    bool isLocked;
 
     //Animator Usage
     Animator movementAnims;
@@ -36,18 +36,30 @@ public class PlayerMovement : MonoBehaviour
     {
         FlipSprite();
 
+        // Locks Movement for shooting.
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isLocked = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isLocked = false;
+        }
+
         //Ground Movement
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0); //In update to ensure consistent input.
-        if (moveDirection.x != 0)
+        //Animation Bool
+        if(rb.velocity.x != 0)
         {
-            isMoving = true;
+            movementAnims.SetBool("Walking", true);
         }
         else
         {
-            isMoving = false;
-        }
+            movementAnims.SetBool("Walking", false);
+        }   
 
-        if (!knocked)
+        if (!knocked && !isLocked)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -66,13 +78,11 @@ public class PlayerMovement : MonoBehaviour
         //gets last ground position
         if (rb.velocity.y <= 0f && !jumping) isGrounded = false;
         if (isGrounded) lastGroundPosition = transform.position;
-        //Animation Bool
-        movementAnims.SetBool("Walking", isMoving);
     }
 
     private void FixedUpdate()
     {
-        if (!knocked)
+        if (!knocked && !isLocked)
         {
             Move();
         }
