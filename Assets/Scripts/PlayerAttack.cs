@@ -116,42 +116,51 @@ public class PlayerAttack : MonoBehaviour
      ----------------------- */
     private void ShootSimpleCannon()
     {
-        GetComponent<Animator>().SetTrigger("AttackStyle1");
+        GetComponent<Animator>().SetInteger("WeaponType", 0);
         sfxController.playSound(3);
         GameObject clone;
         clone = Instantiate(simpleCannonBullet, weapon.transform.position, transform.rotation);
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 0);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 4);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * simpleCannonSpeed;
         }
         else if (isRight)
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0) * simpleCannonSpeed;
         }
         else if (!isRight)
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0) * simpleCannonSpeed;
         }
+        GetComponent<Animator>().SetTrigger("Shoot");
     }
 
 
