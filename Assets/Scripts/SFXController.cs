@@ -35,7 +35,6 @@ public class SFXController : MonoBehaviour
         //play the sound
         spawnSound(soundIndex);
 
-        print("SFXController: playSound(): sound" + soundIndex +" has been played.\n");
         return 1;
     }
 }

@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfb9198adebf6ae996d82ee8aa23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 5
+  currentHealth: 0
   knockedTime: 0.3
   knockbackForce: 10
   playerMaxHealth: 5
@@ -390,11 +390,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   jumpImpulse: 11
-  moveSpeed: 5.25
+  moveSpeed: 5.5
   jumpGScale: 1
   fallingGScale: 2.75
   gScaleIncrement: 2
-  spriteRenderer: {fileID: 684839301989656406}
+  spriteRenderers: []
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,24 +408,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   styles:
-  - styleName: TestDefault
+  - styleName: Assault
+    primaryWeapon: 0
+    superAttack: 0
     moveSpeed: 5
-    damageMultiplier: 1
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
-  - styleName: TestFast
-    moveSpeed: 10
-    damageMultiplier: 1.1
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
-  - styleName: TestSlow
-    moveSpeed: 2.5
-    damageMultiplier: 0.9
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
+    damageTakenMultiplier: 1
+  - styleName: Railgun
+    primaryWeapon: 1
+    superAttack: 1
+    moveSpeed: 12
+    damageTakenMultiplier: 2
 --- !u!95 &5523715144813181474
 Animator:
   serializedVersion: 5
@@ -489,15 +481,12 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  spriteRenderer: {fileID: 6886495969096528970}
   secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
   attackPoint: {fileID: 7516737453232708131}
   secondaryAttackThree: {fileID: 0}
   objectOneTravelSpeed: 25
   objectTwoTravelSpeed: 0
   objectThreeTravelSpeed: 0
-  canUseSecondaryAttack: 1
-  weaponState: 1
   meleeDamage: 1
   meleeAttackRange: 0.5
   attackRate: 2

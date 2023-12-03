@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     RaycastHit2D hit;
     bool isGrounded;
-    [SerializeField] SpriteRenderer spriteRenderer;
     bool colLadder;
     bool isMoving;
 
@@ -26,8 +25,43 @@ public class PlayerMovement : MonoBehaviour
 
     //Animator Usage
     Animator movementAnims;
+    public SpriteRenderer[] spriteRenderers;
 
-    // Update is called once per frame
+    void Start()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        tempGscale = jumpGScale;
+        jumping = false;
+        isGrounded = true;
+        rb = GetComponent<Rigidbody2D>();
+        movementAnims = GetComponent<Animator>();
+    }
+    void Update()
+    {
+        FlipSprite();
+
+        if (rb.velocity.x > 5f)
+        {
+            rb.velocity = new Vector2(5, rb.velocity.y);
+        }
+        if (rb.velocity.x < -5f)
+        {
+            rb.velocity = new Vector2(-5, rb.velocity.y);
+        }
+        playerTransform = transform;
+        if (!knocked)
+        {
+            Move();
+            Jump();
+            Ladder();
+        }
+        //gets last ground position
+        if (rb.velocity.y <= 0f && !jumping) isGrounded = false;
+        if (isGrounded) lastGroundPosition = transform.position;
+        //Animation Bool
+        movementAnims.SetBool("Walking", isMoving);
+    }
+
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.layer==7){
          colLadder = true;
@@ -38,38 +72,7 @@ public class PlayerMovement : MonoBehaviour
          colLadder = false;
         }
     }
-    void Start(){
-        tempGscale = jumpGScale;
-        jumping=false;
-        isGrounded=true;
-        rb = GetComponent<Rigidbody2D>();
-        movementAnims = GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if(rb.velocity.x>0){
-            spriteRenderer.flipX=false;
-        }else if(rb.velocity.x<0){
-            spriteRenderer.flipX=true;
-        }
-        if(rb.velocity.x > 5f){
-            rb.velocity = new Vector2(5,rb.velocity.y);
-        }
-        if(rb.velocity.x < -5f){
-            rb.velocity = new Vector2(-5,rb.velocity.y);
-        }
-        playerTransform = transform;
-        if(!knocked){
-            Move();
-            Jump();
-            Ladder();
-        }
-        //gets last ground position
-        if(rb.velocity.y<=0f&&!jumping)isGrounded=false;
-        if(isGrounded)lastGroundPosition = transform.position;
-        //Animation Bool
-        movementAnims.SetBool("Walking", isMoving);
-    }
+
     public void SetKnocked(bool knocked){
         this.knocked=knocked;
     }
@@ -130,5 +133,22 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0,5);
         }
     }
-    
+
+    void FlipSprite()
+    {
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            for(int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].flipX = false;
+            }
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].flipX = true;
+            }
+        }
+    }
 }
