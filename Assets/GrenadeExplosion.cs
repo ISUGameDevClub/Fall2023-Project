@@ -1,22 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicBulletDestroy : MonoBehaviour
+public class GrenadeExplosion : MonoBehaviour
 {
-    [SerializeField] int damage;
+    public float damage;
 
-    public bool destroyAfterTime = false;
-    public float destroyTimer = 10f;
-
-    private void Update()
-    {
-        destroyTimer -= Time.deltaTime;
-        if(destroyTimer <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<EnemyController>())
         {
@@ -27,6 +17,11 @@ public class BasicBulletDestroy : MonoBehaviour
             //Not sure if this is the proper place we're handling hurting enemies...
             other.GetComponentInParent<DragonBossHealth>().TakeDamage(damage);
         }
-        Destroy(gameObject);
     }
+
+    //Handles explosion in animator.
+    public void ExplosionAnimEvent()
+    {
+        Destroy(gameObject);
+    }  
 }

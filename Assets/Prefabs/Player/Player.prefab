@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7516737453232708131}
   m_Layer: 7
-  m_Name: Weapon
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 994930681548135147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 0.97, z: 0}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -414,12 +414,14 @@ MonoBehaviour:
     m_Bits: 256
   simpleCannonBullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
   megaShotBullet: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
-  daggerBullet: {fileID: 0}
-  grenadeLauncherBullet: {fileID: 0}
-  simpleCannonSpeed: 30
+  daggerBullet: {fileID: 3816030608163453240, guid: 649a21a6251554a45babc6fd463b7d54, type: 3}
+  grenadeLauncherBullet: {fileID: 3816030608163453240, guid: 0851e6481887acf4f9258b10c4952875, type: 3}
+  simpleCannonSpeed: 35
   megaShotSpeed: 25
-  primaryTimer: 0.2
-  secondaryTimer: 0.5
+  daggerSliceSpeed: 0.3
+  grenadeSpeed: 25
+  timeBetweenPrimary: 0.25
+  timeBetweenSecondary: 0.5
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0

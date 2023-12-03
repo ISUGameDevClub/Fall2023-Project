@@ -4,8 +4,8 @@ using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
-    [SerializeField] private int health;
-    [SerializeField] int damage;
+    [SerializeField] private float health;
+    [SerializeField] float damage;
     [SerializeField] private int moveSpeed;
     [SerializeField] int reward;
 
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     //method for taking damage
-    public void TakeDamage(int damageTaken){
+    public void TakeDamage(float damageTaken){
         health -= damageTaken;
         animator.SetBool("Attacked", true);
         if (health < 0){

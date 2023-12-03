@@ -23,6 +23,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("Projectile Speeds")]
     public float simpleCannonSpeed = 10f;
     public float megaShotSpeed;
+    public float daggerSliceSpeed = .2f;
+    public float grenadeSpeed = 10f;
 
     [Header("SFX")]
     private SFXController sfxController;
@@ -44,13 +46,16 @@ public class PlayerAttack : MonoBehaviour
     void Update() 
     {
         //Discerns last direction player was facing
+        //Also changes direction of weapon
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             isRight = true;
+            attackPoint.transform.localPosition = new Vector3(.75f, 1, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             isRight = false;
+            attackPoint.transform.localPosition = new Vector3(-.75f, 1, 0);
         }
 
         //Shoot Timers
@@ -164,12 +169,12 @@ public class PlayerAttack : MonoBehaviour
         //Dagger
         else if(secondaryWeapon == 2) 
         {
-            MeleeDagger();
+            StartCoroutine(MeleeDagger());
         }
         //GrenadeLauncher
         else if(secondaryWeapon == 3)
         {
-            //insert third secondary weapon state functionality
+            ShootGrenadeLauncher();
         }
     }
     private IEnumerator ShootMegaShot()
@@ -214,9 +219,54 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(.1f);
     }
 
-    private void MeleeDagger()
+    private IEnumerator MeleeDagger()
     {
+        //TODO: Add sound
+        //TODO: Add animation
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+        yield return new WaitForSeconds(daggerSliceSpeed);
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+        yield return new WaitForSeconds(daggerSliceSpeed);
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+    }
 
+    private void ShootGrenadeLauncher()
+    {
+        GameObject grenade = Instantiate(grenadeLauncherBullet, attackPoint.transform.position, transform.rotation);
+        
+        Rigidbody2D grenadeRigidbody = grenade.GetComponent<Rigidbody2D>();
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            grenadeRigidbody.velocity = new Vector2(.75f, 1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            grenadeRigidbody.velocity = new Vector2(-.75f, 1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            grenadeRigidbody.velocity = new Vector2(-1, -1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            grenadeRigidbody.velocity = new Vector2(1, -1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            grenadeRigidbody.velocity = new Vector2(0, .75f) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            grenadeRigidbody.velocity = new Vector2(0, -1) * grenadeSpeed;
+        }
+        else if (isRight)
+        {
+            grenadeRigidbody.velocity = new Vector2(1, .25f) * grenadeSpeed;
+        }
+        else if (!isRight)
+        {
+            grenadeRigidbody.velocity = new Vector2(-1, .25f) * grenadeSpeed;
+        }
     }
 
     /* ----------------------

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DragonBossHealth : MonoBehaviour
 {
-    [SerializeField] private int health;
-    [SerializeField] int damage;
+    [SerializeField] private float health;
+    [SerializeField] float damage;
     [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
@@ -28,7 +28,7 @@ public class DragonBossHealth : MonoBehaviour
     }
 
     //method for taking damage
-    public void TakeDamage(int damageTaken){
+    public void TakeDamage(float damageTaken){
         health -= damageTaken;
         animator.SetTrigger("Damaged");
         if (health < 0){

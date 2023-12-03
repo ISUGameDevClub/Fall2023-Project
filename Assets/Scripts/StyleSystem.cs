@@ -39,7 +39,7 @@ public class StyleSystem : MonoBehaviour
         //Testing purposes.
         if(Input.GetKeyDown(KeyCode.Backslash))
         {
-            playerCombat.setSecondaryWeapon(1);
+            playerCombat.setSecondaryWeapon(3);
         }
     }
 
