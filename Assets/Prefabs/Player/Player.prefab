@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7516737453232708131}
   m_Layer: 7
-  m_Name: Weapon
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 994930681548135147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 0.97, z: 0}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,10 +328,10 @@ GameObject:
   - component: {fileID: 5372418727731711386}
   - component: {fileID: 9075962708986529677}
   - component: {fileID: 6480173594423971193}
+  - component: {fileID: 319945059609046123}
   - component: {fileID: -8483532070881732752}
   - component: {fileID: 5523715144813181474}
   - component: {fileID: 8832273168174656209}
-  - component: {fileID: 319945059609046123}
   - component: {fileID: 4883865993146834077}
   m_Layer: 7
   m_Name: Player
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfb9198adebf6ae996d82ee8aa23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 5
+  currentHealth: 0
   knockedTime: 0.3
   knockbackForce: 10
   playerMaxHealth: 5
@@ -389,12 +389,38 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4096
-  jumpImpulse: 11
-  moveSpeed: 5.25
-  jumpGScale: 1
-  fallingGScale: 2.75
-  gScaleIncrement: 2
-  spriteRenderer: {fileID: 684839301989656406}
+  moveSpeed: 7.5
+  jumpImpulse: 20
+  defaultGravity: 5
+  weakGravity: 6
+  spriteRenderers: []
+--- !u!114 &319945059609046123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928414495911513693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f743c214c5a82ad4e90e11a3ca015531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 994930681548135147}
+  attackPoint: {fileID: 7516737453232708131}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  simpleCannonBullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
+  megaShotBullet: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
+  daggerBullet: {fileID: 3816030608163453240, guid: 649a21a6251554a45babc6fd463b7d54, type: 3}
+  grenadeLauncherBullet: {fileID: 3816030608163453240, guid: 0851e6481887acf4f9258b10c4952875, type: 3}
+  simpleCannonSpeed: 35
+  megaShotSpeed: 25
+  daggerSliceSpeed: 0.3
+  grenadeSpeed: 25
+  timeBetweenPrimary: 0.25
+  timeBetweenSecondary: 0.5
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,24 +434,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   styles:
-  - styleName: TestDefault
-    moveSpeed: 5
-    damageMultiplier: 1
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
-  - styleName: TestFast
+  - styleName: Assault
+    primaryWeapon: 0
+    superAttack: 0
+    moveSpeed: 7.5
+    damageTakenMultiplier: 1
+  - styleName: Railgun
+    primaryWeapon: 1
+    superAttack: 1
     moveSpeed: 10
-    damageMultiplier: 1.1
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
-  - styleName: TestSlow
-    moveSpeed: 2.5
-    damageMultiplier: 0.9
-    moveTech: {fileID: 0}
-    superAttack: {fileID: 0}
-    primaryWeapon: {fileID: 0}
+    damageTakenMultiplier: 2
 --- !u!95 &5523715144813181474
 Animator:
   serializedVersion: 5
@@ -463,7 +481,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83a0853d4b3ed7a40a57614c269da32f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -474,40 +492,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &319945059609046123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928414495911513693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f743c214c5a82ad4e90e11a3ca015531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  spriteRenderer: {fileID: 6886495969096528970}
-  secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
-  attackPoint: {fileID: 7516737453232708131}
-  secondaryAttackThree: {fileID: 0}
-  objectOneTravelSpeed: 25
-  objectTwoTravelSpeed: 0
-  objectThreeTravelSpeed: 0
-  canUseSecondaryAttack: 1
-  weaponState: 1
-  meleeDamage: 1
-  meleeAttackRange: 0.5
-  attackRate: 2
-  nextAttackTime: 1
-  bullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
-  weapon: {fileID: 994930681548135147}
-  travelSpeed: 30
-  isRight: 1
-  primaryTimer: 0.2
-  secondaryTimer: 0.5
 --- !u!70 &4883865993146834077
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -517,7 +501,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8928414495911513693}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83a0853d4b3ed7a40a57614c269da32f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

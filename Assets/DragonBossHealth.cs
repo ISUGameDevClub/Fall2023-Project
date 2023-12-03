@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class DragonBossHealth : MonoBehaviour
 {
-    [SerializeField] private int health;
-    [SerializeField] int damage;
+    [SerializeField] private float health;
+    [SerializeField] float damage;
     [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
-    GameObject currencyManager;
     Rigidbody2D rb;
     Animator animator;
 
     void Start(){
-        currencyManager = GameObject.Find("CurrencyManager");
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -28,7 +26,7 @@ public class DragonBossHealth : MonoBehaviour
     }
 
     //method for taking damage
-    public void TakeDamage(int damageTaken){
+    public void TakeDamage(float damageTaken){
         health -= damageTaken;
         animator.SetTrigger("Damaged");
         if (health < 0){
@@ -37,7 +35,7 @@ public class DragonBossHealth : MonoBehaviour
     }
 
     void Die(){
-        currencyManager.GetComponent<currencyCount>().addAmount(reward);
+        FindObjectOfType<CurrencyCount>().AddAmount(reward);
         FindObjectOfType<LevelLoader>().StartTransition("4DemoEnd"); //TEMPORARY DEMO TRANSITION
         Destroy(gameObject);
     }

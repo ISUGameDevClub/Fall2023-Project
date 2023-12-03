@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     
-    public int playerHealth;
+    private float currentHealth = 100;
+    public float maxHealth = 25f;
+
     [SerializeField] float knockedTime;
     Rigidbody2D rb;
     [SerializeField] float knockbackForce;
-    GameObject healthUI;
     GameObject SFXController;
-    [SerializeField] private int playerMaxHealth = 100;
     public delegate void PlayerDeathEventHandler();
     public static event PlayerDeathEventHandler OnPlayerDeath;
 
@@ -20,13 +20,15 @@ public class PlayerHealth : MonoBehaviour
     public float invincibleTimer = 2.5f;
     private bool invincible = false;
 
+    //Style System Stats
+    private float damageTakenMultiplier = 1f; //Usage: damage * damageTakenMultiplier
+
     // Start is called before the first frame update
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
         SFXController = GameObject.Find("SoundFXManager");
-        healthUI = GameObject.Find("Health");
-        playerHealth = playerMaxHealth;
+        currentHealth = maxHealth;
     }
 
     public void Update()
@@ -44,12 +46,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void DamagePlayer(int damagePoint, Vector3 damageDirection) {
+    public void DamagePlayer(float damagePoint, Vector3 damageDirection) {
         if(!invincible)
         {
             invincible = true;
             currInvincibleTimer = invincibleTimer;
 
+            //Knockback
             if (damageDirection != Vector3.zero && !GetComponent<PlayerMovement>().GetKnocked())
             {
                 GetComponent<PlayerMovement>().SetKnocked(true);
@@ -67,9 +70,9 @@ public class PlayerHealth : MonoBehaviour
             }
 
             SFXController.GetComponent<SFXController>().playSound(2);
-            healthUI.GetComponent<UIHealth>().ReduceHealth();
-            playerHealth -= damagePoint;
-            if (playerHealth <= 0)
+
+            currentHealth -= (damagePoint * damageTakenMultiplier);
+            if (currentHealth <= 0)
             {
                 // Kill player Function Here
                 OnPlayerDeath();
@@ -81,15 +84,26 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(knockedTime);
         GetComponent<PlayerMovement>().SetKnocked(false);
     }
+
     public void HealPlayer(int healPoint) {
-        healthUI.GetComponent<UIHealth>().ReduceHealth();
-        playerHealth += healPoint;
-        if (playerHealth > playerMaxHealth){
-            playerHealth = playerMaxHealth;
+        currentHealth += healPoint;
+        if (currentHealth > maxHealth){
+            currentHealth = maxHealth;
         }
     }
 
     public void SetPlayerHealth(int newHealth) {
-        playerHealth = newHealth;
+        currentHealth = newHealth;
+    }
+
+    //Style System Mechanics
+    public void SetDamageTakenMultiplier(float newDamageMultiplier)
+    {
+        damageTakenMultiplier = newDamageMultiplier;
+    }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
     }
 }

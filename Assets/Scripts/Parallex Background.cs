@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class ParallexBackground : MonoBehaviour
 {
-    [SerializeField] private float parallexEffectMultiplier = 0.5f;
-    private Transform cameraTransform;
-    private Vector3 lastCameraPosition;
+    private float length, startpos;
+    private GameObject cam;
+    public float parallaxEffect;
+
     private void Start()
     {
-        cameraTransform = Camera.main.transform;
-        lastCameraPosition = cameraTransform.position;
+        cam = FindObjectOfType<Camera>().gameObject;
+        startpos = transform.position.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        Vector3 deltaMovement = cameraTransform.position = lastCameraPosition;
-        float parallexEffectMultiplier = 0.5f;
-        transform.position += deltaMovement * parallexEffectMultiplier;
-        lastCameraPosition = cameraTransform.position;
+        float temp = (cam.transform.position.x * (1 - parallaxEffect));
+        float dist = (cam.transform.position.x * parallaxEffect);
+
+        transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
+
+        if(temp > startpos + length)
+        {
+            startpos += length;
+        }
+        else if(temp < startpos - length)
+        {
+            startpos -= length;
+        }
     }
 }

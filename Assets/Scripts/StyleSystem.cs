@@ -4,12 +4,18 @@ public class StyleSystem : MonoBehaviour
 {
     //gian sucks-c
     private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
+    private PlayerAttack playerCombat;
+
     [System.NonSerialized] public string currentStyle;
     public Style[] styles; //An array of styles.
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
+        playerCombat = GetComponent<PlayerAttack>();
+
         ChangeStyle(0); //Default style.
     }
 
@@ -29,16 +35,21 @@ public class StyleSystem : MonoBehaviour
         {
             ChangeStyle(2);
         }
+
+        //Testing purposes.
+        if(Input.GetKeyDown(KeyCode.Backslash))
+        {
+            playerCombat.setSecondaryWeapon(3);
+        }
     }
 
     public void ChangeStyle(int index)
     {
         currentStyle = styles[index].styleName;
         playerMovement.SetSpeed(styles[index].moveSpeed);
+        playerHealth.SetDamageTakenMultiplier(styles[index].damageTakenMultiplier);
+        playerCombat.setPrimaryWeapon(styles[index].primaryWeapon);
         //Add UI element to represent changed styleName.
-        //playerHealth.damageMultiplier = styles[index].damageMultiplier;
-        //playerMovement.moveTech = styles[index].moveTech;
-        //playerCombat.currentPrimary = styles[index].primaryWeapon;
         //playerCombat.currentSuper = styles[index].superAttack;
 
         Debug.Log("Current Style: " + currentStyle);
@@ -49,10 +60,9 @@ public class StyleSystem : MonoBehaviour
     public struct Style
     {
         public string styleName;
+        public int primaryWeapon;
+        public int superAttack;
         public float moveSpeed;
-        public float damageMultiplier;
-        public GameObject moveTech;
-        public GameObject superAttack;
-        public GameObject primaryWeapon;
+        public float damageTakenMultiplier;
     }
 }
