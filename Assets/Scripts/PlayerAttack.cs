@@ -166,15 +166,9 @@ public class PlayerAttack : MonoBehaviour
      * Secondary Weapons
      ----------------------- */
     void ShootSecondaryWeapon(){
-        if(secondaryWeapon == 0)
-        {
-            return;
-        }
         //Mega-Shot
-        else if(secondaryWeapon == 1)
+        if(secondaryWeapon == 1)
         {
-            //tbd
-            //insert method that subtracts from currency
             StartCoroutine(ShootMegaShot());
         }
         //Dagger
