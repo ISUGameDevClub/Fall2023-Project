@@ -390,10 +390,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   moveSpeed: 7.5
-  jumpImpulse: 11
-  jumpGScale: 1
-  fallingGScale: 2.75
-  gScaleIncrement: 2
+  jumpImpulse: 20
+  defaultGravity: 5
+  weakGravity: 6
   spriteRenderers: []
 --- !u!114 &319945059609046123
 MonoBehaviour:
@@ -482,7 +481,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83a0853d4b3ed7a40a57614c269da32f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -502,7 +501,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8928414495911513693}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83a0853d4b3ed7a40a57614c269da32f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

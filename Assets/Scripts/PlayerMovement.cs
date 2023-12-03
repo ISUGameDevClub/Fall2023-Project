@@ -8,10 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float moveSpeed = 2f;
     [SerializeField] float jumpImpulse = 5f;
-    [SerializeField] float jumpGScale = 1f;
-    [SerializeField] float fallingGScale = 2.5f;
-    [SerializeField] float gScaleIncrement = .01f;
-    float tempGscale;
+    [SerializeField] float defaultGravity = 2.5f;
+    [SerializeField] float weakGravity = 1.5f;
     bool knocked;
     
     Vector3 lastGroundPosition;
@@ -31,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        tempGscale = jumpGScale;
         jumping = false;
         isGrounded = true;
         rb = GetComponent<Rigidbody2D>();
@@ -56,7 +53,18 @@ public class PlayerMovement : MonoBehaviour
         playerTransform = transform;
         if (!knocked)
         {
-            Jump();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (Input.GetKey(KeyCode.Space) && rb.velocity.y > 0)
+            {
+                rb.gravityScale = weakGravity;
+            }
+            else
+            {
+                rb.gravityScale = defaultGravity;
+            }
             Ladder();
         }
         //gets last ground position
@@ -77,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         movementAnims.SetFloat("WalkingSpeed", Mathf.Abs(Input.GetAxis("Horizontal")));
-        rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
     }
 
     void OnTriggerEnter2D(Collider2D col){
@@ -100,37 +108,24 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetLastGroundedPosition(){
         return lastGroundPosition;
     }
-    public float GetSpeed()
-    {
-        return moveSpeed;
-    }
-
-    public void SetSpeed(float i)
-    {
-        moveSpeed = i;
-    }
 
     void Jump()
     {
-        if(Input.GetKey(KeyCode.Space)){
-            jumpGScale = Mathf.Lerp(jumpGScale,fallingGScale,gScaleIncrement*Time.deltaTime);
-            rb.gravityScale=jumpGScale;
+        RaycastHit2D hit = Physics2D.Raycast(this.rb.position , Vector2.down, 100.0f, groundLayer);
+        if (hit.distance < 0.2f){
+            isGrounded = true;
         }else{
-            jumpGScale = tempGscale;
-            rb.gravityScale=fallingGScale;
+            isGrounded = false;
         }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            RaycastHit2D hit = Physics2D.Raycast(this.rb.position, Vector2.down, 100.0f, groundLayer);
-            if(hit.distance < 0.2f){
-                isGrounded = true;
-            }else{
-                isGrounded = false;
-            }
-            if(isGrounded){
+        if(isGrounded){
             jumping=true;
-            rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse );
-            }
+            rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
         }
+    }
+
+    private void JumpGravityChange()
+    {
+        
     }
 
     void Ladder(){
@@ -157,6 +152,16 @@ public class PlayerMovement : MonoBehaviour
                 spriteRenderers[i].flipX = true;
             }
         }
+    }
+
+    public float GetSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void SetSpeed(float i)
+    {
+        moveSpeed = i;
     }
 
     void Dash()
