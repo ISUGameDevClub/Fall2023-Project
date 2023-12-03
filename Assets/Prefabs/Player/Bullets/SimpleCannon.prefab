@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8284188795894505733}
   - component: {fileID: 3721099011305167877}
   m_Layer: 7
-  m_Name: TempSubForSecAttack
+  m_Name: SimpleCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a6a9fe37de6d543a2e9289f1ebffa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 1

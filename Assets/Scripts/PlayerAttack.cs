@@ -4,47 +4,37 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private int secondaryWeapon = 0;
+    private int primaryWeapon = 0;
+    private bool isRight = true;
+
+    [SerializeField] GameObject weapon;
+    [SerializeField] Transform attackPoint;
+
     [Header("Enemy")]
     [SerializeField] LayerMask enemyLayer;
 
-    [Header("Attack Objects")]
-    public GameObject secondaryAttackOne;
-    [SerializeField] Transform attackPoint;
-
-    public GameObject secondaryAttackThree;
+    [Header("Bullets")]
+    public GameObject simpleCannonBullet;
+    public GameObject megaShotBullet;
+    public GameObject daggerBullet;
+    public GameObject grenadeLauncherBullet;
 
     [Header("Projectile Speeds")]
-    public float objectOneTravelSpeed;
-    public float objectTwoTravelSpeed;
-    public float objectThreeTravelSpeed;
-
-    [Header("Attack Information")]
-    private int secondaryWeapon = 0;
-    private int primaryWeapon = 0;
-    //Alter this variable to change amount of time hitbox is active on attack two
-    [Header("Attack Two Information")]
-    [SerializeField] int meleeDamage;
-    [SerializeField] float meleeAttackRange = 0.5f; 
-    [SerializeField] float attackRate = 2f;
-    [SerializeField] float nextAttackTime = 0f;
-
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject weapon;
+    public float simpleCannonSpeed = 10f;
+    public float megaShotSpeed;
 
     [Header("SFX")]
     private SFXController sfxController;
 
-    public float travelSpeed = 10f;
-    [SerializeField] bool isRight = true;
-
     //Shoot Timers
     private bool canPrimary = true;
     private float currPrimaryTimer;
-    public float primaryTimer = .25f;
+    public float timeBetweenPrimary = .25f;
 
     private bool canSecondary = true;
     private float currSecondaryTimer;
-    public float secondaryTimer = .5f;
+    public float timeBetweenSecondary = .5f;
 
     void Start()
     {
@@ -68,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(currPrimaryTimer <= 0)
             {
-                currPrimaryTimer = primaryTimer;
+                currPrimaryTimer = timeBetweenPrimary;
                 canPrimary = true;
             }
             else
@@ -80,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (currSecondaryTimer <= 0)
             {
-                currSecondaryTimer = secondaryTimer;
+                currSecondaryTimer = timeBetweenSecondary;
                 canSecondary = true;
             }
             else
@@ -124,38 +114,38 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<Animator>().SetTrigger("AttackStyle1");
         sfxController.playSound(3);
         GameObject clone;
-        clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
+        clone = Instantiate(simpleCannonBullet, weapon.transform.position, transform.rotation);
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, -1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, -1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * simpleCannonSpeed;
         }
         else if (isRight)
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0) * simpleCannonSpeed;
         }
         else if (!isRight)
         {
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0) * travelSpeed;
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0) * simpleCannonSpeed;
         }
     }
 
@@ -174,11 +164,7 @@ public class PlayerAttack : MonoBehaviour
         //Dagger
         else if(secondaryWeapon == 2) 
         {
-            if(Time.time >= nextAttackTime)
-            {
-                MeleeDagger();
-                nextAttackTime = Time.time + 1f/attackRate; 
-            }
+            MeleeDagger();
         }
         //GrenadeLauncher
         else if(secondaryWeapon == 3)
@@ -192,53 +178,45 @@ public class PlayerAttack : MonoBehaviour
         sfxController.playSound(4);
         GetComponent<Animator>().SetTrigger("AttackStyle1");
         GameObject clone;
-        clone = Instantiate(secondaryAttackOne, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
+        clone = Instantiate(megaShotBullet, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.W))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
             }
             else if(isRight)
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
             }
             else if(!isRight)
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
             }
         yield return new WaitForSeconds(.1f);
     }
 
-    //Enables circular collider around player
-    //collider is not visible in game view
     private void MeleeDagger()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, meleeAttackRange, enemyLayer);
 
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<TempEnemyScript>().TakeDamage(meleeDamage);
-        } 
     }
 
     /* ----------------------

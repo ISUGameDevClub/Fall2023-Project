@@ -328,10 +328,10 @@ GameObject:
   - component: {fileID: 5372418727731711386}
   - component: {fileID: 9075962708986529677}
   - component: {fileID: 6480173594423971193}
+  - component: {fileID: 319945059609046123}
   - component: {fileID: -8483532070881732752}
   - component: {fileID: 5523715144813181474}
   - component: {fileID: 8832273168174656209}
-  - component: {fileID: 319945059609046123}
   - component: {fileID: 4883865993146834077}
   m_Layer: 7
   m_Name: Player
@@ -395,6 +395,31 @@ MonoBehaviour:
   fallingGScale: 2.75
   gScaleIncrement: 2
   spriteRenderers: []
+--- !u!114 &319945059609046123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928414495911513693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f743c214c5a82ad4e90e11a3ca015531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 994930681548135147}
+  attackPoint: {fileID: 7516737453232708131}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  simpleCannonBullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
+  megaShotBullet: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
+  daggerBullet: {fileID: 0}
+  grenadeLauncherBullet: {fileID: 0}
+  simpleCannonSpeed: 30
+  megaShotSpeed: 25
+  primaryTimer: 0.2
+  secondaryTimer: 0.5
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,37 +491,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &319945059609046123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928414495911513693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f743c214c5a82ad4e90e11a3ca015531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  secondaryAttackOne: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
-  attackPoint: {fileID: 7516737453232708131}
-  secondaryAttackThree: {fileID: 0}
-  objectOneTravelSpeed: 25
-  objectTwoTravelSpeed: 0
-  objectThreeTravelSpeed: 0
-  meleeDamage: 1
-  meleeAttackRange: 0.5
-  attackRate: 2
-  nextAttackTime: 1
-  bullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
-  weapon: {fileID: 994930681548135147}
-  travelSpeed: 30
-  isRight: 1
-  primaryTimer: 0.2
-  secondaryTimer: 0.5
 --- !u!70 &4883865993146834077
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
