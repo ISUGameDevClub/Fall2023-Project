@@ -13,9 +13,7 @@ public class PlayerMovement : MonoBehaviour
     bool knocked;
     
     Vector3 lastGroundPosition;
-    Transform playerTransform;
     Rigidbody2D rb;
-    RaycastHit2D hit;
     bool isGrounded;
     bool colLadder;
     bool isMoving;
@@ -49,8 +47,6 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-
-        playerTransform = transform;
         if (!knocked)
         {
             if (Input.GetKeyDown(KeyCode.Space))
