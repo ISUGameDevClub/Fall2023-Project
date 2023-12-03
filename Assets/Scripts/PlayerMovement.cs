@@ -4,30 +4,96 @@ public class PlayerMovement : MonoBehaviour
 {
     //move all of this to a fixed update so that physics works properly, this may fix the jumping issue, otherwise it allows all jumping to be evenly distributed over 60 frames rather than being different at 20fps and 120fps
     //[SerializeField]
+    private Vector3 moveDirection;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] float jumpImpulse = 5f;
     [SerializeField] float moveSpeed = 2f;
-    [SerializeField] float jumpGScale = 1f;
-    [SerializeField] float fallingGScale = 2.5f;
-    [SerializeField] float gScaleIncrement = .01f;
-    float tempGscale;
+    [SerializeField] float jumpImpulse = 5f;
+    [SerializeField] float defaultGravity = 2.5f;
+    [SerializeField] float weakGravity = 1.5f;
     bool knocked;
     
     Vector3 lastGroundPosition;
-    Transform playerTransform;
     Rigidbody2D rb;
-    RaycastHit2D hit;
     bool isGrounded;
-    [SerializeField] SpriteRenderer spriteRenderer;
     bool colLadder;
     bool isMoving;
-
     bool jumping;
+    bool isLocked;
 
     //Animator Usage
     Animator movementAnims;
+    public SpriteRenderer[] spriteRenderers;
 
-    // Update is called once per frame
+    void Start()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        jumping = false;
+        isGrounded = true;
+        rb = GetComponent<Rigidbody2D>();
+        movementAnims = GetComponent<Animator>();
+    }
+    void Update()
+    {
+        FlipSprite();
+
+        // Locks Movement for shooting.
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isLocked = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isLocked = false;
+        }
+
+        //Ground Movement
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0); //In update to ensure consistent input.
+        //Animation Bool
+        if(rb.velocity.x != 0)
+        {
+            movementAnims.SetBool("Walking", true);
+        }
+        else
+        {
+            movementAnims.SetBool("Walking", false);
+        }   
+
+        if (!knocked && !isLocked)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (Input.GetKey(KeyCode.Space) && rb.velocity.y > 0)
+            {
+                rb.gravityScale = weakGravity;
+            }
+            else
+            {
+                rb.gravityScale = defaultGravity;
+            }
+            Ladder();
+        }
+        //gets last ground position
+        if (rb.velocity.y <= 0f && !jumping) isGrounded = false;
+        if (isGrounded) lastGroundPosition = transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!knocked && !isLocked)
+        {
+            Move();
+        }
+    }
+
+    void Move()
+    {
+        movementAnims.SetFloat("WalkingSpeed", Mathf.Abs(Input.GetAxis("Horizontal")));
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
+    }
+
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.layer==7){
          colLadder = true;
@@ -38,38 +104,7 @@ public class PlayerMovement : MonoBehaviour
          colLadder = false;
         }
     }
-    void Start(){
-        tempGscale = jumpGScale;
-        jumping=false;
-        isGrounded=true;
-        rb = GetComponent<Rigidbody2D>();
-        movementAnims = GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if(rb.velocity.x>0){
-            spriteRenderer.flipX=false;
-        }else if(rb.velocity.x<0){
-            spriteRenderer.flipX=true;
-        }
-        if(rb.velocity.x > 5f){
-            rb.velocity = new Vector2(5,rb.velocity.y);
-        }
-        if(rb.velocity.x < -5f){
-            rb.velocity = new Vector2(-5,rb.velocity.y);
-        }
-        playerTransform = transform;
-        if(!knocked){
-            Move();
-            Jump();
-            Ladder();
-        }
-        //gets last ground position
-        if(rb.velocity.y<=0f&&!jumping)isGrounded=false;
-        if(isGrounded)lastGroundPosition = transform.position;
-        //Animation Bool
-        movementAnims.SetBool("Walking", isMoving);
-    }
+
     public void SetKnocked(bool knocked){
         this.knocked=knocked;
     }
@@ -79,6 +114,52 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetLastGroundedPosition(){
         return lastGroundPosition;
     }
+
+    void Jump()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(this.rb.position , Vector2.down, 100.0f, groundLayer);
+        if (hit.distance < 0.2f){
+            isGrounded = true;
+        }else{
+            isGrounded = false;
+        }
+        if(isGrounded){
+            jumping=true;
+            rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
+        }
+    }
+
+    private void JumpGravityChange()
+    {
+        
+    }
+
+    void Ladder(){
+        if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
+            // You cannot directly set the values in the position attribute, you have to set the position attribute to a vector 3 to set the x, I commented it out so we can compile for pushing
+            //rb.transform.position.x = Ladder.transform.position.x; 
+            rb.velocity = new Vector2(0,5);
+        }
+    }
+
+    void FlipSprite()
+    {
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            for(int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].flipX = false;
+            }
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].flipX = true;
+            }
+        }
+    }
+
     public float GetSpeed()
     {
         return moveSpeed;
@@ -88,47 +169,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = i;
     }
-    void Move()
-    {
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
-        movementAnims.SetFloat("WalkingSpeed",Mathf.Abs(Input.GetAxis("Horizontal")));
-        if(moveDirection.x != 0) {
-            isMoving = true;
-        }
-        else {
-            isMoving = false;
-        }
 
-        rb.AddForce(moveDirection * moveSpeed);
-    }
-    void Jump()
+    void Dash()
     {
-        if(Input.GetKey(KeyCode.Space)){
-            jumpGScale = Mathf.Lerp(jumpGScale,fallingGScale,gScaleIncrement*Time.deltaTime);
-            rb.gravityScale=jumpGScale;
-        }else{
-            jumpGScale = tempGscale;
-            rb.gravityScale=fallingGScale;
-        }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            RaycastHit2D hit = Physics2D.Raycast(this.rb.position, Vector2.down, 100.0f, groundLayer);
-            if(hit.distance < 0.2f){
-                isGrounded = true;
-            }else{
-                isGrounded = false;
-            }
-            if(isGrounded){
-            jumping=true;
-            rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse );
-            }
-        }
+
     }
-    void Ladder(){
-        if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
-            // You cannot directly set the values in the position attribute, you have to set the position attribute to a vector 3 to set the x, I commented it out so we can compile for pushing
-            //rb.transform.position.x = Ladder.transform.position.x; 
-            rb.velocity = new Vector2(0,5);
-        }
-    }
-    
 }

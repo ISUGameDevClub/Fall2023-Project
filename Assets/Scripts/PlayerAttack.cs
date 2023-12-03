@@ -4,51 +4,39 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private int secondaryWeapon = 0;
+    private int primaryWeapon = 0;
+    private bool isRight = true;
+
+    [SerializeField] GameObject weapon;
+    [SerializeField] Transform attackPoint;
+
     [Header("Enemy")]
     [SerializeField] LayerMask enemyLayer;
 
-    [Header("Player Info")]
-    public SpriteRenderer spriteRenderer;
-
-    [Header("Attack Objects")]
-    public GameObject secondaryAttackOne;
-    [SerializeField] Transform attackPoint;
-
-    public GameObject secondaryAttackThree;
+    [Header("Bullets")]
+    public GameObject simpleCannonBullet;
+    public GameObject megaShotBullet;
+    public GameObject daggerBullet;
+    public GameObject grenadeLauncherBullet;
 
     [Header("Projectile Speeds")]
-    public float objectOneTravelSpeed;
-    public float objectTwoTravelSpeed;
-    public float objectThreeTravelSpeed;
-
-    [Header("Attack Information")]
-    //Set to false when unable to use secondary attack (out of energy/currency)
-    public bool canUseSecondaryAttack = true;
-    public int weaponState = 0;
-    //Alter this variable to change amount of time hitbox is active on attack two
-    [Header("Attack Two Information")]
-    [SerializeField] int meleeDamage;
-    [SerializeField] float meleeAttackRange = 0.5f; 
-    [SerializeField] float attackRate = 2f;
-    [SerializeField] float nextAttackTime = 0f;
-
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject weapon;
+    public float simpleCannonSpeed = 10f;
+    public float megaShotSpeed;
+    public float daggerSliceSpeed = .2f;
+    public float grenadeSpeed = 10f;
 
     [Header("SFX")]
     private SFXController sfxController;
 
-    public float travelSpeed = 10f;
-    [SerializeField] bool isRight = true;
-
     //Shoot Timers
     private bool canPrimary = true;
     private float currPrimaryTimer;
-    public float primaryTimer = .25f;
+    public float timeBetweenPrimary = .25f;
 
     private bool canSecondary = true;
     private float currSecondaryTimer;
-    public float secondaryTimer = .5f;
+    public float timeBetweenSecondary = .5f;
 
     void Start()
     {
@@ -57,11 +45,25 @@ public class PlayerAttack : MonoBehaviour
 
     void Update() 
     {
-        if(!canPrimary)
+        //Discerns last direction player was facing
+        //Also changes direction of weapon
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            isRight = true;
+            attackPoint.transform.localPosition = new Vector3(.75f, 1, 0);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            isRight = false;
+            attackPoint.transform.localPosition = new Vector3(-.75f, 1, 0);
+        }
+
+        //Shoot Timers
+        if (!canPrimary)
         {
             if(currPrimaryTimer <= 0)
             {
-                currPrimaryTimer = primaryTimer;
+                currPrimaryTimer = timeBetweenPrimary;
                 canPrimary = true;
             }
             else
@@ -73,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (currSecondaryTimer <= 0)
             {
-                currSecondaryTimer = secondaryTimer;
+                currSecondaryTimer = timeBetweenSecondary;
                 canSecondary = true;
             }
             else
@@ -82,8 +84,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-
-        CheckDirection();
+        //Inputs
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             if(canPrimary)
@@ -92,150 +93,200 @@ public class PlayerAttack : MonoBehaviour
                 ShootPrimaryWeapon();
             }
         }
-        if(Input.GetKeyDown(KeyCode.Mouse1) && canUseSecondaryAttack)
+        if(Input.GetKeyDown(KeyCode.Mouse1))
         {
             if(canSecondary)
             {
                 canSecondary = false;
                 ShootSecondaryWeapon();
             }
-
         }
     }
 
     void ShootPrimaryWeapon()
     {
-            GetComponent<Animator>().SetTrigger("AttackStyle1");
-            sfxController.playSound(3);
-            GameObject clone;
-            clone = Instantiate(bullet, weapon.transform.position, transform.rotation);
-            if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * travelSpeed;
-            }
-            else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * travelSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * travelSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * travelSpeed;
-            }
-            else if(Input.GetKey(KeyCode.W))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * travelSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * travelSpeed;
-            }
-            else if(isRight)
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * travelSpeed;
-            }
-            else if(!isRight)
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * travelSpeed;
-            }
-        }
-    void ShootSecondaryWeapon(){
-        if(weaponState == 0)
+        if(primaryWeapon == 0)
         {
-            return;
-        }
-        //projectile
-        else if(weaponState == 1)
-        {
-            //tbd
-            //insert method that subtracts from currency
-            StartCoroutine(SecondaryOne());
-            Debug.Log("Secondary Attack 1 Pressed");
-        }
-        //melee
-        else if(weaponState == 2) 
-        {
-            if(Time.time >= nextAttackTime)
-            {
-                SecondaryTwo();
-                nextAttackTime = Time.time + 1f/attackRate; 
-            }
-        }
-        //to be determined
-        else if(weaponState == 3)
-        {
-            //insert third secondary weapon state functionality
+            ShootSimpleCannon();
         }
     }
-    private IEnumerator SecondaryOne()
+
+    /* ----------------------
+     * Primary Weapons
+     ----------------------- */
+    private void ShootSimpleCannon()
+    {
+        GetComponent<Animator>().SetInteger("WeaponType", 0);
+        sfxController.playSound(3);
+        GameObject clone;
+        clone = Instantiate(simpleCannonBullet, weapon.transform.position, transform.rotation);
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * simpleCannonSpeed;
+        }
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * simpleCannonSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, -1, 0) * simpleCannonSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, -1, 0) * simpleCannonSpeed;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 0);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 1, 0) * simpleCannonSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 4);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * simpleCannonSpeed;
+        }
+        else if (isRight)
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0) * simpleCannonSpeed;
+        }
+        else if (!isRight)
+        {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0) * simpleCannonSpeed;
+        }
+        GetComponent<Animator>().SetTrigger("Shoot");
+    }
+
+
+
+
+    /* ----------------------
+     * Secondary Weapons
+     ----------------------- */
+    void ShootSecondaryWeapon(){
+        //Mega-Shot
+        if(secondaryWeapon == 1)
+        {
+            StartCoroutine(ShootMegaShot());
+        }
+        //Dagger
+        else if(secondaryWeapon == 2) 
+        {
+            StartCoroutine(MeleeDagger());
+        }
+        //GrenadeLauncher
+        else if(secondaryWeapon == 3)
+        {
+            ShootGrenadeLauncher();
+        }
+    }
+    private IEnumerator ShootMegaShot()
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
         sfxController.playSound(4);
         GetComponent<Animator>().SetTrigger("AttackStyle1");
         GameObject clone;
-        clone = Instantiate(secondaryAttackOne, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
+        clone = Instantiate(megaShotBullet, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.W))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
             }
             else if(Input.GetKey(KeyCode.S))
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
             }
             else if(isRight)
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
             }
             else if(!isRight)
             {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * objectOneTravelSpeed;
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
             }
         yield return new WaitForSeconds(.1f);
     }
 
-    //Enables circular collider around player
-    //collider is not visible in game view
-    private void SecondaryTwo()
+    private IEnumerator MeleeDagger()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, meleeAttackRange, enemyLayer);
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<TempEnemyScript>().TakeDamage(meleeDamage);
-        }
-            
+        //TODO: Add sound
+        //TODO: Add animation
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+        yield return new WaitForSeconds(daggerSliceSpeed);
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+        yield return new WaitForSeconds(daggerSliceSpeed);
+        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
     }
-    void CheckDirection()
+
+    private void ShootGrenadeLauncher()
     {
-        if(Input.GetAxisRaw("Horizontal") > 0)
+        GameObject grenade = Instantiate(grenadeLauncherBullet, attackPoint.transform.position, transform.rotation);
+        
+        Rigidbody2D grenadeRigidbody = grenade.GetComponent<Rigidbody2D>();
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            isRight = true;
-            spriteRenderer.flipX=false;
+            grenadeRigidbody.velocity = new Vector2(.75f, 1) * grenadeSpeed;
         }
-        else if(Input.GetAxisRaw("Horizontal") < 0 )
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            isRight = false;
-            spriteRenderer.flipX=true;
+            grenadeRigidbody.velocity = new Vector2(-.75f, 1) * grenadeSpeed;
         }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            grenadeRigidbody.velocity = new Vector2(-1, -1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            grenadeRigidbody.velocity = new Vector2(1, -1) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            grenadeRigidbody.velocity = new Vector2(0, .75f) * grenadeSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            grenadeRigidbody.velocity = new Vector2(0, -1) * grenadeSpeed;
+        }
+        else if (isRight)
+        {
+            grenadeRigidbody.velocity = new Vector2(1, .25f) * grenadeSpeed;
+        }
+        else if (!isRight)
+        {
+            grenadeRigidbody.velocity = new Vector2(-1, .25f) * grenadeSpeed;
+        }
+    }
+
+    /* ----------------------
+     * Helper Functions
+     ----------------------- */
+    public void setPrimaryWeapon(int newPrimaryWeapon)
+    {
+        this.primaryWeapon = newPrimaryWeapon;
+    }
+    public void setSecondaryWeapon(int newSecondaryWeapon)
+    {
+        this.secondaryWeapon = newSecondaryWeapon;
     }
 }

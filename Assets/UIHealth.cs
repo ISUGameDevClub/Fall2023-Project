@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHealth : MonoBehaviour
 {
-    [SerializeField] GameObject[] healthIndis;
-    int healthInc;
+    private PlayerHealth playerHealth;
+    private Slider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
-        healthInc = healthIndis.Length-1;
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        healthBar = GetComponent<Slider>();
+        healthBar.maxValue = playerHealth.maxHealth;
+        healthBar.minValue = 0;
     }
-    public void ReduceHealth(){
-        if(healthInc<0)return;
-        healthIndis[healthInc].SetActive(false);
-        healthInc--;
-    }
-    public void IncreaseHealth(){
-        if(healthInc>=4)return;
-        healthInc++;
-        healthIndis[healthInc].SetActive(true);
+
+    private void Update()
+    {
+        healthBar.value = playerHealth.getCurrentHealth();
     }
 }
