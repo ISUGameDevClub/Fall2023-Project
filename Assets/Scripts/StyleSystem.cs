@@ -35,12 +35,6 @@ public class StyleSystem : MonoBehaviour
         {
             ChangeStyle(2);
         }
-
-        //Testing purposes.
-        if(Input.GetKeyDown(KeyCode.Backslash))
-        {
-            playerCombat.setSecondaryWeapon(3);
-        }
     }
 
     public void ChangeStyle(int index)
