@@ -389,8 +389,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4096
+  moveSpeed: 7.5
   jumpImpulse: 11
-  moveSpeed: 5.5
   jumpGScale: 1
   fallingGScale: 2.75
   gScaleIncrement: 2
@@ -438,12 +438,12 @@ MonoBehaviour:
   - styleName: Assault
     primaryWeapon: 0
     superAttack: 0
-    moveSpeed: 5
+    moveSpeed: 7.5
     damageTakenMultiplier: 1
   - styleName: Railgun
     primaryWeapon: 1
     superAttack: 1
-    moveSpeed: 12
+    moveSpeed: 10
     damageTakenMultiplier: 2
 --- !u!95 &5523715144813181474
 Animator:

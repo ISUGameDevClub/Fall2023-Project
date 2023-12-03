@@ -4,9 +4,10 @@ public class PlayerMovement : MonoBehaviour
 {
     //move all of this to a fixed update so that physics works properly, this may fix the jumping issue, otherwise it allows all jumping to be evenly distributed over 60 frames rather than being different at 20fps and 120fps
     //[SerializeField]
+    private Vector3 moveDirection;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] float jumpImpulse = 5f;
     [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float jumpImpulse = 5f;
     [SerializeField] float jumpGScale = 1f;
     [SerializeField] float fallingGScale = 2.5f;
     [SerializeField] float gScaleIncrement = .01f;
@@ -40,18 +41,21 @@ public class PlayerMovement : MonoBehaviour
     {
         FlipSprite();
 
-        if (rb.velocity.x > 5f)
+        //Ground Movement
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0); //In update to ensure consistent input.
+        if (moveDirection.x != 0)
         {
-            rb.velocity = new Vector2(5, rb.velocity.y);
+            isMoving = true;
         }
-        if (rb.velocity.x < -5f)
+        else
         {
-            rb.velocity = new Vector2(-5, rb.velocity.y);
+            isMoving = false;
         }
+
+
         playerTransform = transform;
         if (!knocked)
         {
-            Move();
             Jump();
             Ladder();
         }
@@ -60,6 +64,20 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded) lastGroundPosition = transform.position;
         //Animation Bool
         movementAnims.SetBool("Walking", isMoving);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!knocked)
+        {
+            Move();
+        }
+    }
+
+    void Move()
+    {
+        movementAnims.SetFloat("WalkingSpeed", Mathf.Abs(Input.GetAxis("Horizontal")));
+        rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D col){
@@ -91,19 +109,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = i;
     }
-    void Move()
-    {
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,0);
-        movementAnims.SetFloat("WalkingSpeed",Mathf.Abs(Input.GetAxis("Horizontal")));
-        if(moveDirection.x != 0) {
-            isMoving = true;
-        }
-        else {
-            isMoving = false;
-        }
 
-        rb.AddForce(moveDirection * moveSpeed);
-    }
     void Jump()
     {
         if(Input.GetKey(KeyCode.Space)){
@@ -126,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     void Ladder(){
         if(colLadder&&Input.GetKeyDown(KeyCode.UpArrow)){
             // You cannot directly set the values in the position attribute, you have to set the position attribute to a vector 3 to set the x, I commented it out so we can compile for pushing
@@ -150,5 +157,10 @@ public class PlayerMovement : MonoBehaviour
                 spriteRenderers[i].flipX = true;
             }
         }
+    }
+
+    void Dash()
+    {
+
     }
 }
