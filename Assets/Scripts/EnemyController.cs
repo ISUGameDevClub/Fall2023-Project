@@ -10,7 +10,6 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
-    GameObject currencyManager;
     Rigidbody2D rb;
 
     [SerializeField] enemySelection es;
@@ -29,7 +28,6 @@ public class EnemyController : MonoBehaviour{
 
     void Start(){
         direction = true;
-        currencyManager = GameObject.Find("CurrencyManager");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -82,7 +80,7 @@ public class EnemyController : MonoBehaviour{
         }
     }
     void Die(){
-        currencyManager.GetComponent<currencyCount>().addAmount(reward);
+        FindObjectOfType<CurrencyCount>().AddAmount(reward);
         Destroy(gameObject);
     }
 }
