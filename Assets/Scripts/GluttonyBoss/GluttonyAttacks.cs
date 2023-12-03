@@ -80,12 +80,12 @@ public class GluttonyAttacks : MonoBehaviour
                 playerTargetX = playerTargetX - playerTargetY;
             }
         }
-        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX, playerTargetY);
+        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX, -1);
         newPrefabInstance = Instantiate(fireball, gameObject.transform.position, Quaternion.identity);
-        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX + 5, playerTargetY);
+        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX + 5, -1);
         newPrefabInstance.GetComponent<GluttonyProj>().arcHeight = defaultArcHeight - 2;
         newPrefabInstance = Instantiate(fireball, gameObject.transform.position, Quaternion.identity);
-        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX - 5, playerTargetY);
+        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX - 5, -1);
         newPrefabInstance.GetComponent<GluttonyProj>().arcHeight = defaultArcHeight + 2;
         // for (int i = 0; i < 3; i++) {
 

@@ -79,8 +79,11 @@ MonoBehaviour:
   damage: 1
   moveSpeed: 5
   reward: 0
+  bullet: {fileID: 7024941967067541039, guid: ace8d8d5dc03a5645b316789f06b3853, type: 3}
+  weapon: {fileID: 358213829858780711}
   sprite: {fileID: 459770358424674417}
-  es: 0
+  es: 1
+  direction: 0
 --- !u!95 &5210056964505105506
 Animator:
   serializedVersion: 5
@@ -91,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 358213829858780711}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a18676926d5c3b440bf5d0ac7bcdb3ba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 30ec46e0962c2a54e8e70420a8d79154, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -208,9 +211,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2070471471
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 847546599, guid: e9f3c45e4fe50ba41891f01e71ca7bf4, type: 3}
+  m_Sprite: {fileID: 520957733, guid: 6cbc27f1c8cc5d34fb49b19103062d83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
