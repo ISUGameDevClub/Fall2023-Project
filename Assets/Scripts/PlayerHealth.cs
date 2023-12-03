@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     
-    public float currentHealth;
+    private float currentHealth = 100;
+    public float maxHealth = 25f;
 
     [SerializeField] float knockedTime;
     Rigidbody2D rb;
     [SerializeField] float knockbackForce;
-    GameObject healthUI;
     GameObject SFXController;
-    [SerializeField] private int playerMaxHealth = 100;
     public delegate void PlayerDeathEventHandler();
     public static event PlayerDeathEventHandler OnPlayerDeath;
 
@@ -29,8 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         rb=GetComponent<Rigidbody2D>();
         SFXController = GameObject.Find("SoundFXManager");
-        healthUI = GameObject.Find("Health");
-        currentHealth = playerMaxHealth;
+        currentHealth = maxHealth;
     }
 
     public void Update()
@@ -72,7 +70,6 @@ public class PlayerHealth : MonoBehaviour
             }
 
             SFXController.GetComponent<SFXController>().playSound(2);
-            healthUI.GetComponent<UIHealth>().ReduceHealth();
 
             currentHealth -= (damagePoint * damageTakenMultiplier);
             if (currentHealth <= 0)
@@ -89,10 +86,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void HealPlayer(int healPoint) {
-        healthUI.GetComponent<UIHealth>().ReduceHealth();
         currentHealth += healPoint;
-        if (currentHealth > playerMaxHealth){
-            currentHealth = playerMaxHealth;
+        if (currentHealth > maxHealth){
+            currentHealth = maxHealth;
         }
     }
 
@@ -104,5 +100,10 @@ public class PlayerHealth : MonoBehaviour
     public void SetDamageTakenMultiplier(float newDamageMultiplier)
     {
         damageTakenMultiplier = newDamageMultiplier;
+    }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
     }
 }
