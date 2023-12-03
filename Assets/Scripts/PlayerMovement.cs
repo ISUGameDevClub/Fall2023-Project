@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         //Ground Movement
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0); //In update to ensure consistent input.
         //Animation Bool
-        if(rb.velocity.x != 0)
+        if(moveDirection.x != 0 && !isLocked)
         {
             movementAnims.SetBool("Walking", true);
         }
