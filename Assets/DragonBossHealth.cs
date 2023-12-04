@@ -9,12 +9,10 @@ public class DragonBossHealth : MonoBehaviour
     [SerializeField] int reward;
 
     [SerializeField] SpriteRenderer sprite;
-    GameObject currencyManager;
     Rigidbody2D rb;
     Animator animator;
 
     void Start(){
-        currencyManager = GameObject.Find("CurrencyManager");
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -37,7 +35,7 @@ public class DragonBossHealth : MonoBehaviour
     }
 
     void Die(){
-        currencyManager.GetComponent<currencyCount>().addAmount(reward);
+        FindObjectOfType<CurrencyCount>().AddAmount(reward);
         FindObjectOfType<LevelLoader>().StartTransition("4DemoEnd"); //TEMPORARY DEMO TRANSITION
         Destroy(gameObject);
     }
