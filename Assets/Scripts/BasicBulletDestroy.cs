@@ -27,6 +27,9 @@ public class BasicBulletDestroy : MonoBehaviour
             //Not sure if this is the proper place we're handling hurting enemies...
             other.GetComponentInParent<DragonBossHealth>().TakeDamage(damage);
         }
-        Destroy(gameObject);
+        if(!other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

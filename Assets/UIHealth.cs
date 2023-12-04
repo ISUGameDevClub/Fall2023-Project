@@ -7,6 +7,7 @@ public class UIHealth : MonoBehaviour
 {
     private PlayerHealth playerHealth;
     private Slider healthBar;
+    public GameObject potionUIObject;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +21,13 @@ public class UIHealth : MonoBehaviour
     private void Update()
     {
         healthBar.value = playerHealth.getCurrentHealth();
+        if(playerHealth.GetPlayerHasPotion())
+        {
+            potionUIObject.SetActive(true);
+        }
+        else if(potionUIObject.activeSelf)
+        {
+            potionUIObject.SetActive(false);
+        }
     }
 }

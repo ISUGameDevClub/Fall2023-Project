@@ -14,7 +14,15 @@ public class UICurrency : MonoBehaviour
     }
 
     public void SetCurrency(int currency){
-        coinAnim.SetTrigger("TransIn");
+        ShowCurrency();
         currencyText.text = ""+currency;
+    }
+
+    public void ShowCurrency()
+    {
+        if(coinAnim != null)
+        {
+            coinAnim.SetTrigger("TransIn");
+        }
     }
 }

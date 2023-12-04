@@ -8,6 +8,11 @@ public class PlayerAttack : MonoBehaviour
     private int primaryWeapon = 0;
     private bool isRight = true;
 
+    //Secondaries in Inventory
+    public static bool hasMegaShot = false;
+    public static bool hasDagger = false;
+    public static bool hasGrenadeLauncher = false;
+
     [SerializeField] GameObject weapon;
     [SerializeField] Transform attackPoint;
 
@@ -16,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Bullets")]
     public GameObject simpleCannonBullet;
+    public GameObject railgunBullet;
     public GameObject megaShotBullet;
     public GameObject daggerBullet;
     public GameObject grenadeLauncherBullet;
@@ -109,6 +115,10 @@ public class PlayerAttack : MonoBehaviour
         {
             ShootSimpleCannon();
         }
+        else if(primaryWeapon == 1)
+        {
+            ShootRailgun();
+        }
     }
 
     /* ----------------------
@@ -163,6 +173,51 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Shoot");
     }
 
+    private void ShootRailgun()
+    {
+        GetComponent<Animator>().SetInteger("WeaponType", 1);
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 45));
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
+        }
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 135));
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 225));
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 315));
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 90));
+            GetComponent<Animator>().SetInteger("ShootDir", 0);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 270));
+            GetComponent<Animator>().SetInteger("ShootDir", 4);
+        }
+        else if (isRight)
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 0));
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
+        }
+        else if (!isRight)
+        {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 180));
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
+        }
+        GetComponent<Animator>().SetTrigger("Shoot");
+    }
 
 
 
@@ -194,37 +249,37 @@ public class PlayerAttack : MonoBehaviour
         GameObject clone;
         clone = Instantiate(megaShotBullet, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
-            }
-            else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
-            }
-            else if(Input.GetKey(KeyCode.W))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
-            }
-            else if(Input.GetKey(KeyCode.S))
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
-            }
-            else if(isRight)
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
-            }
-            else if(!isRight)
-            {
-                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
-            }
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
+        }
+        else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
+        }
+        else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
+        }
+        else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
+        }
+        else if(Input.GetKey(KeyCode.W))
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
+        }
+        else if(Input.GetKey(KeyCode.S))
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
+        }
+        else if(isRight)
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
+        }
+        else if(!isRight)
+        {
+            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
+        }
         yield return new WaitForSeconds(.1f);
     }
 
@@ -285,6 +340,7 @@ public class PlayerAttack : MonoBehaviour
     {
         this.primaryWeapon = newPrimaryWeapon;
     }
+    
     public void setSecondaryWeapon(int newSecondaryWeapon)
     {
         this.secondaryWeapon = newSecondaryWeapon;
