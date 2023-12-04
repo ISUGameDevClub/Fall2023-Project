@@ -369,10 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfb9198adebf6ae996d82ee8aa23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  maxHealth: 25
   knockedTime: 0.3
   knockbackForce: 10
-  playerMaxHealth: 5
   invincibleTimer: 1.5
 --- !u!114 &6480173594423971193
 MonoBehaviour:
@@ -412,6 +411,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   simpleCannonBullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
+  railgunBullet: {fileID: 0}
   megaShotBullet: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
   daggerBullet: {fileID: 3816030608163453240, guid: 649a21a6251554a45babc6fd463b7d54, type: 3}
   grenadeLauncherBullet: {fileID: 3816030608163453240, guid: 0851e6481887acf4f9258b10c4952875, type: 3}
@@ -436,14 +436,12 @@ MonoBehaviour:
   styles:
   - styleName: Assault
     primaryWeapon: 0
-    superAttack: 0
     moveSpeed: 7.5
     damageTakenMultiplier: 1
   - styleName: Railgun
     primaryWeapon: 1
-    superAttack: 1
     moveSpeed: 10
-    damageTakenMultiplier: 2
+    damageTakenMultiplier: 1.75
 --- !u!95 &5523715144813181474
 Animator:
   serializedVersion: 5

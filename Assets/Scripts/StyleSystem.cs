@@ -7,8 +7,12 @@ public class StyleSystem : MonoBehaviour
     private PlayerHealth playerHealth;
     private PlayerAttack playerCombat;
 
-    [System.NonSerialized] public string currentStyle;
+    [System.NonSerialized] public string currentStyleName;
     public Style[] styles; //An array of styles.
+    private int currentStyleIndex; //The current style index.
+
+    //Weapon Inventory
+    public static bool hasRailgun = false;
 
     private void Start()
     {
@@ -23,30 +27,33 @@ public class StyleSystem : MonoBehaviour
     {
         //Changes style by index.
         //0 is first style, 1 is second style, etc...
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
-            ChangeStyle(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeStyle(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeStyle(2);
+            if(currentStyleIndex == 0) //Allow change to Railgun
+            {
+                if(hasRailgun)
+                {
+                    currentStyleIndex += 1;
+                    ChangeStyle(currentStyleIndex);
+                }
+            }
+            else // Change to simple cannon
+            {
+                currentStyleIndex -= 1;
+                ChangeStyle(currentStyleIndex);
+            }
         }
     }
 
     public void ChangeStyle(int index)
     {
-        currentStyle = styles[index].styleName;
+        currentStyleName = styles[index].styleName;
         playerMovement.SetSpeed(styles[index].moveSpeed);
         playerHealth.SetDamageTakenMultiplier(styles[index].damageTakenMultiplier);
         playerCombat.setPrimaryWeapon(styles[index].primaryWeapon);
         //Add UI element to represent changed styleName.
-        //playerCombat.currentSuper = styles[index].superAttack;
 
-        Debug.Log("Current Style: " + currentStyle);
+        Debug.Log("Current Style: " + currentStyleName);
     }
 
     //Struct for holding styles.
@@ -55,7 +62,6 @@ public class StyleSystem : MonoBehaviour
     {
         public string styleName;
         public int primaryWeapon;
-        public int superAttack;
         public float moveSpeed;
         public float damageTakenMultiplier;
     }

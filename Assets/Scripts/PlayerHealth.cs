@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     
     private float currentHealth = 100;
     public float maxHealth = 25f;
+    private static bool playerHasPotion = false;
 
     [SerializeField] float knockedTime;
     Rigidbody2D rb;
@@ -42,6 +43,15 @@ public class PlayerHealth : MonoBehaviour
             else
             {
                 currInvincibleTimer -= Time.deltaTime;
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            if(playerHasPotion)
+            {
+                playerHasPotion = false;
+                HealPlayer(maxHealth);
             }
         }
     }
@@ -85,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerMovement>().SetKnocked(false);
     }
 
-    public void HealPlayer(int healPoint) {
+    public void HealPlayer(float healPoint) {
         currentHealth += healPoint;
         if (currentHealth > maxHealth){
             currentHealth = maxHealth;
@@ -105,5 +115,15 @@ public class PlayerHealth : MonoBehaviour
     public float getCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void SetPlayerHasPotion(bool hasPotion)
+    {
+        playerHasPotion = hasPotion;
+    }
+
+    public bool GetPlayerHasPotion()
+    {
+        return playerHasPotion;
     }
 }

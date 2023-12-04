@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] SpriteRenderer sprite;
     Rigidbody2D rb;
 
+    public bool takeExtraDamage = false;
+
     [SerializeField] enemySelection es;
     private bool direction;
     public bool getDirection(){
@@ -73,12 +75,19 @@ public class EnemyController : MonoBehaviour{
 
     //method for taking damage
     public void TakeDamage(float damageTaken){
+        if (takeExtraDamage)
+        {
+            damageTaken *= 2;
+        }
         health -= damageTaken;
         animator.SetBool("Attacked", true);
         if (health < 0){
             Die();
         }
     }
+
+
+
     void Die(){
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
         Destroy(gameObject);
