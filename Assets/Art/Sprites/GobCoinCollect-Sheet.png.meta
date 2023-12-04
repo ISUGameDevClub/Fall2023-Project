@@ -248,6 +248,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GobCoinCollect-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab7004cd6d24b24ea83564b108792a3
+      internalID: -1907815018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GobCoinCollect-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4164c1b7d2a2aae45a502f0653d3f6a8
+      internalID: -828055483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -265,6 +307,8 @@ TextureImporter:
       GobCoinCollect-Sheet_3: 1537599429
       GobCoinCollect-Sheet_4: 2103019768
       GobCoinCollect-Sheet_5: -86830884
+      GobCoinCollect-Sheet_6: -1907815018
+      GobCoinCollect-Sheet_7: -828055483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
