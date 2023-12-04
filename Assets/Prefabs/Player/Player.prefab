@@ -411,7 +411,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   simpleCannonBullet: {fileID: 3816030608163453240, guid: 9cdb3a648ac6aa44bb126442623a1d48, type: 3}
-  railgunBullet: {fileID: 0}
+  railgunBullet: {fileID: 8362169613190527897, guid: 7d1637865f28de246be5478edb25f0a1, type: 3}
   megaShotBullet: {fileID: 3816030608163453240, guid: 2ab078bf8b9ab724b957dc9c44ea4fee, type: 3}
   daggerBullet: {fileID: 3816030608163453240, guid: 649a21a6251554a45babc6fd463b7d54, type: 3}
   grenadeLauncherBullet: {fileID: 3816030608163453240, guid: 0851e6481887acf4f9258b10c4952875, type: 3}

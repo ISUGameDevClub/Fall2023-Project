@@ -176,38 +176,44 @@ public class PlayerAttack : MonoBehaviour
     private void ShootRailgun()
     {
         GetComponent<Animator>().SetInteger("WeaponType", 1);
-        GameObject clone;
-        clone = Instantiate(railgunBullet, weapon.transform.position, transform.rotation);
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 45));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 135));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 225));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 315));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
         }
         else if (Input.GetKey(KeyCode.W))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 90));
             GetComponent<Animator>().SetInteger("ShootDir", 0);
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 270));
             GetComponent<Animator>().SetInteger("ShootDir", 4);
         }
         else if (isRight)
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 0));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
         }
         else if (!isRight)
         {
+            Instantiate(railgunBullet, weapon.transform.position, Quaternion.Euler(0, 0, 180));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
         }
         GetComponent<Animator>().SetTrigger("Shoot");
