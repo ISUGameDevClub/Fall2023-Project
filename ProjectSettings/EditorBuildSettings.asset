@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Levels/Demo Scenes (11-1)/0DemoMenu.unity
-    guid: e8f8e23013b71d44f81c131c961e5d73
+    path: Assets/Scenes/Levels/ApprovedFinal/0MainMenu.unity
+    guid: 53229936db4cbf94d93684b76c1fa658
   - enabled: 1
-    path: Assets/Scenes/Levels/Demo Scenes (11-1)/1DemoLevelSelect.unity
-    guid: f3bcf97db94447f47a50ea83547e3044
+    path: Assets/Scenes/Levels/ApprovedFinal/1LevelSelect.unity
+    guid: bb0b9a14f7b552645812d81cde44892c
   - enabled: 1
     path: Assets/Scenes/Levels/Demo Scenes (11-1)/2DemoWrathLevel.unity
     guid: 15dda250bc25cb242bce67f3ddb5f120
