@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3182655277379850456}
+  - component: {fileID: 3721099011305167877}
   - component: {fileID: 910687437372662316}
   - component: {fileID: -8284188795894505733}
-  - component: {fileID: 3721099011305167877}
   m_Layer: 7
   m_Name: MegaShot
   m_TagString: Untagged
@@ -119,6 +119,21 @@ Transform:
   - {fileID: 1433352598214463020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3721099011305167877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3816030608163453240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a6a9fe37de6d543a2e9289f1ebffa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
+  destroyAfterTime: 0
+  destroyTimer: 10
 --- !u!50 &910687437372662316
 Rigidbody2D:
   serializedVersion: 4
@@ -181,18 +196,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &3721099011305167877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3816030608163453240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a6a9fe37de6d543a2e9289f1ebffa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 3
-  destroyAfterTime: 0
-  destroyTimer: 10

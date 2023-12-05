@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 264943231752941526}
+  - component: {fileID: 549734462163166164}
   - component: {fileID: 6012645796542343017}
   - component: {fileID: -9066446189187741266}
-  - component: {fileID: 549734462163166164}
   m_Layer: 0
   m_Name: RailgunBullet
   m_TagString: Untagged
@@ -119,6 +119,19 @@ Transform:
   - {fileID: 8836938510923314652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549734462163166164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8362169613190527897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bdfd84d37d3f340866a72c3686a588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 6
 --- !u!95 &6012645796542343017
 Animator:
   serializedVersion: 5
@@ -185,16 +198,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.64871, y: 1}
   m_EdgeRadius: 0
---- !u!114 &549734462163166164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8362169613190527897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bdfd84d37d3f340866a72c3686a588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 6
