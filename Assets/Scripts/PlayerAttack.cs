@@ -51,6 +51,28 @@ public class PlayerAttack : MonoBehaviour
 
     void Update() 
     {
+        //TODO: DEBUGS, DELETE LATER
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("MegaShot");
+            SecondaryWeapon = 1;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("Dagger");
+            SecondaryWeapon = 2;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("GrenadeLauncher");
+            SecondaryWeapon = 3;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("Railgun");
+            primaryWeapon = 1;
+        }
+
         //Discerns last direction player was facing
         //Also changes direction of weapon
         if (Input.GetAxisRaw("Horizontal") > 0)
@@ -233,7 +255,8 @@ public class PlayerAttack : MonoBehaviour
         //Dagger
         else if(SecondaryWeapon == 2) 
         {
-            StartCoroutine(MeleeDagger());
+            GetComponent<Animator>().SetInteger("WeaponType", 3);
+            GetComponent<Animator>().SetTrigger("Shoot");
         }
         //GrenadeLauncher
         else if(SecondaryWeapon == 3)
@@ -245,53 +268,81 @@ public class PlayerAttack : MonoBehaviour
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
         sfxController.playSound(4);
-        GetComponent<Animator>().SetTrigger("AttackStyle1");
+        GetComponent<Animator>().SetInteger("WeaponType", 2);
+        yield return new WaitForSeconds(.05f);
         GameObject clone;
         clone = Instantiate(megaShotBullet, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.W))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 0);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S))
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 4);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
         }
         else if(isRight)
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
         }
         else if(!isRight)
         {
+            GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
         }
+        GetComponent<Animator>().SetTrigger("Shoot");
         yield return new WaitForSeconds(.1f);
     }
 
-    private IEnumerator MeleeDagger()
+    public void MeleeDaggerAnim()
     {
-        //TODO: Add sound
-        //TODO: Add animation
-        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
-        yield return new WaitForSeconds(daggerSliceSpeed);
-        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
-        yield return new WaitForSeconds(daggerSliceSpeed);
-        Instantiate(daggerBullet, attackPoint.transform.position, transform.rotation);
+        float randomSwipeDirection = Random.Range(0, 2);
+
+        ////TODO: Add sound
+        if(isRight)
+        {
+            if(randomSwipeDirection == 0)
+            {
+                Instantiate(daggerBullet, attackPoint.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+            else
+            {
+                Instantiate(daggerBullet, attackPoint.transform.position, Quaternion.Euler(130, 0, 0));
+            }
+        }    
+        else
+        {
+            if(randomSwipeDirection == 0)
+            {
+                Instantiate(daggerBullet, attackPoint.transform.position, Quaternion.Euler(0, 0, 180));
+            }
+            else
+            {
+                Instantiate(daggerBullet, attackPoint.transform.position, Quaternion.Euler(130, 0, 180));
+            }
+        }
     }
 
     private void ShootGrenadeLauncher()
