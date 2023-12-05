@@ -420,8 +420,11 @@ MonoBehaviour:
   megaShotSpeed: 25
   daggerSliceSpeed: 0.3
   grenadeSpeed: 25
-  timeBetweenPrimary: 0.25
-  timeBetweenSecondary: 0.5
+  simpleCannonDelay: 0
+  railgunDelay: 1
+  megaShotDelay: 0.5
+  daggerDelay: 0.5
+  grenadeLauncherDelay: 0.65
 --- !u!114 &-8483532070881732752
 MonoBehaviour:
   m_ObjectHideFlags: 0
