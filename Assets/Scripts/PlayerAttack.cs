@@ -157,44 +157,51 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<Animator>().SetInteger("WeaponType", 0);
         sfxController.playSound(3);
         GameObject clone;
-        clone = Instantiate(simpleCannonBullet, weapon.transform.position, transform.rotation);
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 45));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 135));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 225));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 315));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, -1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.W))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 90));
             GetComponent<Animator>().SetInteger("ShootDir", 0);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 1, 0) * simpleCannonSpeed;
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 270));
             GetComponent<Animator>().SetInteger("ShootDir", 4);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * simpleCannonSpeed;
         }
         else if (isRight)
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 0));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0) * simpleCannonSpeed;
         }
         else if (!isRight)
         {
+            clone = Instantiate(simpleCannonBullet, weapon.transform.position, Quaternion.Euler(0, 0, 180));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0) * simpleCannonSpeed;
         }
@@ -281,44 +288,51 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<Animator>().SetInteger("WeaponType", 2);
         yield return new WaitForSeconds(.05f);
         GameObject clone;
-        clone = Instantiate(megaShotBullet, attackPoint.transform.position, transform.rotation); //will set transform to players weapon when model is implemented
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,45));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,135));
             GetComponent<Animator>().SetInteger("ShootDir", 1);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,225));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,-1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,315));
             GetComponent<Animator>().SetInteger("ShootDir", 3);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,-1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.W))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,90));
             GetComponent<Animator>().SetInteger("ShootDir", 0);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0) * megaShotSpeed;
         }
         else if(Input.GetKey(KeyCode.S))
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,270));
             GetComponent<Animator>().SetInteger("ShootDir", 4);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(0,-1,0) * megaShotSpeed;
         }
         else if(isRight)
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,0));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1,0,0) * megaShotSpeed;
         }
         else if(!isRight)
         {
+            clone = Instantiate(megaShotBullet, attackPoint.transform.position, Quaternion.Euler(0,0,180));
             GetComponent<Animator>().SetInteger("ShootDir", 2);
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(-1,0,0) * megaShotSpeed;
         }
