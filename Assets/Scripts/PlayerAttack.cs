@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private int secondaryWeapon = 0;
+    public static int SecondaryWeapon = 0;
     private int primaryWeapon = 0;
     private bool isRight = true;
 
@@ -226,17 +226,17 @@ public class PlayerAttack : MonoBehaviour
      ----------------------- */
     void ShootSecondaryWeapon(){
         //Mega-Shot
-        if(secondaryWeapon == 1)
+        if(SecondaryWeapon == 1)
         {
             StartCoroutine(ShootMegaShot());
         }
         //Dagger
-        else if(secondaryWeapon == 2) 
+        else if(SecondaryWeapon == 2) 
         {
             StartCoroutine(MeleeDagger());
         }
         //GrenadeLauncher
-        else if(secondaryWeapon == 3)
+        else if(SecondaryWeapon == 3)
         {
             ShootGrenadeLauncher();
         }
@@ -339,10 +339,5 @@ public class PlayerAttack : MonoBehaviour
     public void setPrimaryWeapon(int newPrimaryWeapon)
     {
         this.primaryWeapon = newPrimaryWeapon;
-    }
-    
-    public void setSecondaryWeapon(int newSecondaryWeapon)
-    {
-        this.secondaryWeapon = newSecondaryWeapon;
     }
 }
