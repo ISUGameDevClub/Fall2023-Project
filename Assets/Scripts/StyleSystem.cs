@@ -14,6 +14,10 @@ public class StyleSystem : MonoBehaviour
     //Weapon Inventory
     public static bool hasRailgun = false;
 
+    //UI Styling
+    public GameObject cannonText;
+    public GameObject railgunText;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -51,9 +55,14 @@ public class StyleSystem : MonoBehaviour
         playerMovement.SetSpeed(styles[index].moveSpeed);
         playerHealth.SetDamageTakenMultiplier(styles[index].damageTakenMultiplier);
         playerCombat.setPrimaryWeapon(styles[index].primaryWeapon);
-        //Add UI element to represent changed styleName.
-
-        Debug.Log("Current Style: " + currentStyleName);
+        if(index == 0)
+        {
+            cannonText.GetComponent<Animator>().SetTrigger("CannonText");
+        }
+        else if(index == 1)
+        {
+            railgunText.GetComponent<Animator>().SetTrigger("RailgunText");
+        }
     }
 
     //Struct for holding styles.
