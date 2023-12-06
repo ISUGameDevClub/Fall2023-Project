@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ParasiteController : MonoBehaviour
 {
+    //TOMMY: Your perfect rat sound goes here.
+
     Rigidbody2D rb;
-    [SerializeField] private int health;
+    [SerializeField] private float health;
     [SerializeField] int damage;
     [SerializeField] private int moveSpeed;
     [SerializeField] Vector2 rayCastOffeset = new Vector2(0, -0.6f);
@@ -63,12 +65,13 @@ public class ParasiteController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damageTaken){
+    public void TakeDamage(float damageTaken){
         health -= damageTaken;
         if (health < 0){
             Die();
         }
     }
+
     void Die(){
         Destroy(gameObject);
     }

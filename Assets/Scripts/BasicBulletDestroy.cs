@@ -23,13 +23,28 @@ public class BasicBulletDestroy : MonoBehaviour
             other.GetComponent<EnemyController>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
+        if(other.gameObject.GetComponent<ContraEnemyController>())
+        {
+            other.GetComponent<ContraEnemyController>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
+        if (other.gameObject.GetComponent<ParasiteController>())
+        {
+            other.GetComponent<ParasiteController>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
         if (other.CompareTag("WrathBoss"))
         {
             //Not sure if this is the proper place we're handling hurting enemies...
             other.GetComponentInParent<DragonBossHealth>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
-        if (!other.CompareTag("Player"))
+        if(other.CompareTag("GluttonyBoss"))
+        {
+            other.GetComponentInParent<GluttonyHealth>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
+        if (!other.CompareTag("Player") && !other.CompareTag("2Way"))
         {
             Destroy(gameObject);
         }

@@ -717,12 +717,12 @@ AudioSource:
   m_GameObject: {fileID: 1155937761}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f89b430ad85a8468bbf954ed19063f97, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 4a0d5f53318654640ae651dd3c9f96cc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.406
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -818,11 +818,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMusic: {fileID: 1155937762}
   soundtracks:
-  - {fileID: 8300000, guid: 4c7f5de9acb32594c83ff97fd05ea1a5, type: 3}
+  - {fileID: 8300000, guid: 4a0d5f53318654640ae651dd3c9f96cc, type: 3}
   - {fileID: 8300000, guid: 67221919ed386b84e976e36ae82fb3f2, type: 3}
   - {fileID: 8300000, guid: fd4c2761505324747ba9c3f6dcde7214, type: 3}
-  musicVolume: 0.2
-  swapSpeed: 0.5
+  songs:
+  - introClip: {fileID: 8300000, guid: 4a0d5f53318654640ae651dd3c9f96cc, type: 3}
+    loopClip: {fileID: 0}
+    volume: 0.8
+  - introClip: {fileID: 8300000, guid: 08368c5bfbacb4fc0981757e394bc43d, type: 3}
+    loopClip: {fileID: 8300000, guid: 5cc2ff3d261f3403f9cc3339999c28ee, type: 3}
+    volume: 1
+  - introClip: {fileID: 8300000, guid: 47ab92676a0735747a50d881b29cb8b3, type: 3}
+    loopClip: {fileID: 8300000, guid: 84922435e21a1ac4f823cd8a89dddc57, type: 3}
+    volume: 1
+  - introClip: {fileID: 0}
+    loopClip: {fileID: 8300000, guid: bef8ba04ab52c4f16b5c572cc19c2510, type: 3}
+    volume: 1
+  - introClip: {fileID: 8300000, guid: 5c15a993ede68483296464ff1f9b70c6, type: 3}
+    loopClip: {fileID: 8300000, guid: 48ab9e631ed5f4d5983887192d26211d, type: 3}
+    volume: 1
+  - introClip: {fileID: 0}
+    loopClip: {fileID: 8300000, guid: 1c0e64048ae54416b979c6d4eb081375, type: 3}
+    volume: 1
+  - introClip: {fileID: 0}
+    loopClip: {fileID: 8300000, guid: 4ce3e6966e3e44657989b4dc1a9e5bd5, type: 3}
+    volume: 1
+  - introClip: {fileID: 0}
+    loopClip: {fileID: 8300000, guid: 40a8cf93d60424baf92735944e2f9d9e, type: 3}
+    volume: 1
+  musicVolume: 0.8
+  swapSpeed: 0.8
 --- !u!4 &1155937764
 Transform:
   m_ObjectHideFlags: 0

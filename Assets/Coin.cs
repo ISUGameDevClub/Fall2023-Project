@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    //TOMMY: Coin here
+
     public int coinValue = 5;
 
     public void OnTriggerEnter2D(Collider2D other)

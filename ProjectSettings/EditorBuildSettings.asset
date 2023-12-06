@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/ApprovedFinal/2LevelSelect.unity
     guid: bb0b9a14f7b552645812d81cde44892c
   - enabled: 1
+    path: Assets/Scenes/Levels/ApprovedFinal/3FinalCredits.unity
+    guid: b54e573d181c7a34d8742308375d469f
+  - enabled: 1
     path: Assets/Scenes/Levels/ApprovedFinal/BossGluttony.unity
     guid: 0db48a1623f9390439ae49e2abf79c19
   - enabled: 1
