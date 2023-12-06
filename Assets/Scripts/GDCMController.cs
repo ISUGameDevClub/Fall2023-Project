@@ -5,17 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class GDCMController : MonoBehaviour
 {
+    [System.Serializable]
+    public class Song
+    {
+        public AudioClip introClip;  // Intro audio clip (played once before looping)
+        public AudioClip loopClip;   // Looping audio clip
+        public float volume;         // Volume of the song (default is full volume)
+    }
+    
     private static GDCMController instance;
 
     public AudioSource gameMusic;
-    public AudioClip[] soundtracks;
-    private AudioClip newClip;
-    public float musicVolume = .2f;
-    public float swapSpeed = .5f;
+    public Song[] songs;
+    private Song newSong;
+    private Song currentSong;
+    public float swapSpeed;
 
     void Awake()
     {
-        newClip = gameMusic.clip;
+        newSong = songs[0];
         if (instance == null)
         {
             instance = this;
@@ -27,11 +35,11 @@ public class GDCMController : MonoBehaviour
 
     private void Update()
     {
-        //DELETE THIS WHEN DONE GIAN
-        if(Input.GetKeyDown(KeyCode.Escape))
+        // Check if should start looping
+        if (!gameMusic.isPlaying && gameMusic.clip == currentSong.introClip && currentSong.loopClip)
         {
-            Application.Quit();
-        }    
+            StartLooping();
+        }
 
         CrossfadeMusic();
         //DEMO MUSIC, CHANGE TO ACTUAL SCENES WHEN READY
@@ -41,30 +49,43 @@ public class GDCMController : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name.Equals("1DemoLevelSelect"))
         {
-            ChangeSong(0);
+            ChangeSong(3);
         }
         if (SceneManager.GetActiveScene().name.Equals("2DemoWrathLevel"))
         {
-            ChangeSong(1);
+            ChangeSong(6);
         }
         if (SceneManager.GetActiveScene().name.Equals("3DemoWrathBoss"))
         {
-            ChangeSong(2);
+            ChangeSong(7);
         }
         if (SceneManager.GetActiveScene().name.Equals("4DemoEnd"))
         {
-            ChangeSong(0);
+            ChangeSong(8);
         }
     }
 
     public void ChangeSong(int soundtrackIndex)
     {
-        newClip = soundtracks[soundtrackIndex];
+        newSong = songs[soundtrackIndex];
+    }
+
+    private void StartLooping()
+    {
+        gameMusic.loop = true;
+        gameMusic.clip = currentSong.loopClip;
+        gameMusic.Play();
+    }
+    private void StartIntro()
+    {
+        gameMusic.loop = false;
+        gameMusic.clip = currentSong.introClip;
+        gameMusic.Play();
     }
 
     public void CrossfadeMusic()
     {
-        if (gameMusic.clip != newClip)
+        if (currentSong != newSong)
         {
             if (gameMusic.volume > .05f)
             {
@@ -72,20 +93,25 @@ public class GDCMController : MonoBehaviour
             }
             else
             {
+                currentSong = newSong;
                 gameMusic.volume = 0;
-                gameMusic.clip = newClip;
-                gameMusic.Play();
+                if (currentSong.introClip) {
+                    StartIntro();
+                }
+                else {
+                    StartLooping();
+                }
             }
         }
         else
         {
-            if (gameMusic.volume < musicVolume)
+            if (gameMusic.volume < currentSong.volume)
             {
                 gameMusic.volume += Time.unscaledDeltaTime * swapSpeed;
             }
             else
             {
-                gameMusic.volume = musicVolume;
+                gameMusic.volume = currentSong.volume;
             }
         }
     }
