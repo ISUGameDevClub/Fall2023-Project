@@ -107,6 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   cameraYSpeed: 18
-  useStartingOffset: 1
-  cameraOffset: {x: 0, y: 0, z: 0}
+  useStartingOffset: 0
+  cameraOffset: {x: 0, y: 3.84, z: 0}
   trackBehaviour: 0
