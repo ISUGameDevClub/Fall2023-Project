@@ -227,8 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   damage: 10
-  moveSpeed: 1
+  moveSpeed: 2
   reward: 0
+  EnemyExplosion: {fileID: 0}
   sprite: {fileID: 3460795713612803417}
   takeExtraDamage: 0
   es: 0
