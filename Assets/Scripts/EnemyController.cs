@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour{
     //TOMMY: Enemy hit and death can go here
-    //This is also the Exploding goomba, not sure which enum.
 
     [SerializeField] private float health;
     [SerializeField] float damage;
     [SerializeField] private int moveSpeed;
     [SerializeField] int reward;
+
+    private GameObject player;
+    public GameObject EnemyExplosion;
 
     [SerializeField] SpriteRenderer sprite;
     Rigidbody2D rb;
@@ -35,6 +37,7 @@ public class EnemyController : MonoBehaviour{
         direction = true;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        player = FindObjectOfType<PlayerMovement>().gameObject;
     }
 
     void Update(){
@@ -44,7 +47,7 @@ public class EnemyController : MonoBehaviour{
                 break;
             }
             case enemySelection.enemy2:{
-
+                updateEnemy1();
                 break;
             }
             case enemySelection.enemy3:{
@@ -61,7 +64,14 @@ public class EnemyController : MonoBehaviour{
         }
         if(other.gameObject.GetComponent<PlayerHealth>()){
             GameObject player = other.gameObject;
-            player.GetComponent<PlayerHealth>().DamagePlayer(damage,transform.position);
+            if (es == enemySelection.enemy2)
+            {
+                Die();
+            }
+            else
+            {
+                player.GetComponent<PlayerHealth>().DamagePlayer(damage, transform.position);
+            }
         }
     }
 
@@ -77,7 +87,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     //method for taking damage
-    public void TakeDamage(float damageTaken){
+    public void TakeDamage(float damageTaken) {
         if (takeExtraDamage)
         {
             damageTaken *= 2;
@@ -93,6 +103,11 @@ public class EnemyController : MonoBehaviour{
 
     void Die(){
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
+        if (es == enemySelection.enemy2)
+        {
+            FindObjectOfType<SFXController>().playSound(8);
+            Instantiate(EnemyExplosion, transform.position, Quaternion.identity, null);
+        }
         Destroy(gameObject);
     }
 }

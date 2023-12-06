@@ -79,11 +79,10 @@ MonoBehaviour:
   damage: 1
   moveSpeed: 5
   reward: 0
-  bullet: {fileID: 7024941967067541039, guid: ace8d8d5dc03a5645b316789f06b3853, type: 3}
-  weapon: {fileID: 358213829858780711}
+  EnemyExplosion: {fileID: 7024941967067541039, guid: ace8d8d5dc03a5645b316789f06b3853, type: 3}
   sprite: {fileID: 459770358424674417}
+  takeExtraDamage: 0
   es: 1
-  direction: 0
 --- !u!95 &5210056964505105506
 Animator:
   serializedVersion: 5
@@ -213,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: -2070471471
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 520957733, guid: 6cbc27f1c8cc5d34fb49b19103062d83, type: 3}
+  m_Sprite: {fileID: -275775742, guid: 6cbc27f1c8cc5d34fb49b19103062d83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

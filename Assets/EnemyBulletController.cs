@@ -13,18 +13,19 @@ public class EnemyBulletController : MonoBehaviour
         EnemyController.enemySelection es = selection;
         switch (es)
         {
-            case EnemyController.enemySelection.enemy2:
-                {
-                    Destroy(gameObject, destroyTime);
-                    break;
-                }
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerHealth>())
         {
-            collision.gameObject.GetComponent<PlayerHealth>().DamagePlayer(damage, Vector3.zero);
+            collision.gameObject.GetComponent<PlayerHealth>().DamagePlayer(damage, transform.position);
         }
+    }
+
+    public void DestroyBoombaExplosion()
+    {
+        Destroy(gameObject);
     }
 }
