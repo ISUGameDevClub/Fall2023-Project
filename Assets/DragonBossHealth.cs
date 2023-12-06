@@ -8,13 +8,10 @@ public class DragonBossHealth : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] int reward;
 
-    [SerializeField] SpriteRenderer sprite;
-    Rigidbody2D rb;
     Animator animator;
 
     void Start(){
         animator = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     //detects collison with anything but the player and reverses the movement

@@ -38,6 +38,11 @@ public class GrenadeExplosion : MonoBehaviour
             other.GetComponentInParent<GluttonyHealth>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
+        if (other.CompareTag("GreedBoss"))
+        {
+            other.GetComponentInParent<GreedBoss>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
         if (!other.CompareTag("Player") && !other.CompareTag("2Way"))
         {
             Destroy(gameObject);
