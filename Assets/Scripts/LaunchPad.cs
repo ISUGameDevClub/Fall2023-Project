@@ -7,8 +7,9 @@ public class LaunchPad : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<ContraEnemyController>())
         {
+            GetComponent<Animator>().SetTrigger("Bounce");
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
             Debug.Log("Launched");
         }
