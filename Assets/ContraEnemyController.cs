@@ -5,6 +5,9 @@ using static EnemyController;
 
 public class ContraEnemyController : MonoBehaviour
 {
+    //TOMMY: We also need the same hit/death sounds, this script
+    //mocks EnemyController.cs in a way.
+
     private bool playerNear = false;
     public float playerNearDistance = 10f;
 

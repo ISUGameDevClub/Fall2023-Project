@@ -4,6 +4,9 @@ using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
+    //TOMMY: Enemy hit and death can go here
+    //This is also the Exploding goomba, not sure which enum.
+
     [SerializeField] private float health;
     [SerializeField] float damage;
     [SerializeField] private int moveSpeed;

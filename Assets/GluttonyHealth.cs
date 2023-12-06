@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GluttonyHealth : MonoBehaviour
 {
+    //TOMMY: Hits and deaths can go here.
+
     [SerializeField] private float health;
     [SerializeField] float collisionDamage;
     [SerializeField] int reward;

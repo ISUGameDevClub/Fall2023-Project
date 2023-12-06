@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GluttonyAttacks : MonoBehaviour
 {
+    //TOMMY: Use swooshes when the boss spits, dashes, and swipes etc
+    //TOMMY: See animator for the event trigger timings.
+
     private Animator bossAnimator;
     private float attackTimer;
     private bool isAttacking;

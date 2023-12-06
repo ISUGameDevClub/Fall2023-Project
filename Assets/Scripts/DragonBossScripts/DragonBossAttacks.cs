@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DragonBossAttacks : MonoBehaviour
 {
+    //TOMMY: SFX on Wrath Beam, Fireball, swipes, hits, and death.
+
     private Animator dragonAnimator;
     private float attackTimer;
     private bool isAttacking;

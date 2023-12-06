@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ParasiteController : MonoBehaviour
 {
+    //TOMMY: Your perfect rat sound goes here.
+
     Rigidbody2D rb;
     [SerializeField] private float health;
     [SerializeField] int damage;

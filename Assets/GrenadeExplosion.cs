@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GrenadeExplosion : MonoBehaviour
 {
+    //TOMMY: Grenade explosion may go here, but be aware, I've reused this script
+    //for dagger and railgun because they use the same logic.
+    //You may need to make a new method with event triggers that call it.
+ 
     public float damage;
 
     void OnTriggerEnter2D(Collider2D other)

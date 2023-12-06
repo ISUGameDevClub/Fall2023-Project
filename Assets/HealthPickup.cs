@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
+    //TOMMY: Health up
+
     private PlayerHealth playerHealth;
     public float healAmount;
 

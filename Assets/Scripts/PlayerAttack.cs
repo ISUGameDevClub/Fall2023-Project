@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    //TOMMY: SFX on Megashot, dagger, and grenade launcher (perhaps use goomba explosion)
+    //...and railgun.
+
     public static int SecondaryWeapon = 0;
     private int primaryWeapon = 0;
     private bool isRight = true;
