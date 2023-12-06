@@ -34,9 +34,17 @@ public class DragonBossHealth : MonoBehaviour
         }
     }
 
-    void Die(){
+    void Die() {
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
-        FindObjectOfType<LevelLoader>().StartTransition("4DemoEnd"); //TEMPORARY DEMO TRANSITION
+        GameManager.wrathDefeated = true;
+        if(GameManager.CheckIfAllDefeated())
+        {
+            FindObjectOfType<LevelLoader>().StartTransition("3FinalCredits");
+        }
+        else
+        {
+            FindObjectOfType<LevelLoader>().StartTransition("2LevelSelect");
+        }
         Destroy(gameObject);
     }
 
