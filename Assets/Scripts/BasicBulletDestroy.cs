@@ -23,6 +23,11 @@ public class BasicBulletDestroy : MonoBehaviour
             other.GetComponent<EnemyController>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
+        if(other.gameObject.GetComponent<ContraEnemyController>())
+        {
+            other.GetComponent<ContraEnemyController>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
         if (other.gameObject.GetComponent<ParasiteController>())
         {
             other.GetComponent<ParasiteController>().TakeDamage(damage);

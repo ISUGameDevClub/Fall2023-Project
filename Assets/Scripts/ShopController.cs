@@ -61,6 +61,10 @@ public class ShopController : MonoBehaviour
                 {
                     enemy.takeExtraDamage = false;
                 }
+                foreach(ContraEnemyController enemy in FindObjectsOfType<ContraEnemyController>())
+                {
+                    enemy.takeExtraDamage = false;
+                }
             }
         }
 
@@ -113,6 +117,10 @@ public class ShopController : MonoBehaviour
                 GameObject.Find("DoubleDamagePanel").GetComponentInChildren<TMP_Text>().enabled = true;
                 damageBoostTimer = damageBoostTime;
                 foreach(EnemyController enemy in FindObjectsOfType<EnemyController>())
+                {
+                    enemy.takeExtraDamage = true;
+                }
+                foreach(ContraEnemyController enemy in FindObjectsOfType<ContraEnemyController>())
                 {
                     enemy.takeExtraDamage = true;
                 }
