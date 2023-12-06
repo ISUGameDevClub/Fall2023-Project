@@ -57,11 +57,11 @@ public class GDCMController : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name.Equals("3DemoWrathBoss"))
         {
-            ChangeSong(7);
+            ChangeSong(8);
         }
         if (SceneManager.GetActiveScene().name.Equals("4DemoEnd"))
         {
-            ChangeSong(8);
+            ChangeSong(7);
         }
     }
 
