@@ -11,7 +11,6 @@ public class LaunchPad : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("Bounce");
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
-            Debug.Log("Launched");
         }
     }
     // Start is called before the first frame update
