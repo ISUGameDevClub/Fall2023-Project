@@ -5,31 +5,34 @@ using UnityEngine;
 
 public class GluttonyMove : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
     public float xMinWalkRange;
     public float xMaxWalkRange;
     private bool chargeAnimation = false;
     private int chargeDirection = 1;
     public int chargeSpeed = 3;
-    public int ChargeRange = 4;
+    public float ChargeRange = 12.5f;
     private Vector2 chargeStart;
     private Vector2 targetRange;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Math.Abs(-8));
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (chargeAnimation){
-            Vector2 bossPos = transform.position;
+        if (chargeAnimation) {
+            Vector2 bossPos = rb.position;
             if (Math.Abs(bossPos.x - chargeStart.x) > ChargeRange) {
                 Debug.Log("Range Done");
                 chargeAnimation = false;
             }
             if (bossPos.x > xMinWalkRange || bossPos.x < xMaxWalkRange){
-                transform.position = new Vector2(bossPos.x + (chargeSpeed * Time.deltaTime * chargeDirection),bossPos.y);
+                rb.position = new Vector2(bossPos.x + (chargeSpeed * Time.deltaTime * chargeDirection),bossPos.y);
             } else {
                 chargeAnimation = false;
             }
@@ -37,17 +40,17 @@ public class GluttonyMove : MonoBehaviour
     }
 
     public void ChargePlayer() {
-        chargeStart = transform.position;
+        chargeStart = rb.position;
         chargeAnimation = true;
         Transform playerLocation = GameObject.FindGameObjectWithTag("Player").transform;
-        if (transform.position.x < playerLocation.position.x) {
+        if (rb.position.x < playerLocation.position.x) {
             // Player is on the right side
             chargeDirection = 1;
-            targetRange = new Vector2(transform.position.x + ChargeRange,0);
+            targetRange = new Vector2(rb.position.x + ChargeRange,0);
         } else {
             // Player is on the left side
             chargeDirection = -1;
-            targetRange = new Vector2(transform.position.x - ChargeRange,0);
+            targetRange = new Vector2(rb.position.x - ChargeRange,0);
         }
     }
 }

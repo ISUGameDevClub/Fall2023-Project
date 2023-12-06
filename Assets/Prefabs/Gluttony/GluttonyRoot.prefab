@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2237899978129939847}
-  - component: {fileID: 3329943418381487184}
   - component: {fileID: 383721148597322578}
   - component: {fileID: 2195266861225364934}
   m_Layer: 0
@@ -34,18 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 888784817729079004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3329943418381487184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342176042004991310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8073f6b254859850aee1b8385d6d341, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &383721148597322578
 Rigidbody2D:
   serializedVersion: 4
@@ -368,9 +355,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7993541955723852754}
   - component: {fileID: 9221797975754189114}
+  - component: {fileID: 6692124236955625695}
+  - component: {fileID: 78646283379307344}
+  - component: {fileID: 716525903583846255}
   m_Layer: 0
   m_Name: GluttonyRoot
-  m_TagString: Untagged
+  m_TagString: GluttonyBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,10 +393,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7704fc54f09f9c3d38b8514ff02297a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMinWalkRange: -5.89
-  xMaxWalkRange: 23.53
+  xMinWalkRange: -7
+  xMaxWalkRange: 20
   chargeSpeed: 30
-  ChargeRange: 8
+  ChargeRange: 12
+--- !u!50 &6692124236955625695
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728478501382142481}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &78646283379307344
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728478501382142481}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.028083801, y: -0.5804}
+  m_Size: {x: 2.1288643, y: 3.0649934}
+  m_Direction: 0
+--- !u!114 &716525903583846255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728478501382142481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e645083b715120b4b88b0954fe5591c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 125
+  collisionDamage: 2.5
+  reward: 50
 --- !u!1 &8818811124424151734
 GameObject:
   m_ObjectHideFlags: 0

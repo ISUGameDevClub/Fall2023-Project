@@ -29,6 +29,11 @@ public class BasicBulletDestroy : MonoBehaviour
             other.GetComponentInParent<DragonBossHealth>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
+        if(other.CompareTag("GluttonyBoss"))
+        {
+            other.GetComponentInParent<GluttonyHealth>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }
         if (!other.CompareTag("Player") && !other.CompareTag("2Way"))
         {
             Destroy(gameObject);
