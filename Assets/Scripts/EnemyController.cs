@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour{
         return direction;
     }
 
-    private enum enemySelection {
+    public enum enemySelection {
         enemy1,
         enemy2,
         enemy3
