@@ -13,6 +13,11 @@ public class GrenadeExplosion : MonoBehaviour
             other.GetComponent<EnemyController>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
+        if(other.gameObject.GetComponent<ParasiteController>())
+        {
+            other.GetComponent<ParasiteController>().TakeDamage(damage);
+            FindObjectOfType<DMCombo>().AddToCombo();
+        }   
         if (other.CompareTag("WrathBoss"))
         {
             //Not sure if this is the proper place we're handling hurting enemies...

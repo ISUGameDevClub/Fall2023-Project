@@ -536,8 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04c115481b2d864392af9642c779286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToPlayer: 1
-  knockback: 1
+  damageToPlayer: 5
+  knockback: 3
 --- !u!70 &5083097569027811006
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

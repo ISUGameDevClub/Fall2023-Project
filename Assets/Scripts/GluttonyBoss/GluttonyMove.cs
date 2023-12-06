@@ -6,6 +6,7 @@ using UnityEngine;
 public class GluttonyMove : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator anims;
 
     public float xMinWalkRange;
     public float xMaxWalkRange;

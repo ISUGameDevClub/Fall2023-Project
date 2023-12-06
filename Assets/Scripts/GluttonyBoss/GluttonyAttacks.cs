@@ -14,17 +14,33 @@ public class GluttonyAttacks : MonoBehaviour
     private float fireballYLevel;
     private GluttonyMove GlutMove;
     [SerializeField] GameObject paraEnemy;
+
+    private SpriteRenderer glutSprite;
+    private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         bossAnimator = GetComponent<Animator>();
         attackTimer = timeBetweenAttacks * 2; // Gives the player double the time on spawn to prepare for an attack.
         GlutMove = transform.parent.gameObject.GetComponent<GluttonyMove>();
+        glutSprite = GetComponentInChildren<SpriteRenderer>();
+        player = FindObjectOfType<PlayerMovement>().gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Sprite Flip!
+        if (player.transform.position.x > transform.position.x)
+        {
+            glutSprite.flipX = true;
+        }
+        else
+        {
+            glutSprite.flipX = false;
+        }
+
         // Will count down attackTimer while not attacking.
         if(attackTimer > 0 && !isAttacking)
         {
@@ -39,9 +55,28 @@ public class GluttonyAttacks : MonoBehaviour
     }
     private void Attack()
     {
+        //Calculate x distance from player
+        float xDistanceFromPlayer = 
+            Mathf.Abs(transform.position.x - player.transform.position.x);
+        float yDistanceFromPlayer = 
+            Mathf.Abs(transform.position.y - player.transform.position.y);
         // Generates a random integer to choose attack.
-        int randomAttack = Random.Range(1, 4);
-        Debug.Log(randomAttack);
+        int randomAttack = 0;
+        if (xDistanceFromPlayer >= 4)
+        {
+            randomAttack = Random.Range(1, 3) * 2;
+        }
+        else
+        {
+            if (yDistanceFromPlayer > 2.5)
+            {
+                randomAttack = Random.Range(1, 3);
+            }
+            else
+            {
+                randomAttack = Random.Range(1, 4);
+            }
+        }
         // Will set the animator's "Attack" parameter to the random attack, triggering that animation.
         bossAnimator.SetInteger("Attack", randomAttack);
         // Sets isAttacking to true to prevent resets.
@@ -51,7 +86,6 @@ public class GluttonyAttacks : MonoBehaviour
     public void SetAttackingFalse()
     {
         this.isAttacking = false;
-        Debug.Log("ddddddddddddddddd");
         bossAnimator.SetInteger("Attack", 0);
     }
 
@@ -60,8 +94,8 @@ public class GluttonyAttacks : MonoBehaviour
     }
 
     public void ThrowPara() {
-        GameObject newPrefabInstance = Instantiate(paraEnemy, gameObject.transform.position, Quaternion.identity);
-        Debug.Log("Spawn Para");
+        Vector3 slightlyAbove = gameObject.transform.position + new Vector3(0, 1.5f, 0);
+        GameObject newPrefabInstance = Instantiate(paraEnemy, slightlyAbove, Quaternion.identity);
     }
 
     public void FireAttackBall() {
@@ -80,16 +114,13 @@ public class GluttonyAttacks : MonoBehaviour
                 playerTargetX = playerTargetX - playerTargetY;
             }
         }
-        newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX, -1);
-        newPrefabInstance = Instantiate(fireball, gameObject.transform.position, Quaternion.identity);
+        //newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX, -1);
+        //newPrefabInstance = Instantiate(fireball, gameObject.transform.position, Quaternion.identity);
         newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX + 5, -1);
         newPrefabInstance.GetComponent<GluttonyProj>().arcHeight = defaultArcHeight - 2;
         newPrefabInstance = Instantiate(fireball, gameObject.transform.position, Quaternion.identity);
         newPrefabInstance.GetComponent<GluttonyProj>().targetPosition = new Vector2(playerTargetX - 5, -1);
         newPrefabInstance.GetComponent<GluttonyProj>().arcHeight = defaultArcHeight + 2;
-        // for (int i = 0; i < 3; i++) {
-
-        // }
     }
 
     private float CalArcHeightOnDistance(float distance){

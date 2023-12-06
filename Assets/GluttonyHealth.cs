@@ -30,7 +30,7 @@ public class GluttonyHealth : MonoBehaviour
     public void TakeDamage(float damageTaken)
     {
         health -= damageTaken;
-        animator.SetTrigger("Damaged");
+        animator.SetTrigger("Hurt");
         if (health < 0)
         {
             Die();
