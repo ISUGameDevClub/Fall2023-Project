@@ -94,6 +94,6 @@ public class Goomba_Demo : MonoBehaviour, IDamageable_Demo
     public void TakeDamage(float damageTaken)
     {
         health = health - damageTaken;
-        animator.SetBool("Attacked", true);
+        animator.SetTrigger("Hurt");
     }
 }

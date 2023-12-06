@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour{
             damageTaken *= 2;
         }
         health -= damageTaken;
-        animator.SetBool("Attacked", true);
+        animator.SetTrigger("Hurt");
         if (health < 0){
             Die();
         }
