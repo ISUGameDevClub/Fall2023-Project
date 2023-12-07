@@ -43,11 +43,11 @@ public class GDCMController : MonoBehaviour
 
         CrossfadeMusic();
         //DEMO MUSIC, CHANGE TO ACTUAL SCENES WHEN READY
-        if (SceneManager.GetActiveScene().name.Equals("0DemoMenu"))
+        if (SceneManager.GetActiveScene().name.Equals("0MainMenu"))
         {
             ChangeSong(0);
         }
-        if (SceneManager.GetActiveScene().name.Equals("1DemoLevelSelect"))
+        if (SceneManager.GetActiveScene().name.Equals("2LevelSelect"))
         {
             ChangeSong(3);
         }
@@ -55,13 +55,41 @@ public class GDCMController : MonoBehaviour
         {
             ChangeSong(6);
         }
-        if (SceneManager.GetActiveScene().name.Equals("3DemoWrathBoss"))
+        if (SceneManager.GetActiveScene().name.Equals("BossWrath"))
         {
             ChangeSong(8);
         }
-        if (SceneManager.GetActiveScene().name.Equals("4DemoEnd"))
+        if (SceneManager.GetActiveScene().name.Equals("BossGluttony"))
+        {
+            ChangeSong(5);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("BossGreed"))
+        {
+            ChangeSong(4);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("3FinalCredits"))
         {
             ChangeSong(7);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("1Credits"))
+        {
+            ChangeSong(7);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
+        {
+            ChangeSong(2);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("WrathLevel"))
+        {
+            ChangeSong(6);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("GluttonyLevel"))
+        {
+            ChangeSong(6);
+        }
+        if (SceneManager.GetActiveScene().name.Equals("GreedLevel"))
+        {
+            ChangeSong(1);
         }
     }
 

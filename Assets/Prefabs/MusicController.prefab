@@ -50,8 +50,8 @@ MonoBehaviour:
   - introClip: {fileID: 8300000, guid: 4a0d5f53318654640ae651dd3c9f96cc, type: 3}
     loopClip: {fileID: 0}
     volume: 0.8
-  - introClip: {fileID: 8300000, guid: 08368c5bfbacb4fc0981757e394bc43d, type: 3}
-    loopClip: {fileID: 8300000, guid: 5cc2ff3d261f3403f9cc3339999c28ee, type: 3}
+  - introClip: {fileID: 8300000, guid: 5cc2ff3d261f3403f9cc3339999c28ee, type: 3}
+    loopClip: {fileID: 8300000, guid: 08368c5bfbacb4fc0981757e394bc43d, type: 3}
     volume: 1
   - introClip: {fileID: 8300000, guid: 47ab92676a0735747a50d881b29cb8b3, type: 3}
     loopClip: {fileID: 8300000, guid: 84922435e21a1ac4f823cd8a89dddc57, type: 3}
