@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    //TOMMY: Coin here
+
+    [Header("SFX")]
+    private SFXController sfxController;
 
     public int coinValue = 5;
+
+    void Start()
+    {
+        sfxController = FindObjectOfType<SFXController>();
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +21,7 @@ public class Coin : MonoBehaviour
         {
             FindObjectOfType<CurrencyCount>().AddAmount(coinValue);
             GetComponent<Animator>().SetTrigger("CollectCoin");
-            //PLAY SFX
+            sfxController.playSound(14);
         }
     }
 

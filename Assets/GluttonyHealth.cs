@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GluttonyHealth : MonoBehaviour
 {
-    //TOMMY: Hits and deaths can go here.
+    [Header("SFX")]
+    private SFXController sfxController;
 
     [SerializeField] private float health;
     [SerializeField] float collisionDamage;
@@ -17,6 +18,7 @@ public class GluttonyHealth : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sfxController = FindObjectOfType<SFXController>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -33,6 +35,7 @@ public class GluttonyHealth : MonoBehaviour
     {
         health -= damageTaken;
         animator.SetTrigger("Hurt");
+        sfxController.playSound(6);
         if (health < 0)
         {
             Die();
@@ -41,6 +44,7 @@ public class GluttonyHealth : MonoBehaviour
 
     void Die()
     {
+        sfxController.playSound(21);
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
         GameManager.gluttonyDefeated = true;
         if (GameManager.CheckIfAllDefeated())
