@@ -52,7 +52,6 @@ public class GreedBoss : MonoBehaviour
         {
             //Cards
             sfxController.playSound(17);
-            Debug.Log("Throwing Cards");
             greedAnimator.SetInteger("Attack", randomAttack);
             greedAnimator.SetTrigger("Shoot");
         }
@@ -60,14 +59,12 @@ public class GreedBoss : MonoBehaviour
         {
             //Dive
             sfxController.playSound(16);
-            Debug.Log("Diving");
             greedAnimator.SetInteger("Attack", randomAttack);
             greedAnimator.SetTrigger("Shoot");
         }
         else if(randomAttack == 3)
         {
             //Slot Machine
-            Debug.Log("Slot Machine");
             if (slotMachine.GetComponent<SlotMachine>().isSpinning == true)
             {
                 int otherAttack = Random.Range(1, 3);

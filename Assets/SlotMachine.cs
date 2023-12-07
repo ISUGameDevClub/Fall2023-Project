@@ -19,12 +19,14 @@ public class SlotMachine : MonoBehaviour
 
     public void SpinSlots()
     {
+        Debug.Log("Spinning Slots");
         isSpinning = true;
         slotAnims.SetTrigger("Spin");
     }
 
     public void SpinStopAnim()
     {
+        Debug.Log("Stopping Spin");
         isSpinning = false;
         int randomSlot = Random.Range(1, 4);
         slotAnims.SetInteger("Result", randomSlot);
@@ -33,15 +35,18 @@ public class SlotMachine : MonoBehaviour
     public void SpawnDiamonds()
     {
         //Instantiate the attack
+        Debug.Log("Spawning Diamonds");
     }
 
     public void SpawnCherries()
     {
         //Instantiate the attack
+        Debug.Log("Spawning Cherries");
     }
 
     public void SpawnCoinsGems()
     {
         //Instantiate the attack
+        Debug.Log("Spawning Coins and Gems");
     }
 }
