@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d4804d88cc04c07419feee2cb2b1491c, type: 3}
+  m_Sprite: {fileID: -277251949, guid: 1d4b329575ae796499a26a572e65580f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -240,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 38045805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 6.25, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7217,7 +7217,7 @@ MonoBehaviour:
   cardProjectile: {fileID: 2259939283985119274, guid: 856fcf0cd83176a4bad6603f92fe4f00, type: 3}
   cardSpeed: -12.5
   slotMachine: {fileID: 38045805}
-  health: 5
+  health: 110
   damage: 5
   reward: 20
 --- !u!4 &8075227004085182122
