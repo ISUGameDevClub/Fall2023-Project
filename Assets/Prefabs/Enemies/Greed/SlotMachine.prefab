@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpinning: 0
-  diamondAttack: {fileID: 0}
-  cherryAttack: {fileID: 0}
-  coingemsAttack: {fileID: 0}
+  diamondAttack: {fileID: 871974995783696283, guid: 1da8c8d8f031d714890dcbf40328476c, type: 3}
+  cherryAttack: {fileID: 841796656558459475, guid: 78ce8ba7bff17524da5df215fb5f1af0, type: 3}
+  coingemsAttack: {fileID: 4892907610333945787, guid: c423a4dd0bd015c46b108702c94a9c0a, type: 3}
 --- !u!95 &4531831811356912310
 Animator:
   serializedVersion: 5

@@ -71,7 +71,6 @@ public class GreedBoss : MonoBehaviour
             }
             else if (slotMachine.GetComponent<SlotMachine>().isSpinning == false)
             {
-                sfxController.playSound(25);
                 slotMachine.GetComponent<SlotMachine>().isSpinning = true;
                 slotMachine.GetComponent<SlotMachine>().SpinSlots();
                 isAttacking = false;

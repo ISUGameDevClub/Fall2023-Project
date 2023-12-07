@@ -7,6 +7,7 @@ public class SlotMachine : MonoBehaviour
     private SFXController sfxController;
 
     private Animator slotAnims;
+    private GameObject player;
     public bool isSpinning = false;
 
     //Slot Machine Attacks
@@ -18,6 +19,7 @@ public class SlotMachine : MonoBehaviour
     {
         slotAnims = GetComponent<Animator>();
         sfxController = FindObjectOfType<SFXController>();
+        player = FindObjectOfType<PlayerMovement>().gameObject;
     }
 
     public void SpinSlots()
@@ -39,17 +41,25 @@ public class SlotMachine : MonoBehaviour
     {
         //Instantiate the attack
         Debug.Log("Spawning Diamonds");
+        Instantiate(diamondAttack, 
+            player.transform.position + new Vector3(0, 20, 0), 
+            Quaternion.identity);
     }
 
     public void SpawnCherries()
     {
         //Instantiate the attack
-        Debug.Log("Spawning Cherries");
+        Instantiate(diamondAttack,
+            player.transform.position + new Vector3(0, 20, 0),
+            Quaternion.identity);
     }
 
     public void SpawnCoinsGems()
     {
         //Instantiate the attack
+        Instantiate(diamondAttack,
+            player.transform.position + new Vector3(0, 20, 0),
+            Quaternion.identity);
         Debug.Log("Spawning Coins and Gems");
     }
 }
