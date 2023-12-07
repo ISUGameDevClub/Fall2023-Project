@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlotMachine : MonoBehaviour
 {
+    private SFXController sfxController;
+
     private Animator slotAnims;
     public bool isSpinning = false;
 
@@ -15,13 +17,13 @@ public class SlotMachine : MonoBehaviour
     public void Start()
     {
         slotAnims = GetComponent<Animator>();
+        sfxController = FindObjectOfType<SFXController>();
     }
 
     public void SpinSlots()
     {
-        Debug.Log("Spinning Slots");
-        isSpinning = true;
         slotAnims.SetTrigger("Spin");
+        sfxController.playSound(25);
     }
 
     public void SpinStopAnim()
@@ -30,6 +32,7 @@ public class SlotMachine : MonoBehaviour
         isSpinning = false;
         int randomSlot = Random.Range(1, 4);
         slotAnims.SetInteger("Result", randomSlot);
+        sfxController.playSound(26);
     }
 
     public void SpawnDiamonds()

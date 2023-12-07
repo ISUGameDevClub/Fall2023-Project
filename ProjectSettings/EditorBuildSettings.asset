@@ -19,16 +19,10 @@ EditorBuildSettings:
     guid: b54e573d181c7a34d8742308375d469f
   - enabled: 1
     path: Assets/Scenes/Levels/ApprovedFinal/BossGluttony.unity
-    guid: 0db48a1623f9390439ae49e2abf79c19
+    guid: 9997d899ec5e68241afaec1268e85774
   - enabled: 1
     path: Assets/Scenes/Levels/ApprovedFinal/BossWrath.unity
     guid: 6f30d927a76e66b4a92128b813846d29
-  - enabled: 1
-    path: Assets/Scenes/Levels/Demo Scenes (11-1)/2DemoWrathLevel.unity
-    guid: 15dda250bc25cb242bce67f3ddb5f120
-  - enabled: 1
-    path: Assets/Scenes/Levels/Demo Scenes (11-1)/4DemoEnd.unity
-    guid: f57808bbe75908e4ead613d538bfb0de
   - enabled: 1
     path: Assets/Scenes/Development/Credits.unity
     guid: 8982cdaa454e5154bbdf10ef72e5ea8d

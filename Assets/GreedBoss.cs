@@ -37,7 +37,7 @@ public class GreedBoss : MonoBehaviour
         {
             attackTimer -= Time.deltaTime;
         }
-        if(attackTimer <= 0 && !isAttacking)
+        else if(attackTimer <= 0 && !isAttacking)
         {
             Attack();
             attackTimer = timeBetweenAttacks;
@@ -50,8 +50,6 @@ public class GreedBoss : MonoBehaviour
         int randomAttack = Random.Range(1, 4);
         if(randomAttack == 1)
         {
-            //Cards
-            sfxController.playSound(17);
             greedAnimator.SetInteger("Attack", randomAttack);
             greedAnimator.SetTrigger("Shoot");
         }
@@ -71,8 +69,10 @@ public class GreedBoss : MonoBehaviour
                 greedAnimator.SetInteger("Attack", otherAttack);
                 greedAnimator.SetTrigger("Shoot");
             }
-            else
+            else if (slotMachine.GetComponent<SlotMachine>().isSpinning == false)
             {
+                sfxController.playSound(25);
+                slotMachine.GetComponent<SlotMachine>().isSpinning = true;
                 slotMachine.GetComponent<SlotMachine>().SpinSlots();
                 isAttacking = false;
             }
@@ -81,9 +81,11 @@ public class GreedBoss : MonoBehaviour
 
     public void ThrowCard()
     {
+        //Cards
+        sfxController.playSound(17);
         //Instantiate Five Cards at shootpoint, going in 5 directions 
         //We should set the rb.velocity of the cards to go in different directions to the left.
-        if(FindObjectOfType<PlayerMovement>().transform.position.x < transform.position.x)
+        if (FindObjectOfType<PlayerMovement>().transform.position.x < transform.position.x)
         {
             GameObject card = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
             card.GetComponent<Rigidbody2D>().velocity = new Vector2(cardSpeed, 3f);
