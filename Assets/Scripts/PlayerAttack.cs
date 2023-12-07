@@ -55,28 +55,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Update() 
     {
-        //TODO: DEBUGS, DELETE LATER
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("MegaShot");
-            SecondaryWeapon = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("Dagger");
-            SecondaryWeapon = 2;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("GrenadeLauncher");
-            SecondaryWeapon = 3;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("Railgun");
-            primaryWeapon = 1;
-        }
-
         //Discerns last direction player was facing
         //Also changes direction of weapon
         if (Input.GetAxisRaw("Horizontal") > 0)
