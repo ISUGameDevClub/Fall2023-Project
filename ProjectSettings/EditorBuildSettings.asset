@@ -21,9 +21,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/ApprovedFinal/BossGluttony.unity
     guid: 9997d899ec5e68241afaec1268e85774
   - enabled: 1
+    path: Assets/Scenes/Levels/ApprovedFinal/BossGreed.unity
+    guid: 24d2de21aec14964c929abc0475c26c4
+  - enabled: 1
     path: Assets/Scenes/Levels/ApprovedFinal/BossWrath.unity
     guid: 6f30d927a76e66b4a92128b813846d29
   - enabled: 1
-    path: Assets/Scenes/Development/Credits.unity
-    guid: 8982cdaa454e5154bbdf10ef72e5ea8d
+    path: Assets/Scenes/Levels/ApprovedFinal/GluttonyLevel.unity
+    guid: 06464362f77665f42b04d51df117128e
+  - enabled: 1
+    path: Assets/Scenes/Levels/ApprovedFinal/GreedLevel.unity
+    guid: 545f3fa0272948c4aba35482f66e49bc
+  - enabled: 1
+    path: Assets/Scenes/Levels/ApprovedFinal/TutorialLevel.unity
+    guid: d7437ec56d39d36458c23ef031514044
+  - enabled: 1
+    path: Assets/Scenes/Levels/ApprovedFinal/WrathLevel.unity
+    guid: 73b1f4b54473ce04982f7eb20faacfd1
   m_configObjects: {}
