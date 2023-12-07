@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class ParasiteController : MonoBehaviour
 {
-    //TOMMY: Your perfect rat sound goes here.
-
+    private SFXController sfxController;
     Rigidbody2D rb;
     [SerializeField] private float health;
     [SerializeField] int damage;
@@ -21,6 +20,7 @@ public class ParasiteController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sfxController = FindObjectOfType<SFXController>();
         rb = GetComponent<Rigidbody2D>();
         // rb.AddForce(new Vector2(200, 500));
         moveDir = new Vector2(moveSpeed * GetPlayerDir(), 0);
@@ -66,6 +66,7 @@ public class ParasiteController : MonoBehaviour
     }
 
     public void TakeDamage(float damageTaken){
+        sfxController.playSound(22);
         health -= damageTaken;
         if (health < 0){
             Die();
@@ -73,6 +74,7 @@ public class ParasiteController : MonoBehaviour
     }
 
     void Die(){
+        sfxController.playSound(22);
         Destroy(gameObject);
     }
 }

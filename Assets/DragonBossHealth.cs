@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragonBossHealth : MonoBehaviour
 {
+    private SFXController sfxController;
     [SerializeField] private float health;
     [SerializeField] float damage;
     [SerializeField] int reward;
@@ -11,6 +12,7 @@ public class DragonBossHealth : MonoBehaviour
     Animator animator;
 
     void Start(){
+        sfxController = FindObjectOfType<SFXController>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -24,6 +26,7 @@ public class DragonBossHealth : MonoBehaviour
 
     //method for taking damage
     public void TakeDamage(float damageTaken){
+        sfxController.playSound(6);
         health -= damageTaken;
         animator.SetTrigger("Damaged");
         if (health < 0){
@@ -32,6 +35,7 @@ public class DragonBossHealth : MonoBehaviour
     }
 
     void Die() {
+        sfxController.playSound(21);
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
         GameManager.wrathDefeated = true;
         if(GameManager.CheckIfAllDefeated())

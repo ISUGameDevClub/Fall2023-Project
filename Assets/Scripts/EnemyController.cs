@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class EnemyController : MonoBehaviour{
-    //TOMMY: Enemy hit and death can go here
+    private SFXController sfxController;
 
     [SerializeField] private float health;
     [SerializeField] float damage;
@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour{
         direction = true;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sfxController = FindObjectOfType<SFXController>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
     }
 
@@ -88,6 +89,7 @@ public class EnemyController : MonoBehaviour{
 
     //method for taking damage
     public void TakeDamage(float damageTaken) {
+        sfxController.playSound(6);
         if (takeExtraDamage)
         {
             damageTaken *= 2;
@@ -102,6 +104,7 @@ public class EnemyController : MonoBehaviour{
 
 
     void Die(){
+        sfxController.playSound(7);
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
         if (es == enemySelection.enemy2)
         {

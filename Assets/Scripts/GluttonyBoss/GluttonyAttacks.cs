@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GluttonyAttacks : MonoBehaviour
 {
-    //TOMMY: Use swooshes when the boss spits, dashes, and swipes etc
-    //TOMMY: See animator for the event trigger timings.
+    private SFXController sfxController;
 
     private Animator bossAnimator;
     private float attackTimer;
@@ -24,6 +23,7 @@ public class GluttonyAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sfxController = FindObjectOfType<SFXController>();
         bossAnimator = GetComponent<Animator>();
         attackTimer = timeBetweenAttacks * 2; // Gives the player double the time on spawn to prepare for an attack.
         GlutMove = transform.parent.gameObject.GetComponent<GluttonyMove>();
@@ -94,14 +94,17 @@ public class GluttonyAttacks : MonoBehaviour
 
     public void ChargePlayer(){
         GlutMove.ChargePlayer();
+        sfxController.playSound(16);
     }
 
     public void ThrowPara() {
+        sfxController.playSound(22);
         Vector3 slightlyAbove = gameObject.transform.position + new Vector3(0, 1.5f, 0);
         GameObject newPrefabInstance = Instantiate(paraEnemy, slightlyAbove, Quaternion.identity);
     }
 
     public void FireAttackBall() {
+        sfxController.playSound(24);
         Transform playerLocation = GameObject.FindGameObjectWithTag("Player").transform;
         float playerTargetX = playerLocation.position.x;
         float playerTargetY = playerLocation.position.y;
@@ -138,5 +141,9 @@ public class GluttonyAttacks : MonoBehaviour
         float finalHeight = Mathf.Lerp(maxHeight, minHeight, t);
 
         return finalHeight;
+    }
+
+    public void PlaySwipeSound() {
+        sfxController.playSound(20);
     }
 }

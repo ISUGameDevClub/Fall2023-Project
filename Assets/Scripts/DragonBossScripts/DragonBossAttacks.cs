@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class DragonBossAttacks : MonoBehaviour
 {
-    //TOMMY: SFX on Wrath Beam, Fireball, swipes, hits, and death.
-
+    private SFXController sfxController;
     private Animator dragonAnimator;
     private float attackTimer;
     private bool isAttacking;
@@ -19,6 +18,7 @@ public class DragonBossAttacks : MonoBehaviour
     void Start()
     {
         dragonAnimator = GetComponentInChildren<Animator>();
+        sfxController = FindObjectOfType<SFXController>();
         attackTimer = timeBetweenAttacks * 2; // Gives the player double the time on spawn to prepare for an attack.
     }
 
@@ -79,6 +79,7 @@ public class DragonBossAttacks : MonoBehaviour
         float spawnDelay;
         for (int i = 0; i < 5; i++)
         {
+            sfxController.playSound(18);
             // Forcibly gets out of this loop if the enemy is done attacking.
             if(isAttacking == false)
             {

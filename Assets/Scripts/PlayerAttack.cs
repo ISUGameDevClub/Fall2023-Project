@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    //TOMMY: SFX on Megashot, dagger, and grenade launcher (perhaps use goomba explosion)
-    //...and railgun.
-
     public static int SecondaryWeapon = 0;
     private int primaryWeapon = 0;
     private bool isRight = true;
@@ -58,33 +55,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Update() 
     {
-        //TODO: DEBUGS, DELETE LATER
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("MegaShot");
-            SecondaryWeapon = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("Dagger");
-            SecondaryWeapon = 2;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("GrenadeLauncher");
-            SecondaryWeapon = 3;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("Railgun");
-            primaryWeapon = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("Simple Cannon");
-            primaryWeapon = 0;
-        }
-
         //Discerns last direction player was facing
         //Also changes direction of weapon
         if (Input.GetAxisRaw("Horizontal") > 0)
@@ -218,6 +188,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void ShootRailgun()
     {
+        sfxController.playSound(15);
         GetComponent<Animator>().SetInteger("WeaponType", 1);
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
@@ -292,7 +263,7 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator ShootMegaShot()
     {
         //Instantiates object. Can add other functionality upon request. Will currently move object forward along x axis at designated speed
-        sfxController.playSound(4);
+        sfxController.playSound(5);
         GetComponent<Animator>().SetInteger("WeaponType", 2);
         yield return new WaitForSeconds(.05f);
         GameObject clone;
@@ -349,9 +320,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void MeleeDaggerAnim()
     {
+        sfxController.playSound(17);
         float randomSwipeDirection = Random.Range(0, 2);
 
-        ////TODO: Add sound
         if(isRight)
         {
             if(randomSwipeDirection == 0)
@@ -378,6 +349,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void ShootGrenadeLauncher()
     {
+        sfxController.playSound(3);
         GetComponent<Animator>().SetInteger("WeaponType", 2);
         //TODO: Add sound
         GameObject grenade = Instantiate(grenadeLauncherBullet, attackPoint.transform.position, transform.rotation);

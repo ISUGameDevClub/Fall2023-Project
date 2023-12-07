@@ -5,8 +5,7 @@ using static EnemyController;
 
 public class ContraEnemyController : MonoBehaviour
 {
-    //TOMMY: We also need the same hit/death sounds, this script
-    //mocks EnemyController.cs in a way.
+    private SFXController sfxController;
 
     private bool playerNear = false;
     public float playerNearDistance = 10f;
@@ -38,6 +37,7 @@ public class ContraEnemyController : MonoBehaviour
         movingLeft = true;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sfxController = FindObjectOfType<SFXController>();
 
         jumpTimer = jumpTimeMax;
         playerNear = false;
@@ -101,6 +101,7 @@ public class ContraEnemyController : MonoBehaviour
     //method for taking damage
     public void TakeDamage(float damageTaken)
     {
+        sfxController.playSound(6);
         if (takeExtraDamage)
         {
             damageTaken *= 2;
@@ -115,6 +116,7 @@ public class ContraEnemyController : MonoBehaviour
 
     void Die()
     {
+        sfxController.playSound(7);
         FindObjectOfType<CurrencyCount>().AddAmount(reward);
         Destroy(gameObject);
     }
