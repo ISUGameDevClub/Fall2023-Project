@@ -6,11 +6,12 @@ public class GreedBoss : MonoBehaviour
 {
     private Animator greedAnimator;
     private float attackTimer;
-    private bool isAttacking;
+    public bool isAttacking;
     public float timeBetweenAttacks;
 
     public GameObject shootPoint;
     public GameObject cardProjectile;
+    public float cardSpeed = 10f;
     public GameObject slotMachine;
 
     //Health
@@ -23,6 +24,8 @@ public class GreedBoss : MonoBehaviour
     void Start()
     {
         greedAnimator = GetComponentInChildren<Animator>();
+        isAttacking = false;
+        attackTimer = timeBetweenAttacks;
     }
 
     // Update is called once per frame
@@ -45,18 +48,27 @@ public class GreedBoss : MonoBehaviour
         int randomAttack = Random.Range(1, 4);
         if(randomAttack == 1)
         {
+            //Cards
+            Debug.Log("Throwing Cards");
             greedAnimator.SetInteger("Attack", randomAttack);
+            greedAnimator.SetTrigger("Shoot");
         }
         else if(randomAttack == 2)
         {
+            //Dive
+            Debug.Log("Diving");
             greedAnimator.SetInteger("Attack", randomAttack);
+            greedAnimator.SetTrigger("Shoot");
         }
         else if(randomAttack == 3)
         {
+            //Slot Machine
+            Debug.Log("Slot Machine");
             if (slotMachine.GetComponent<SlotMachine>().isSpinning == true)
             {
                 int otherAttack = Random.Range(1, 3);
                 greedAnimator.SetInteger("Attack", otherAttack);
+                greedAnimator.SetTrigger("Shoot");
             }
             else
             {
@@ -66,15 +78,40 @@ public class GreedBoss : MonoBehaviour
         }
     }
 
-
-
-    //Hurt player if touching boss.
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void ThrowCard()
     {
-        if(collision.gameObject.GetComponent<PlayerHealth>())
+        //Instantiate Five Cards at shootpoint, going in 5 directions 
+        //We should set the rb.velocity of the cards to go in different directions to the left.
+        if(FindObjectOfType<PlayerMovement>().transform.position.x < transform.position.x)
         {
-            GameObject player = collision.gameObject;
-            player.GetComponent<PlayerHealth>().DamagePlayer(damage, transform.position);
+            GameObject card = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card.GetComponent<Rigidbody2D>().velocity = new Vector2(cardSpeed, 3f);
+            card.GetComponent<Rigidbody2D>().rotation = -25f;
+            GameObject card2 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card2.GetComponent<Rigidbody2D>().velocity = new Vector2(cardSpeed, 1.5f);
+            card2.GetComponent<Rigidbody2D>().rotation = -15f;
+            GameObject card3 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card3.GetComponent<Rigidbody2D>().velocity = new Vector2(cardSpeed, 0);
+            card3.GetComponent<Rigidbody2D>().rotation = 0f;
+            GameObject card4 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card4.GetComponent<Rigidbody2D>().velocity = new Vector2(cardSpeed, -1.5f);
+            card4.GetComponent<Rigidbody2D>().rotation = 25f;
+        }
+        else
+        {
+            //Opposite
+            GameObject card = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card.GetComponent<Rigidbody2D>().velocity = new Vector2(-cardSpeed, 3f);
+            card.GetComponent<Rigidbody2D>().rotation = 25f;
+            GameObject card2 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card2.GetComponent<Rigidbody2D>().velocity = new Vector2(-cardSpeed, 1.5f);
+            card2.GetComponent<Rigidbody2D>().rotation = 15f;
+            GameObject card3 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card3.GetComponent<Rigidbody2D>().velocity = new Vector2(-cardSpeed, 0);
+            card3.GetComponent<Rigidbody2D>().rotation = 0f;
+            GameObject card4 = Instantiate(cardProjectile, shootPoint.transform.position, Quaternion.identity);
+            card4.GetComponent<Rigidbody2D>().velocity = new Vector2(-cardSpeed, -1.5f);
+            card4.GetComponent<Rigidbody2D>().rotation = -25f;
         }
     }
 

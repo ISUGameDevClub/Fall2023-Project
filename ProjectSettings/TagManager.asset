@@ -12,6 +12,7 @@ TagManager:
   - WrathBoss
   - 2Way
   - GluttonyBoss
+  - GreedBoss
   layers:
   - Default
   - TransparentFX

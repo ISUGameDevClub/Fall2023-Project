@@ -11,10 +11,6 @@ public class EnemyBulletController : MonoBehaviour
     public void FireBullet(EnemyController.enemySelection selection)
     {
         EnemyController.enemySelection es = selection;
-        switch (es)
-        {
-
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
