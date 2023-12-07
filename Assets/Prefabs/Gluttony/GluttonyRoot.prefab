@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e645083b715120b4b88b0954fe5591c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 65
+  health: 120
   collisionDamage: 2.5
   reward: 50
 --- !u!50 &6692124236955625695

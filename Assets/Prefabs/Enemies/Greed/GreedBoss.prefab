@@ -82,7 +82,7 @@ MonoBehaviour:
   cardProjectile: {fileID: 2259939283985119274, guid: 856fcf0cd83176a4bad6603f92fe4f00, type: 3}
   cardSpeed: -12.5
   slotMachine: {fileID: 0}
-  health: 110
+  health: 90
   damage: 5
   reward: 20
 --- !u!1 &5625726674448777488
