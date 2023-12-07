@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -313491997
-  m_SortingLayer: 0
+  m_SortingLayerID: -2070471471
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1310808294, guid: e9f3c45e4fe50ba41891f01e71ca7bf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -227,8 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   damage: 10
-  moveSpeed: 1
+  moveSpeed: 2
   reward: 0
+  EnemyExplosion: {fileID: 0}
   sprite: {fileID: 3460795713612803417}
+  takeExtraDamage: 0
   es: 0
-  direction: 1

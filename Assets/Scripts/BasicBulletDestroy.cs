@@ -44,12 +44,12 @@ public class BasicBulletDestroy : MonoBehaviour
             other.GetComponentInParent<GluttonyHealth>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
-        if(other.CompareTag("GreedBoss"))
+        if (other.CompareTag("GreedBoss"))
         {
             other.GetComponentInParent<GreedBoss>().TakeDamage(damage);
             FindObjectOfType<DMCombo>().AddToCombo();
         }
-        if (!other.CompareTag("Player") && !other.CompareTag("2Way"))
+        if (!other.CompareTag("Player") && !other.CompareTag("2Way") && !other.GetComponent<Coin>() && !other.GetComponent<HealthPickup>() && !other.GetComponent<FunctionTrigger>())
         {
             Destroy(gameObject);
         }

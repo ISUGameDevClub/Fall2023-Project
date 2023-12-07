@@ -8,7 +8,11 @@ public class GrenadeDestroy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (!other.GetComponent<Coin>() && !other.GetComponent<HealthPickup>() && !other.GetComponent<FunctionTrigger>())
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        
     }
 }

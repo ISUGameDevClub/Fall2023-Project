@@ -79,6 +79,11 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log("Railgun");
             primaryWeapon = 1;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("Simple Cannon");
+            primaryWeapon = 0;
+        }
 
         //Discerns last direction player was facing
         //Also changes direction of weapon

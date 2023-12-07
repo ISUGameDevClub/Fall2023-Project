@@ -878,7 +878,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   moveSpeed: 7.5
-  jumpImpulse: 20
+  jumpImpulse: 21
   defaultGravity: 5
   weakGravity: 6
   spriteRenderers: []
