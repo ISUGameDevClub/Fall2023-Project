@@ -69,4 +69,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8573e6ccb1cc74ae28e6c95263aea78f, type: 3}
   - {fileID: 8300000, guid: 684e5012133fd4650a62c00af7e44cd7, type: 3}
   - {fileID: 8300000, guid: 62a88abd2ba184c8099348325a93a2cb, type: 3}
+  - {fileID: 8300000, guid: 6ea3010a3f1624e8f96b39a6afc5bb38, type: 3}
+  - {fileID: 8300000, guid: 377b65d0f2be14482bc3cb31b060034a, type: 3}
+  - {fileID: 8300000, guid: 82e1da31a97b94f98bad03c2aa8f9bc2, type: 3}
   soundSource: {fileID: 7836423463437155779, guid: 1c3cb397d369c794dbce3a3b56853e49, type: 3}

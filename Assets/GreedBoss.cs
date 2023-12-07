@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GreedBoss : MonoBehaviour
 {
+    private SFXController sfxController;
     private Animator greedAnimator;
     private float attackTimer;
     public bool isAttacking;
@@ -23,6 +24,7 @@ public class GreedBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sfxController = FindObjectOfType<SFXController>();
         greedAnimator = GetComponentInChildren<Animator>();
         isAttacking = false;
         attackTimer = timeBetweenAttacks;
@@ -49,6 +51,7 @@ public class GreedBoss : MonoBehaviour
         if(randomAttack == 1)
         {
             //Cards
+            sfxController.playSound(17);
             Debug.Log("Throwing Cards");
             greedAnimator.SetInteger("Attack", randomAttack);
             greedAnimator.SetTrigger("Shoot");
@@ -56,6 +59,7 @@ public class GreedBoss : MonoBehaviour
         else if(randomAttack == 2)
         {
             //Dive
+            sfxController.playSound(16);
             Debug.Log("Diving");
             greedAnimator.SetInteger("Attack", randomAttack);
             greedAnimator.SetTrigger("Shoot");
